@@ -1,0 +1,122 @@
+<ion-app>
+  <ion-header>
+    <ion-toolbar color="dark">
+      <ion-buttons slot="start" style="z-index: 100;">
+        <ion-back-button defaultHref="/"></ion-back-button>
+      </ion-buttons>
+      <ion-title style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;text-align: center;">
+        <p>Pendaftar Lowongan Privat</p>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+
+  <ion-router-outlet id="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <!-- *ngFor="let item of list_postingan" -->
+      <ion-grid>
+        <ion-row>
+          <ion-col></ion-col>
+          <ion-col><b>Kandidat</b></ion-col>
+          <ion-col><b>Pendidikan</b></ion-col>
+          <ion-col><b>Usia</b></ion-col>
+
+        </ion-row>
+      </ion-grid>
+      <ion-list *ngFor="let item of list_pendaftar; let i=index">
+        <ion-card *ngIf="item.status == 'Diterima'" style="background-color: green;">
+
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <ion-item>
+                  <img style="width: 150px" src="http://localhost:8888/db_ta/{{item.gambar}}" alt="">
+
+                </ion-item>
+              </ion-col>
+              <ion-col>
+                <ion-item>
+                  <ion-label> <a href="detail-pendaftar/{{item.idguru_privat}}/{{idLowongan}}"><b>{{item.nama_guru_privat}} </b></a>
+                    ({{item.jenis_kelamin}})</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col>
+                <ion-item>
+                  <ion-label>{{item.jenjang_terakhir}}</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col>
+                <ion-item>{{item.umur}} Tahun </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card>
+        <ion-card *ngIf="item.status == 'Ditolak'" style="background-color: wheat;">
+
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <ion-item>
+                  <img style="width: 150px" src="http://localhost:8888/db_ta/{{item.gambar}}" alt="">
+
+                </ion-item>
+              </ion-col>
+              <ion-col>
+                <ion-item>
+                  <ion-label> <a href="detail-pendaftar/{{item.idguru_privat}}/{{idLowongan}}"><b>{{item.nama_guru_privat}} </b></a>
+                    ({{item.jenis_kelamin}})</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col>
+                <ion-item>
+                  <ion-label>{{item.jenjang_terakhir}}</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col>
+                <ion-item>{{item.umur}} Tahun </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card>
+        <ion-card *ngIf="item.status == 'Belum diterima'" style="background-color: white;">
+
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <ion-item>
+                  <img style="width: 150px" src="http://localhost:8888/db_ta/{{item.gambar}}" alt="">
+
+                </ion-item>
+              </ion-col>
+              <ion-col>
+                <ion-item>
+                  <ion-label> <a href="detail-pendaftar/{{item.idguru_privat}}/{{idLowongan}}"><b>{{item.nama_guru_privat}} </b></a>
+                    ({{item.jenis_kelamin}})</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col>
+                <ion-item>
+                  <ion-label>{{item.jenjang_terakhir}}</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col>
+                <ion-item>{{item.umur}} Tahun </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card>
+      </ion-list>
+
+
+    </ion-content>
+
+  </ion-router-outlet>
+
+</ion-app>

@@ -1,0 +1,29 @@
+<ion-app >
+  <ion-content>
+    <ion-card>
+      <ion-title>Login</ion-title>
+      <div class="form-input ion-padding">
+        <ion-item fill="solid">
+          <ion-label position="floating">Email</ion-label>
+          <ion-input type="email" [(ngModel)]="login_email"></ion-input>
+
+        </ion-item>
+      </div>
+      <div class="form-input ion-padding">
+        <ion-item fill="solid">
+          <ion-label position="floating">Password</ion-label>
+          <ion-input type="text" [(ngModel)]="login_password"></ion-input>
+
+        </ion-item>
+      </div>
+      <div class="button ion-padding">
+        <ion-button class="btnlogin" type="submit" expand="block" (click)='login()'>Login</ion-button>
+        <p>Belum Punya Akun ?</p>
+        <ion-button expand="block" routerLink='/register-tempat-kursus'>Register</ion-button>
+
+        <ion-chip *ngIf="login_error">{{login_error}}</ion-chip>
+      </div>
+    </ion-card>
+  </ion-content>
+</ion-app> 
+

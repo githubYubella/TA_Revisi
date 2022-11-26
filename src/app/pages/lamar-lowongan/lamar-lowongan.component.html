@@ -1,0 +1,49 @@
+
+<ion-app >
+  <ion-header>
+    <ion-toolbar color="dark">
+      <ion-buttons slot="start" style="z-index: 100;">
+        <ion-back-button defaultHref="/"></ion-back-button>
+      </ion-buttons>
+      <ion-title style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;text-align: center;">
+        <p>Lamar Lowongan</p>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-router-outlet id="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+
+      <ion-item>
+        <ion-title>Promosikan Diri Anda</ion-title>
+      </ion-item>
+      <ion-item>
+        <ion-textarea [(ngModel)]="note" placeholder="Beritahu mengapa Anda paling cocok untuk mengajar privat di bidang ini">
+
+        </ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-item class="ion-padding">
+          <ion-label>Upload Berkas CV:</ion-label>
+          <ion-input type="file" accept="application/pdf" (change)="onFileSelected($event)" ></ion-input>
+        </ion-item>
+      </ion-item>
+      <ion-item>
+        <ion-button (click)="kirimLamaran()">
+          Lamar Pekerjaan
+        </ion-button>
+      </ion-item>
+
+
+    </ion-content>
+
+  </ion-router-outlet>
+
+</ion-app>

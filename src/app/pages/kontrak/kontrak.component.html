@@ -1,0 +1,100 @@
+<ion-app>
+  <ion-header>
+    <ion-toolbar color="dark">
+      <ion-buttons slot="start" style="z-index: 100;">
+        <ion-back-button defaultHref="/pendaftar-lowongan/{{idLowongan}}"></ion-back-button>
+      </ion-buttons>
+      <ion-title style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;text-align: center;">
+        <p>Kontak dengan Pendaftar</p>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-router-outlet id="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ion-card>
+        <ion-item>
+          <ion-label>Kesepakatan </ion-label>
+          <ion-textarea required [(ngModel)]="kesepakatan" placeholder="Tulis kesepakatan dengan kandidat guru privat yang Anda pilih"></ion-textarea>
+        </ion-item>
+        <ion-item>
+          <ion-label>Biaya jasa</ion-label>
+          <ion-input required placeholder="Tulis nominal biaya jasa yang telah disepakati" [(ngModel)]="biaya_jasa"></ion-input>
+
+        </ion-item>
+        <ion-item>
+          <ion-label>Tanggal mulai: </ion-label>
+          <ion-datetime (ionChange)="setTanggalMulai($event)" presentation="date"></ion-datetime>
+
+        </ion-item>
+        <ion-button (click)="terima()">Terima</ion-button>
+      </ion-card>
+      <ion-card>
+        <ion-item>
+          <ion-grid>
+            <ion-row>
+
+              <ion-title>
+                <ion-label><b>Pengalaman</b></ion-label>
+              </ion-title>
+
+
+            </ion-row>
+            <ion-row>
+              <ion-label>{{pengalaman}}</ion-label>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+      </ion-card>
+      <ion-card>
+        <ion-item>
+        <ion-grid>
+          <ion-row>
+            <ion-title>
+              <ion-label><b>Data Lamaran</b></ion-label>
+            </ion-title>
+          </ion-row>
+          <ion-row>
+            <ion-label>
+              Berkas: 
+   
+             <!-- <a href="https://list-coba.000webhostapp.com/file/{{berkas_cv}}">Download</a> -->
+             <a href="http://localhost:8888/db_ta/file/{{berkas_cv}}">Download</a>
+
+            </ion-label>
+          </ion-row>
+          <ion-row>
+            <ion-label>Note / Deskripsi diri:</ion-label>
+          </ion-row>
+          <ion-row>
+            <ion-text>{{note}}</ion-text>
+          </ion-row>
+          
+        </ion-grid>
+      </ion-item>
+      </ion-card>
+      <ion-card>
+        <ion-row>
+          <ion-label>
+            History Kontrak Guru Privat
+          </ion-label>
+        </ion-row>
+        <ion-row>
+          <!-- <ion-button (click)="terima()">Terima</ion-button> -->
+          <ion-button (click)="terima()">Terima</ion-button>
+
+        </ion-row>
+      </ion-card>
+
+    </ion-content>
+
+  </ion-router-outlet>
+
+</ion-app>

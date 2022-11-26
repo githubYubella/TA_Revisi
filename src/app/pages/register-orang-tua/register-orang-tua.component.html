@@ -1,0 +1,77 @@
+<ion-app >
+  <ion-header translucent>
+    <ion-header>
+      <ion-toolbar color="dark">
+        <ion-buttons slot="start" style="z-index: 100;">
+          <ion-back-button defaultHref="/" (click)='registerOrtu=""'></ion-back-button>
+        </ion-buttons>
+        <ion-title style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;text-align: center;">Daftar Sebagai
+          Orang Tua</ion-title>
+      </ion-toolbar>
+    </ion-header>
+  </ion-header>
+  <ion-content>
+    <ion-card>
+      <h1>Register Orang Tua</h1>
+      <ion-item class="ion-padding">
+        <ion-label position="floating">Email</ion-label>
+        <ion-input required [(ngModel)]="email"></ion-input>
+      </ion-item>
+      <ion-item class="ion-padding">
+        <ion-label position="floating">Password</ion-label>
+        <ion-input required type="password" [(ngModel)]="password"></ion-input>
+      </ion-item>
+      <ion-item class="ion-padding">
+        <ion-label position="floating">Nama Orang Tua</ion-label>
+        <ion-input required [(ngModel)]="nama"></ion-input>
+      </ion-item>
+      <ion-item class="ion-padding">
+        <ion-label>Jenis Kelamin:</ion-label> <br>
+        <select required [(ngModel)]="jenisKelamin_dipilih">
+          <option value="Pria">Pria</option>
+          <option value="Wanita">Wanita</option>
+        </select>
+      </ion-item>
+      <ion-item class="ion-padding">
+        <ion-label position="floating">No. Telepon</ion-label>
+        <ion-input type="tel" placeholder="888-888-8888" required [(ngModel)]="telepon"></ion-input>
+      </ion-item>
+      <ion-item class="ion-padding">
+        <ion-label position="floating">Nama Siswa</ion-label>
+        <ion-input required [(ngModel)]="nama_siswa"></ion-input>
+      </ion-item>
+      <ion-item class="ion-padding">
+        <ion-label position="floating">Alamat</ion-label>
+        <ion-input required [(ngModel)]="alamat" placeholder="Masukkan alamat anda"></ion-input> <br>
+      </ion-item>
+      <ion-item class="ion-padding">
+        <ion-label position="floating">Kecamatan</ion-label>
+        <ion-input required [(ngModel)]="kecamatan" placeholder="Masukkan kecamatan anda"></ion-input> <br>
+      </ion-item>
+      <ion-item class="ion-padding">
+        <ion-label position="floating">Kelurahan</ion-label>
+        <ion-input required [(ngModel)]="kelurahan" placeholder="Masukkan kelurahan anda"></ion-input> <br>
+      </ion-item>
+      <ion-item class="ion-padding">
+        <ion-grid>
+          <ion-row>
+            <ion-label>Titik koordinat lokasi: </ion-label> <br>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-label>Titik koordinat lintang</ion-label>
+              <ion-input placeholder="Masukkan titik koordinat lintang" [(ngModel)]="input_x"></ion-input>
+            </ion-col>
+            <ion-col>
+              <ion-label>Titik koordinat bujur</ion-label>
+              <ion-input  placeholder="Masukkan titik koordinat bujur" [(ngModel)]="input_y"></ion-input>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+      <ion-item>
+        <ion-button (click)="register_orang_tua()">Register</ion-button>
+      </ion-item>
+    </ion-card>
+  </ion-content>
+</ion-app>

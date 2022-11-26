@@ -1,0 +1,66 @@
+<ion-app > 
+  <router-outlet id="content">
+  </router-outlet>
+
+  <ion-menu contentId="main-content" >
+    <ion-header>
+      <ion-toolbar>
+        <h1>
+          <ion-title> E-Kursus ● Tempat Kursus </ion-title>
+        </h1>
+        <ion-title>Halo , {{nama}} </ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-menu-toggle>
+        <ion-item>
+          <ion-icon name="heart" slot="start"></ion-icon>
+          <!-- <ion-label routerLink="/home-tempat-kursus">Beranda</ion-label> -->
+          <ion-label routerLink="/home">Beranda</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Obrolan</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label routerLink="/pengaturan-tempat-kursus">Pengaturan tk</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+    </ion-content>
+    <ion-item color="dark">
+      <ion-icon name="log-out-outline" slot="start"></ion-icon>
+      <ion-label (click)='logout()'>Logout</ion-label>
+    </ion-item>
+  </ion-menu>
+
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ion-router-outlet id="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <h1 class="ion-text-center">Profil Tempat Kursus, Halaman Home </h1>
+      <img src="http://localhost:8888/db_ta/gambar/{{gambar}}" alt="">
+      <h3>Email:</h3>
+      <ion-textarea [readonly]="true">{{email_profil}}</ion-textarea>
+      <h3>Nama:</h3>
+      <ion-textarea [readonly]="true">{{nama}}</ion-textarea>
+      <h3>Informasi:</h3>
+      <ion-textarea class="ion-text-wrap" [readonly]="true">{{informasi}}</ion-textarea>
+      <h3>Alamat:</h3>
+      <ion-textarea class="ion-text-wrap" [readonly]="true">{{alamat}}, Kecamatan {{kecamatan}}, Kelurahan {{kelurahan}}</ion-textarea>
+      <ion-item class="ion-padding">
+        <capacitor-google-maps #maps>sss</capacitor-google-maps>
+      </ion-item>
+    </ion-content>
+  </ion-router-outlet>
+</ion-app>

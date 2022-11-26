@@ -1,0 +1,66 @@
+<ion-app>
+  <!-- <ion-header>
+    <ion-toolbar color="dark">
+      <ion-buttons slot="start" style="z-index: 100;">
+        <ion-back-button defaultHref="/home"></ion-back-button>
+      </ion-buttons>
+      <ion-title style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;text-align: center;">
+        <p>Detail Tempat Kursus</p>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header> -->
+
+  <ion-header>
+    <ion-toolbar color="dark">
+      <ion-buttons slot="start" style="z-index: 100;">
+        <ion-back-button defaultHref="/"></ion-back-button>
+      </ion-buttons>
+      <ion-title style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;text-align: center;" > <p>Detail Inbox</p> </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-router-outlet id="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ion-grid>
+        <ion-col  style="height: 100%; ">
+
+
+
+          <ion-row size="auto">
+            <img style="width: 150px" src="http://localhost:8888/db_ta/gambar/{{gambar}}" alt="">
+          </ion-row>
+          <ion-row>
+            <h1>{{nama}}</h1>
+          </ion-row>
+          <ion-row>
+            <h3>Informasi:</h3>
+          </ion-row>
+          <ion-row>
+            <p>{{informasi}}</p>
+          </ion-row>
+          <ion-row>
+            <h3>Alamat:</h3>
+          </ion-row>
+          <ion-row>
+            <p>{{alamat}}, Kelurahan {{kelurahan}}, Kecamatan {{kecamatan}}</p>
+          </ion-row>
+          <ion-row>
+          <capacitor-google-maps #maps>sss</capacitor-google-maps>
+
+          </ion-row>
+        </ion-col>
+
+      </ion-grid>
+
+    </ion-content>
+
+  </ion-router-outlet>
+
+</ion-app>

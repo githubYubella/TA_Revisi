@@ -1,0 +1,100 @@
+<ion-app>
+  <ion-header>
+    <ion-toolbar color="dark">
+      <ion-buttons slot="start" style="z-index: 100;">
+        <ion-back-button defaultHref="/"></ion-back-button>
+      </ion-buttons>
+      <ion-title style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;text-align: center;">
+        <p>Presensi Guru Privat</p>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+
+  <ion-router-outlet id="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <!-- *ngFor="let item of list_postingan" -->
+      <ion-grid>
+        <ion-row>
+
+          <ion-col><b>Lowongan</b></ion-col>
+          <ion-col><b>Riwayat</b></ion-col>
+
+
+          <ion-col><b>Aksi</b></ion-col>
+
+        </ion-row>
+      </ion-grid>
+      <ion-list *ngFor="let item of list_lamaran_diterima; let i=index">
+        <ion-card *ngIf="item.status_pendaftar == 'Diterima'">
+
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <ion-item>
+                  <ion-label> {{item.judul_lowongan}}
+                  </ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col>
+                <ion-item>
+                  <!-- routerLink='/buka-absen/{{item.idbuka_lowongan}}' -->
+                  <ion-button (click)="presentPopover($event)">Detail Riwayat</ion-button>
+                  <ion-popover #popover [isOpen]="isOpen" (didDismiss)="isOpen = false">
+                    <ng-template>
+
+                      <ion-content class="ion-padding" *ngFor="let detail of list_riwayat_absen; let i=index">
+                        <ion-list>
+                          <ion-grid>
+                            <ion-row>
+                              <ion-col>
+                                <ion-item>
+                                  <ion-label>
+                                    {{detail.tanggal_buka}}
+                                  </ion-label>
+                                </ion-item>
+                              </ion-col>
+                              <ion-col>
+                              <ion-button (didDismiss)="isOpen = false" routerLink="/edit-absen-guru/{{detail.idabsen}}" >Edit</ion-button>
+
+                              </ion-col>
+                            </ion-row>
+                          </ion-grid>
+
+                        </ion-list>
+                      </ion-content>
+                    </ng-template>
+                  </ion-popover>
+
+                </ion-item>
+              </ion-col>
+
+              <ion-col>
+                <ion-item>
+                  <!-- routerLink='/buka-absen/{{item.idbuka_lowongan}}' -->
+                  <ion-label>
+                    <a href="buka-absen-guru/{{item.idbuka_lowongan}}">Buka Absen</a>
+                  </ion-label>
+
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card>
+
+
+      </ion-list>
+
+
+    </ion-content>
+
+  </ion-router-outlet>
+
+</ion-app>

@@ -1,0 +1,98 @@
+<ion-app>
+  <!-- <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>  -->
+
+  <ion-header>
+    <ion-toolbar color="dark">
+      <ion-buttons slot="start" style="z-index: 100;">
+        <ion-back-button defaultHref="/home"></ion-back-button>
+      </ion-buttons>
+      <ion-title style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;text-align: center;">
+        <p>Pengaturan Profil Tempat Kursus</p>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+
+
+  <ion-router-outlet id="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ion-grid>
+        <ion-row style="height: 100%;">
+          <ion-col style="border: 2px black solid; height: 100%;" class=ion-text-center>
+
+            <ion-item>
+              <ion-label>Nama:</ion-label>
+              <ion-input [(ngModel)]="nama" placeholder="{{nama}}"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>Informasi:</ion-label>
+              <ion-textarea style="height: 100%;" class="ion-text-wrap" [(ngModel)]="informasi"
+                placeholder="{{informasi}}"></ion-textarea>
+            </ion-item>
+            <ion-item>
+              <ion-label>Alamat:</ion-label>
+              <ion-input [(ngModel)]="alamat" placeholder="{{alamat}}"></ion-input>
+            </ion-item>
+            <ion-item class="ion-padding">
+              <ion-label>Kecamatan: </ion-label>
+              <ion-input [(ngModel)]="kecamatan" placeholder="{{kecamatan}}"></ion-input>
+            </ion-item>
+            <ion-item class="ion-padding">
+              <ion-label>Kelurahan: </ion-label>
+              <ion-input [(ngModel)]="kelurahan" placeholder="{{kelurahan}}"></ion-input>
+            </ion-item>
+            <ion-item class="ion-padding">
+              <ion-grid>
+                <ion-row>
+                  <ion-label>Titik koordinat lokasi: </ion-label> <br>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <ion-label>Titik koordinat lintang</ion-label>
+                    <ion-input placeholder="Masukkan titik koordinat lintang" [(ngModel)]="input_x" placeholder="{{input_x}}"></ion-input>
+                  </ion-col>
+                  <ion-col>
+                    <ion-label>Titik koordinat bujur</ion-label>
+                    <ion-input  placeholder="Masukkan titik koordinat bujur" [(ngModel)]="input_y" placeholder="{{input_y}}"></ion-input>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+      
+      
+            </ion-item>
+            <ion-button (click)="editProfil()">Simpan</ion-button>
+
+          </ion-col>
+          <ion-col style="border: 2px red solid;" class="ion-text-center">
+          
+              <img src="http://localhost:8888/db_ta/gambar/{{gambar}}" alt="">
+              <ion-input type="file" (change)="onFileSelected($event)" name="gambar">Unggah Foto Baru
+              </ion-input>
+              <ion-button (click)="editFoto()" >Simpan Foto</ion-button>
+
+
+
+
+          </ion-col>
+
+        </ion-row>
+
+      </ion-grid>
+
+    </ion-content>
+
+  </ion-router-outlet>
+</ion-app>

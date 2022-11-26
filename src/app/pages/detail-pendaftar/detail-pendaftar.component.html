@@ -1,0 +1,108 @@
+<ion-app>
+  <ion-header>
+    <ion-toolbar color="dark">
+      <ion-buttons slot="start" style="z-index: 100;">
+        <ion-back-button defaultHref="/pendaftar-lowongan/{{idLowongan}}"></ion-back-button>
+      </ion-buttons>
+      <ion-title style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;text-align: center;">
+        <p>Detail Pendaftar</p>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-router-outlet id="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ion-card>
+        <ion-item>
+          <ion-grid>
+            <ion-row>
+
+              <img style="width: 150px" src="http://localhost:8888/db_ta/{{gambar}}" alt="">
+
+
+
+            </ion-row>
+            <ion-row><b>{{nama}}</b></ion-row>
+            <ion-row>{{usia}} Tahun ({{jenis_kelamin}} )</ion-row>
+            <ion-row>{{pendidikan}} - {{tempat_pendidikan}}</ion-row>
+
+
+          </ion-grid>
+        </ion-item>
+      </ion-card>
+      <ion-card>
+        <ion-item>
+          <ion-grid>
+            <ion-row>
+
+              <ion-title>
+                <ion-label><b>Pengalaman</b></ion-label>
+              </ion-title>
+
+
+            </ion-row>
+            <ion-row>
+              <ion-label>{{pengalaman}}</ion-label>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+      </ion-card>
+      <ion-card>
+        <ion-item>
+          <ion-grid>
+            <ion-row>
+              <ion-title>
+                <ion-label><b>Data Lamaran</b></ion-label>
+              </ion-title>
+            </ion-row>
+            <ion-row>
+              <ion-label>
+                Berkas:
+
+                <!-- <a href="https://list-coba.000webhostapp.com/file/{{berkas_cv}}">Download</a> -->
+                <a href="http://localhost:8888/db_ta/file/{{berkas_cv}}">Download</a>
+
+              </ion-label>
+            </ion-row>
+            <ion-row>
+              <ion-label>Note / Deskripsi diri:</ion-label>
+            </ion-row>
+            <ion-row>
+              <ion-text>{{note}}</ion-text>
+            </ion-row>
+
+          </ion-grid>
+        </ion-item>
+      </ion-card>
+      <ion-card>
+        <ion-row>
+          <ion-item>
+            <ion-label>
+              <b>History Kontrak Guru Privat</b>
+            </ion-label>
+          </ion-item>
+        </ion-row>
+        <ion-row *ngFor="let item of list_history_kontrak; let i=index">
+          <ion-item>
+            <ion-label>{{item.judul}} - {{item.tanggal}}</ion-label>
+          </ion-item>
+        </ion-row>
+        <ion-row>
+          <!-- <ion-button (click)="terima()">Terima</ion-button> -->
+          <ion-button (click)="terima()">Terima</ion-button>
+
+        </ion-row>
+      </ion-card>
+
+    </ion-content>
+
+  </ion-router-outlet>
+
+</ion-app>

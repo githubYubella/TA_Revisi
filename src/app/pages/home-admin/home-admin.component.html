@@ -1,0 +1,88 @@
+<ion-app>
+  <router-outlet id="content">
+  </router-outlet>
+
+  <ion-menu content-id="content">
+    <ion-header>
+      <ion-toolbar>
+        <h1>
+          <ion-title>E-Kursus ● Admin</ion-title>
+        </h1>
+        <ion-title>Halo , {{nama_login}} </ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-menu-toggle>
+        <ion-item>
+          <ion-icon name="mail-outline" slot="start"></ion-icon>
+          <ion-label routerLink='/'>Beranda</ion-label>
+        </ion-item>
+
+        <!-- <ion-item >
+          <ion-icon name="star-outline" slot="start"></ion-icon>
+          <ion-label routerLink='/inboxstarred'>Starred</ion-label>
+        </ion-item> -->
+      </ion-menu-toggle>
+    </ion-content>
+    <ion-item color="dark">
+      <ion-icon name="log-out-outline" slot="start"></ion-icon>
+      <ion-label (click)='logout()'>Logout</ion-label>
+    </ion-item>
+  </ion-menu>
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ion-router-outlet id="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <h1>{{nama_login}}</h1>
+      <h3>Saldo:Rp. {{saldo}}</h3>
+      <table>
+        <tr>
+          <th>Tanggal bayar</th>
+          <th>Total Bersih</th>
+          <th>Kode Pembayaran</th>
+          <th>Nama Bank Pembayaran</th>
+          <th>ID orang tua</th>
+          <th>ID guru privat</th>
+          <th>Bukti Pembayaran</th>
+          <th>Aksi</th>
+
+        </tr>
+        <tr *ngFor="let item of list_bayar; let i=index">
+          <td>{{item.tanggal_bayar}}</td>
+          <td>{{item.total_bayar_bersih}}</td>
+          <td>{{item.kode_pembayaran}}</td>
+          <td>{{item.bank}}</td>
+
+          <td>{{item.idorang_tua}}</td>
+          <td>{{item.idguru_privat}}</td>
+          <!-- <td>{{item.bukti_bayar}}</td> -->
+          <td>
+            <a href="http://localhost:8888/db_ta/{{item.bukti_bayar}}">Lihat Bukti Pembayaran</a>
+            <!-- <img src="http://localhost:8888/db_ta/gambar/{{item.bukti_bayar}}" alt=""> -->
+          </td>
+          <td>
+            <ion-button *ngIf="item.status_lunas=='Belum lunas'" (click)="bayarLunas(item.idtransaksi)"> Lunas</ion-button>
+            <ion-button *ngIf="item.status_lunas=='Lunas'" disabled="true"> Lunas</ion-button>
+          </td>
+
+
+        </tr>
+      </table>
+      <ion-list>
+
+      </ion-list>
+    </ion-content>
+  </ion-router-outlet>
+</ion-app>

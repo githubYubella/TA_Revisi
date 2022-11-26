@@ -1,0 +1,137 @@
+<ion-app>
+  <ion-header>
+    <ion-toolbar color="dark">
+      <ion-buttons slot="start" style="z-index: 100;">
+        <ion-back-button defaultHref="/home"></ion-back-button>
+      </ion-buttons>
+      <ion-title style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;text-align: center;">
+        <p>Profil Diri </p>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+
+
+  <ion-router-outlet id="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-card>
+        <ion-item class="ion-padding" >
+          <img style="height:100px ;" src="http://localhost:8888/db_ta/{{gambar}}" alt="">
+        </ion-item>
+        <ion-item >
+          <h1>Saldo: {{saldo}}</h1>
+        </ion-item>
+        <ion-item class="ion-padding">
+          <ion-label >Email: {{email}}</ion-label>
+          <!-- <ion-input required [(ngModel)]="email"></ion-input> -->
+        </ion-item>
+        <!-- <ion-item class="ion-padding">
+          <ion-label >Password</ion-label>
+          <ion-input required type="password" [(ngModel)]="password"></ion-input>
+        </ion-item> -->
+        <ion-item class="ion-padding">
+          <ion-label >Nama Guru Privat : {{nama}}</ion-label>
+          <!-- <ion-input required [(ngModel)]="nama"></ion-input> -->
+        </ion-item>
+        <ion-item class="ion-padding">
+          <ion-label>Jenis Kelamin: {{jenis_kelamin}}</ion-label> <br>
+          <!-- <select required [(ngModel)]="jenisKelamin_dipilih">
+            <option value="Pria">Pria</option>
+            <option value="Wanita">Wanita</option>
+          </select> -->
+        </ion-item>
+        <ion-item class="ion-padding">
+          <ion-label >No. Telepon : {{telepon}}</ion-label>
+          <!-- <ion-input type="tel" placeholder="888-888-8888" required [(ngModel)]="telepon"></ion-input> -->
+        </ion-item>
+        <ion-item >
+          <ion-label>Bidang keahlian: 
+            <ion-label *ngFor="let item of keahlian; let i=index "> {{item.nama}}</ion-label>
+          </ion-label>
+
+          <!-- <ion-grid>
+            <ion-row >
+              <ion-col>
+                <ion-list>
+                <ion-item  >
+                  <ion-select [(ngModel)]="keahlian_dipilih"  multiple="true" >
+                  <ion-select-option *ngFor="let item of keahlian_list"   value="{{item.idkeahlian}}" >{{item.nama}}</ion-select-option>
+                 <ion-label>{{item.nama}}</ion-label>
+                </ion-select>
+                </ion-item>
+              </ion-list>
+              </ion-col>
+             
+            </ion-row>
+          </ion-grid> -->
+  
+            <!-- <select [(ngModel)]="keahlian_dipilih">
+              <option *ngFor="let n of keahlian_list" value="{{n.idkeahlian}}">{{n.nama}}</option>
+            </select> -->
+        </ion-item>
+        <ion-item class="ion-padding">
+          <ion-label>Jenjang Terakhir: {{jenjang}}</ion-label> <br>
+          
+        </ion-item>
+        <ion-item class="ion-padding">
+          <ion-label>Tempat Jenjang Terakhir:{{tempat_pendidikan}}</ion-label> <br>
+          
+        </ion-item>
+        <ion-item class="ion-padding">
+          <ion-label>Tanggal Lahir: {{tgl_lahir}} </ion-label>
+        </ion-item>
+        <ion-item class="ion-padding">
+          <ion-label >Alamat: {{alamat}}, Kecamatan {{kecamatan}}, Kelurahan {{kelurahan}} </ion-label>
+          <!-- <ion-input required [(ngModel)]="alamat" placeholder="Masukkan alamat anda"></ion-input> <br> -->
+        </ion-item>
+        <!-- <ion-item class="ion-padding">
+          <ion-label position="floating">Kecamatan</ion-label>
+          <ion-input required [(ngModel)]="kecamatan" placeholder="Masukkan kecamatan anda"></ion-input> <br>
+        </ion-item>
+        <ion-item class="ion-padding">
+          <ion-label position="floating">Kelurahan</ion-label>
+          <ion-input required [(ngModel)]="kelurahan" placeholder="Masukkan kelurahan anda"></ion-input> <br>
+        </ion-item> -->
+        <ion-item class="ion-padding">
+          <capacitor-google-maps #maps>sss</capacitor-google-maps>
+
+          <!-- <ion-grid>
+            <ion-row>
+              <ion-label>Titik koordinat lokasi: </ion-label> <br>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-label>Titik koordinat lintang</ion-label>
+                <ion-input placeholder="Masukkan titik koordinat lintang" [(ngModel)]="input_x"></ion-input>
+              </ion-col>
+              <ion-col>
+                <ion-label>Titik koordinat bujur</ion-label>
+                <ion-input placeholder="Masukkan titik koordinat bujur" [(ngModel)]="input_y"></ion-input>
+              </ion-col>
+            </ion-row>
+          </ion-grid> -->
+        </ion-item>
+        
+        <!-- <ion-item class="ion-padding">
+          <ion-label>Upload berkas CV</ion-label>
+          <ion-input type="file" (change)="onFileSelectedBerkas($event)" [(ngModel)]="berkas"></ion-input>
+        </ion-item> -->
+        
+        <ion-item class="ion-padding">
+          <ion-label>Pengalaman Anda: {{pengalaman}} </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-button>Edit Profil</ion-button>
+        </ion-item>
+      </ion-card>
+    </ion-content>
+
+  </ion-router-outlet>
+</ion-app>

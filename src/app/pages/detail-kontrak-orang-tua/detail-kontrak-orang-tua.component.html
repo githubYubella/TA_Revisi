@@ -1,0 +1,59 @@
+<ion-app>
+  <ion-header>
+    <ion-toolbar color="dark">
+      <ion-buttons slot="start" style="z-index: 100;">
+        <ion-back-button defaultHref="/kursus-orang-tua"></ion-back-button>
+      </ion-buttons>
+      <ion-title style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;text-align: center;">
+        <p>Detail Kontrak Anda dengan Guru Privat</p>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+
+  <ion-router-outlet id="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ion-grid>
+        <ion-col>
+          <ion-row>
+            <ion-title>Kesepakatan dengan Guru Privat:</ion-title>
+          </ion-row>
+          <ion-row>
+            <ion-item>
+              <p>{{kesepakatan}}</p>
+
+            </ion-item>
+          </ion-row>
+          <ion-row>
+            <ion-title>Biaya jasa yang disetujui:</ion-title>
+          </ion-row>
+          <ion-row>
+            <ion-item>
+              <p>{{biaya_jasa}}</p>
+            </ion-item>
+          </ion-row>
+          <ion-row>
+            <ion-title>Tanggal mulai kursus dengan Guru Privat:</ion-title>
+          </ion-row>
+          <ion-row>
+            <ion-item>
+              <p>{{tanggal_mulai}}</p>
+            </ion-item>
+          </ion-row>
+        </ion-col>
+      </ion-grid>
+
+
+
+    </ion-content>
+
+  </ion-router-outlet>
+
+</ion-app>

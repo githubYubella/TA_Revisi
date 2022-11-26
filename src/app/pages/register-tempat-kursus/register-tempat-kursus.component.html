@@ -1,0 +1,92 @@
+<ion-app>
+  <ion-header translucent>
+    <ion-header>
+      <ion-toolbar color="dark">
+        <ion-buttons slot="start" style="z-index: 100;">
+          <ion-back-button defaultHref="" (click)='registerOrtu=""'></ion-back-button>
+        </ion-buttons>
+        <ion-title style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;text-align: center;">Register Tempat Kursus</ion-title>
+      </ion-toolbar>
+    </ion-header>
+  </ion-header>
+  <ion-content>
+    <ion-card>
+      <h1>Register Tempat Kursus</h1>
+      <ion-item class="ion-padding">
+        <ion-label position="floating">Email</ion-label>
+        <ion-input required [(ngModel)]="email"></ion-input>
+      </ion-item>
+      <ion-item class="ion-padding">
+        <ion-label position="floating">Password</ion-label>
+        <ion-input required type="password" [(ngModel)]="password"></ion-input>
+      </ion-item>
+      <ion-item class="ion-padding">
+        <ion-label position="floating">Nama Tempat Kursus</ion-label>
+        <ion-input required [(ngModel)]="nama"></ion-input>
+      </ion-item>
+      <ion-item class="ion-padding">
+        <ion-label position="floating">Informasi Tempat Kursus</ion-label>
+        <ion-input [(ngModel)]="informasi"></ion-input>
+      </ion-item>
+      <ion-item class="ion-padding">
+
+        <ion-label position="floating">Alamat Tempat Kursus</ion-label>
+        <ion-input [(ngModel)]="alamat" placeholder="Masukkan alamat anda"></ion-input> <br>
+
+      </ion-item>
+      <ion-item class="ion-padding">
+        <ion-label>Kota: </ion-label>
+        <ion-input [(ngModel)]="kota"></ion-input>
+      </ion-item>
+      <ion-item class="ion-padding">
+        <ion-label>Kecamatan: </ion-label>
+        <ion-input [(ngModel)]="kecamatan"></ion-input>
+      </ion-item>
+      <ion-item class="ion-padding">
+        <ion-label>Kelurahan: </ion-label>
+        <ion-input [(ngModel)]="kelurahan"></ion-input>
+      </ion-item>
+      <!-- <ion-item class="ion-padding">
+        <ion-label>Provinsi: </ion-label>
+        <ion-input [(ngModel)]="provinsi"></ion-input>
+      </ion-item> -->
+      <ion-item class="ion-padding">
+        <ion-label position="fixed">Provinsi:</ion-label>
+        <select required [(ngModel)]="jenjang_dipilih">
+          <option *ngFor="let item of provinsi_list" value="{{item.name}}">{{item.nama}}</option>
+        
+        </select>
+      </ion-item>
+      <ion-item class="ion-padding">
+        <ion-label position="floating">No. Telepon</ion-label>
+        <ion-input type="tel" placeholder="888-888-8888" required [(ngModel)]="telepon"></ion-input>
+      </ion-item>
+      <ion-item>
+        <h2>Bidang Keahlian</h2>
+        <ion-grid>
+          <ion-row >
+            <ion-col>
+              <ion-list>
+              <ion-item  >
+                <ion-select [(ngModel)]="keahlian_dipilih"  multiple="true" >
+                <ion-select-option *ngFor="let item of keahlian_list"   value="{{item.idkeahlian}}" >{{item.nama}}</ion-select-option>
+              </ion-select>
+              </ion-item>
+            </ion-list>
+            </ion-col>
+           
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+      
+      <ion-item class="ion-padding">
+        <ion-label>Upload Gambar</ion-label>
+        <ion-input type="file" (change)="onFileSelected($event)" [(ngModel)]="gambar_regis"></ion-input>
+      </ion-item>
+    
+      <ion-item>
+        <ion-button (click)="register()">Register</ion-button>
+      </ion-item>
+    </ion-card>
+  </ion-content>
+</ion-app>
