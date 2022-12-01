@@ -252,7 +252,7 @@ image:any
     uploadData.append('email', this.email);
     this.gp.editFotoService(uploadData).subscribe((resp) => {
 
-      const parse = JSON.parse(JSON.stringify(resp))
+      const parse =  JSON.parse(JSON.stringify(resp))
 
       console.log('resp: ' + parse.result);
       if (resp['result'] == 'sukses') {
