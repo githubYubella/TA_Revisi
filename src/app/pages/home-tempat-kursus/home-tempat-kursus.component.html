@@ -1,29 +1,28 @@
-<ion-app > 
+<ion-app>
   <router-outlet id="content">
   </router-outlet>
 
-  <ion-menu contentId="main-content" >
+  <ion-menu content-id="content">
     <ion-header>
       <ion-toolbar>
         <h1>
-          <ion-title> E-Kursus ● Tempat Kursus </ion-title>
+          <ion-title>E-Kursus ● Orang Tua</ion-title>
         </h1>
-        <ion-title>Halo , {{nama}} </ion-title>
+        <ion-title>Halo , {{nama_login}} </ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content>
       <ion-menu-toggle>
         <ion-item>
-          <ion-icon name="heart" slot="start"></ion-icon>
-          <!-- <ion-label routerLink="/home-tempat-kursus">Beranda</ion-label> -->
-          <ion-label routerLink="/home">Beranda</ion-label>
+          <ion-icon name="mail-outline" slot="start"></ion-icon>
+          <ion-label routerLink='/'>Beranda</ion-label>
         </ion-item>
+
         <ion-item>
-          <ion-label>Obrolan</ion-label>
+          <ion-icon name="send-outline" slot="start"></ion-icon>
+          <ion-label routerLink='/pengaturan-tempat-kursus'>Pengaturan </ion-label>
         </ion-item>
-        <ion-item>
-          <ion-label routerLink="/pengaturan-tempat-kursus">Pengaturan tk</ion-label>
-        </ion-item>
+
       </ion-menu-toggle>
     </ion-content>
     <ion-item color="dark">
@@ -31,7 +30,6 @@
       <ion-label (click)='logout()'>Logout</ion-label>
     </ion-item>
   </ion-menu>
-
   <ion-header>
     <ion-toolbar>
       <ion-buttons slot="start">
@@ -49,15 +47,24 @@
     </ion-header>
     <ion-content class="ion-padding">
       <h1 class="ion-text-center">Profil Tempat Kursus, Halaman Home </h1>
-      <img src="http://localhost:8888/db_ta/gambar/{{gambar}}" alt="">
+      <img src="http://localhost:8888/db_ta/{{gambar}}" alt="">
       <h3>Email:</h3>
       <ion-textarea [readonly]="true">{{email_profil}}</ion-textarea>
       <h3>Nama:</h3>
       <ion-textarea [readonly]="true">{{nama}}</ion-textarea>
       <h3>Informasi:</h3>
       <ion-textarea class="ion-text-wrap" [readonly]="true">{{informasi}}</ion-textarea>
+      <h3>Keahlian</h3>
+      <ion-grid>
+
+        <ion-row *ngFor="let item of detail_keahlian">
+          {{item.nama}}
+        </ion-row>
+
+      </ion-grid>
       <h3>Alamat:</h3>
-      <ion-textarea class="ion-text-wrap" [readonly]="true">{{alamat}}, Kecamatan {{kecamatan}}, Kelurahan {{kelurahan}}</ion-textarea>
+      <ion-textarea class="ion-text-wrap" [readonly]="true">{{alamat}}, Kecamatan {{kecamatan}}, Kelurahan {{kelurahan}}
+      </ion-textarea>
       <ion-item class="ion-padding">
         <capacitor-google-maps #maps>sss</capacitor-google-maps>
       </ion-item>

@@ -70,7 +70,7 @@ export class DetailKursusComponent implements OnInit {
   //         lat: parseFloat(data['data'][0].lokasi_lat),
   //         lng: parseFloat(data['data'][0].lokasi_long)
   //       }
-        
+
   //       const marker = this.newMap.addMarker({
   //         coordinate: {
   //           lat: this.lokasiGP.lat,
@@ -80,7 +80,7 @@ export class DetailKursusComponent implements OnInit {
   //       })
   //     }
   //   )
-    
+
 
   //   await this.newMap.setCamera({
   //     coordinate: {
@@ -122,10 +122,10 @@ export class DetailKursusComponent implements OnInit {
 
     // lokasi ortu
     this.ot.profilService(this.email).subscribe(
-      async (data)=>{
-        this.location_ortu={
+      async (data) => {
+        this.location_ortu = {
           lat: parseFloat(data['data'][0].lokasi_lat),
-            lng: parseFloat(data['data'][0].lokasi_long)
+          lng: parseFloat(data['data'][0].lokasi_long)
 
         }
 
@@ -141,7 +141,7 @@ export class DetailKursusComponent implements OnInit {
       }
     )
 
-   
+
   }
 
   // async lokasi_ortu() {
@@ -153,7 +153,7 @@ export class DetailKursusComponent implements OnInit {
   //     apiKey: environment.key,
   //     config:
   //     {
-        
+
   //       center: {
   //         lat: this.location_ortu.lat,
   //         lng: this.location_ortu.lng,
@@ -237,7 +237,7 @@ export class DetailKursusComponent implements OnInit {
   async ngAfterViewInit() {
     // var id: number = this.at.snapshot.params['id']
     // console.log('emil '+this.email)
-  //  this.titikOrtu()
+    //  this.titikOrtu()
 
     // this.ot.profilService(this.email).subscribe(
     //   (data) => {

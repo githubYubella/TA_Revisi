@@ -6,6 +6,24 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class OrangTuaService {
+  editProfilSerivce(alamat:string, lat:string,long:string,jenisKel:string,telepon:string,
+    nama_siswa:string,nama_ortu:string,kec:string,kel:string,kota:string, prov:string,email:string): Observable<any> {
+    let body = new HttpParams;
+    body = body.set('alamat', alamat)
+    body = body.set('lat', lat)
+    body = body.set('long', long)
+    body = body.set('jenisKel', jenisKel)
+    body = body.set('telepon', telepon)
+    body = body.set('nama_siswa', nama_siswa)
+    body = body.set('nama_ortu', nama_ortu)
+    body = body.set('kecamatan', kec)
+    body = body.set('kelurahan', kel)
+    body = body.set('kota', kota)
+    body = body.set('provinsi', prov)
+    body = body.set('email',email)
+    return this.http.post('http://localhost:8888/db_ta/edit_profil_ortu.php', body)
+  }
+
   historyKontrakGuruSerivce(idguru: number): Observable<any> {
     let body = new HttpParams;
     body = body.set('idguru', idguru)
@@ -177,7 +195,7 @@ export class OrangTuaService {
 
   registerService(email: string, password: string, nama_ortu: string,
     jenis_kelamin: string, telepon: string,
-    nama_siswa: string, alamat: string, kecamatan: string, kelurahan: string, lat: number, long: number): Observable<any> {
+    nama_siswa: string, alamat: string, kecamatan: string, kelurahan: string, kota:string,prov:string, lat: number, long: number): Observable<any> {
 
     let body = new HttpParams;
     body = body.set('email', email)
@@ -189,6 +207,9 @@ export class OrangTuaService {
     body = body.set('alamat', alamat)
     body = body.set('kecamatan', kecamatan)
     body = body.set('kelurahan', kelurahan)
+    body = body.set('kota', kota)
+    body = body.set('prov', prov)
+
 
 
     body = body.set('lat', lat)

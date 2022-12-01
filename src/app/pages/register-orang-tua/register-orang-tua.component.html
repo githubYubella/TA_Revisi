@@ -1,4 +1,4 @@
-<ion-app >
+<ion-app>
   <ion-header translucent>
     <ion-header>
       <ion-toolbar color="dark">
@@ -27,7 +27,7 @@
       </ion-item>
       <ion-item class="ion-padding">
         <ion-label>Jenis Kelamin:</ion-label> <br>
-        <select required [(ngModel)]="jenisKelamin_dipilih">
+        <select  required [(ngModel)]="jenisKelamin_dipilih">
           <option value="Pria">Pria</option>
           <option value="Wanita">Wanita</option>
         </select>
@@ -41,33 +41,36 @@
         <ion-input required [(ngModel)]="nama_siswa"></ion-input>
       </ion-item>
       <ion-item class="ion-padding">
-        <ion-label position="floating">Alamat</ion-label>
-        <ion-input required [(ngModel)]="alamat" placeholder="Masukkan alamat anda"></ion-input> <br>
+        <ion-label position="floating">Alamat Orang tua:</ion-label>
+        <ion-input [(ngModel)]="alamat" placeholder="Masukkan alamat anda"></ion-input> <br>
       </ion-item>
       <ion-item class="ion-padding">
-        <ion-label position="floating">Kecamatan</ion-label>
-        <ion-input required [(ngModel)]="kecamatan" placeholder="Masukkan kecamatan anda"></ion-input> <br>
+        <ion-label position="fixed">Provinsi:</ion-label>
+        <select required [(ngModel)]="provinsi" (change)="onShowKotaKab($event)">
+          <option *ngFor="let item of provinsi_list" value="{{item.id}}_{{item.nama}}">{{item.nama}}</option>
+        </select>
+      </ion-item>
+
+      <ion-item class="ion-padding">
+        <ion-label>Kota: </ion-label>
+        <!-- <ion-input [(ngModel)]="kota"></ion-input> -->
+        <select required [(ngModel)]="kota" (change)="onShowKecamatan($event)">
+          <option *ngFor="let item of kota_list" value="{{item.id}}_{{item.nama}}">{{item.nama}}</option>
+        </select>
       </ion-item>
       <ion-item class="ion-padding">
-        <ion-label position="floating">Kelurahan</ion-label>
-        <ion-input required [(ngModel)]="kelurahan" placeholder="Masukkan kelurahan anda"></ion-input> <br>
+        <ion-label>Kecamatan: </ion-label>
+        <select required [(ngModel)]="kecamatan" (change)="onShowKelurahan($event)">
+          <option *ngFor="let item of kecamatan_list" value="{{item.id}}_{{item.nama}}">{{item.nama}}</option>
+        </select>
+        <!-- <ion-input [(ngModel)]="kecamatan"  (change)="onSelectKecamatan($event)"></ion-input> -->
       </ion-item>
       <ion-item class="ion-padding">
-        <ion-grid>
-          <ion-row>
-            <ion-label>Titik koordinat lokasi: </ion-label> <br>
-          </ion-row>
-          <ion-row>
-            <ion-col>
-              <ion-label>Titik koordinat lintang</ion-label>
-              <ion-input placeholder="Masukkan titik koordinat lintang" [(ngModel)]="input_x"></ion-input>
-            </ion-col>
-            <ion-col>
-              <ion-label>Titik koordinat bujur</ion-label>
-              <ion-input  placeholder="Masukkan titik koordinat bujur" [(ngModel)]="input_y"></ion-input>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
+        <ion-label>Kelurahan: </ion-label>
+        <select required [(ngModel)]="kelurahan">
+          <option *ngFor="let item of kelurahan_list" value="{{item.id}}_{{item.nama}}">{{item.nama}}</option>
+        </select>
+        <!-- <ion-input [(ngModel)]="kelurahan"  (change)="onSelectKelurahan($event)"></ion-input> -->
       </ion-item>
       <ion-item>
         <ion-button (click)="register_orang_tua()">Register</ion-button>

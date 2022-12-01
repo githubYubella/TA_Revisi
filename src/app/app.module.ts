@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
@@ -53,6 +53,10 @@ import { ProfilGuruPrivatComponent } from './pages/profil-guru-privat/profil-gur
 import { SaldoGuruPrivatComponent } from './pages/saldo-guru-privat/saldo-guru-privat.component';
 import { RiwayatTransaksiGuruPrivatComponent } from './pages/riwayat-transaksi-guru-privat/riwayat-transaksi-guru-privat.component';
 import { PenarikanDanaGuruComponent } from './pages/penarikan-dana-guru/penarikan-dana-guru.component';
+import { PengaturanOrangTuaComponent } from './pages/pengaturan-orang-tua/pengaturan-orang-tua.component';
+import { PengaturanGuruPrivatComponent } from './pages/pengaturan-guru-privat/pengaturan-guru-privat.component';
+
+
 
 import { AuthGuard } from './guards/auth/auth.guard';
 import { GuestGuard } from './guards/guest/guest.guard';
@@ -239,6 +243,18 @@ const appRoutes: Routes = [
     component: PenarikanDanaGuruComponent,
     canActivate: [AuthGuard]
   },
+  {
+    path: 'pengaturan-orang-tua',
+    component: PengaturanOrangTuaComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'pengaturan-guru-privat',
+    component: PengaturanGuruPrivatComponent,
+    canActivate: [AuthGuard]
+  },
+ 
+  
   // {path: 'detail/:id', component:ProductdetailComponent},
   // {path : 'cegahcovid', component: CegahcovidComponent},
   // {path: 'detail/:id', component: ProductdetailComponent},
@@ -248,7 +264,7 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   declarations: [
     AppComponent, LoginTempatKursusComponent, RegisterTempatKursusComponent, HomeTempatKursusComponent,
     PengaturanTempatKursusComponent, DetailKursusComponent, BukaLowonganComponent, BukaLowongan2Component, LoginComponent,
@@ -259,7 +275,7 @@ const appRoutes: Routes = [
     BukaAbsenGuruComponent,EditAbsenGuruComponent,KursusOrangTuaComponent,AbsenOrangTuaComponent,
     DetailKontrakOrangTuaComponent,RegisterAdminComponent,BayarOrangTuaComponent,
     HomeAdminComponent,ProfilGuruPrivatComponent,SaldoGuruPrivatComponent,RiwayatTransaksiGuruPrivatComponent,
-    PenarikanDanaGuruComponent,
+    PenarikanDanaGuruComponent,PengaturanOrangTuaComponent,PengaturanGuruPrivatComponent
     
     
   ],

@@ -14,7 +14,7 @@ import { OrangTuaService } from 'src/app/services/orang-tua/orang-tua.service';
   templateUrl: './home-tempat-kursus.component.html',
   styleUrls: ['./home-tempat-kursus.component.scss'],
 })
-export class HomeTempatKursusComponent  {
+export class HomeTempatKursusComponent {
   email: string
   role: string
 
@@ -28,9 +28,21 @@ export class HomeTempatKursusComponent  {
   newMapw: GoogleMap;
 
   kursus = []
-  nama_login=""
-  kecamatan=''
-  kelurahan=''
+  nama_login = ""
+
+  provinsi_list: []
+  provinsi = ''
+  kota_list: []
+  kota = ''
+  kecamatan_list: []
+  kecamatan: string
+  kelurahan_list: []
+  kelurahan: string
+  alamat_lengkap: string
+  keahlian_dipilih: string[] = []
+  checkBoxterpilih: string[]
+  id: number
+  detail_keahlian = []
 
   constructor(
     private geo: Geolocation,
@@ -38,12 +50,13 @@ export class HomeTempatKursusComponent  {
     private tk: TempatKursusService,
     private authService: AuthService,
     private router: Router,
-    private ot:OrangTuaService
+    private ot: OrangTuaService
   ) {
     this.email = authService.email
     this.role = authService.role
     this.email_profil = authService.email
   }
+
   async getProfil() {
     this.tk.profilService(this.email_profil).subscribe(
       (data) => {
@@ -52,29 +65,29 @@ export class HomeTempatKursusComponent  {
           this.informasi = data['data'][0].informasi
           this.gambar = data['data'][0].gambar
           this.alamat = data['data'][0].alamat
-          this.kecamatan=data['data'][0].kecamatan
-          this.kelurahan=data['data'][0].kelurahan
+          this.kecamatan = data['data'][0].kecamatan
+          this.kelurahan = data['data'][0].kelurahan
+          this.id = data['data'][0].idtempat_kursus
 
           this.location = {
             lat: parseFloat(data['data'][0].lokasi_lat),
             lng: parseFloat(data['data'][0].lokasi_long)
           }
           this.lokasi()
+
+          this.tk.keahlianTempatKursusService(this.id).subscribe(
+            (data) => {
+              if (data['result'] == 'success') {
+                this.detail_keahlian = data['data']
+              }
+            }
+          )
         }
       }
     )
   }
 
   async lokasi() {
-    // const [mapConfig, setMapConfig]= useState({
-    //   center: {
-    //         lat: -7.8110806,
-    //         lng: 112.0094793,
-    //       },
-
-    //       zoom: 17,
-    // })
-
     this.newMapw = await GoogleMap.create({
       //   const data = this.getProfil();
       id: 'capacitor-google-maps',
@@ -82,10 +95,6 @@ export class HomeTempatKursusComponent  {
       apiKey: environment.key,
       config:
       {
-        // center: {
-        //   lat: 50.0598058,
-        //   lng: 14.325539,
-        // },
         center: {
           lat: this.location.lat,
           lng: this.location.lng,
@@ -113,8 +122,8 @@ export class HomeTempatKursusComponent  {
       zoom: 14,
     })
   }
+
   async ngOnInit() {
-    console.log('ngOnInit')
   }
 
   async ngAfterViewInit() {
@@ -123,6 +132,7 @@ export class HomeTempatKursusComponent  {
     this.email_profil = await this.storage.get('email')
     await this.getProfil()
   }
+
   async logout() {
     await this.authService.logout()
     this.router.navigateByUrl('login')

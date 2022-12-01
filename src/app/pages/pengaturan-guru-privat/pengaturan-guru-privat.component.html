@@ -2,13 +2,15 @@
   <ion-header>
     <ion-toolbar color="dark">
       <ion-buttons slot="start" style="z-index: 100;">
-        <ion-back-button defaultHref="/"></ion-back-button>
+        <ion-back-button defaultHref="/home"></ion-back-button>
       </ion-buttons>
       <ion-title style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;text-align: center;">
-        <p>Pengaturan Tempat Kursus</p>
+        <p>Profil Diri </p>
       </ion-title>
     </ion-toolbar>
   </ion-header>
+
+
 
   <ion-router-outlet id="main-content">
     <ion-header>
@@ -18,7 +20,7 @@
         </ion-buttons>
       </ion-toolbar>
     </ion-header>
-    <ion-content class="ion-padding">
+    <ion-content>
       <ion-grid>
         <ion-row style="height: 100%;">
           <ion-col style="border: 2px black solid; height: 100%;" class=ion-text-center>
@@ -27,10 +29,36 @@
               <ion-input [(ngModel)]="nama" placeholder="{{nama}}"></ion-input>
             </ion-item>
             <ion-item>
-              <ion-label>Informasi:</ion-label>
-              <ion-textarea style="height: 100%;" class="ion-text-wrap" [(ngModel)]="informasi"
-                placeholder="{{informasi}}"></ion-textarea>
+              <ion-label>Jenis Kelamin: </ion-label> <br>
+              <select selected="{{jenisKelamin_dipilih}}" required [(ngModel)]="jenisKelamin_dipilih">
+                <option value="Pria">Pria</option>
+                <option value="Wanita">Wanita</option>
+              </select>
             </ion-item>
+            <ion-item class="ion-padding">
+              <ion-label>No. Telepon : </ion-label>
+              <ion-input type="tel" placeholder="888-888-8888" required [(ngModel)]="telepon"></ion-input>
+            </ion-item>
+            <ion-item class="ion-padding">
+              <ion-label>Jenjang Terakhir:</ion-label> <br>
+              <select selected="{{jenjang_dipilih}}" required [(ngModel)]="jenjang_dipilih">
+                <option value="SMA">SMA</option>
+                <option value="S1">S1</option>
+                <option value="S2">S2</option>
+                <option value="S3">S3</option>
+              </select>
+            </ion-item>
+            <ion-item class="ion-padding">
+              <ion-label>Tempat Jenjang Terakhir:</ion-label> <br>
+              <ion-input type="text" placeholder="Masukkan nama tempat pendidikan terakhir" required
+                [(ngModel)]="tempat_pendidikan"></ion-input>
+            </ion-item>
+            <ion-item class="ion-padding">
+              <ion-label>Tanggal Lahir: </ion-label>
+              <ion-datetime [value]="tgl_lahir" (ionChange)="setTanggalLahir($event)" presentation="date">
+              </ion-datetime>
+            </ion-item>
+
             <ion-item class="ion-padding">
 
               <ion-label position="floating">Alamat Tempat Kursus</ion-label>
@@ -39,8 +67,9 @@
             </ion-item>
             <ion-item class="ion-padding">
               <ion-label position="fixed">Provinsi:</ion-label>
-              <select required  [(ngModel)]="provinsi" (change)="onShowKotaKab($event)">
-                <option selected="{{provinsi}}" *ngFor="let item of provinsi_list" value="{{item.id}}_{{item.nama}}">{{item.nama}}</option>
+              <select required [(ngModel)]="provinsi" (change)="onShowKotaKab($event)">
+                <option selected="{{provinsi}}" *ngFor="let item of provinsi_list" value="{{item.id}}_{{item.nama}}">
+                  {{item.nama}}</option>
               </select>
             </ion-item>
 
@@ -68,8 +97,13 @@
               <ion-label position="floating">No. Telepon</ion-label>
               <ion-input type="tel" placeholder="888-888-8888" required [(ngModel)]="telepon"></ion-input>
             </ion-item> -->
-           
-            <ion-button (click)="editProfil()">Simpan</ion-button>
+            <ion-item class="ion-padding">
+              <ion-label>Pengalaman Anda: </ion-label> <br>
+              <ion-textarea [(ngModel)]="pengalaman"> </ion-textarea>
+            </ion-item>
+            <ion-item class="ion-padding">
+              <ion-button (click)="editProfil()">Simpan</ion-button>
+            </ion-item>
           </ion-col>
 
           <ion-col style="border: 2px red solid;" class="ion-text-center">
@@ -96,8 +130,9 @@
                 </ion-row>
               </ion-grid>
             </ion-item>
-            <ion-button (click)="editKeahlian()">Edit Keahlian</ion-button>
-
+            <ion-item >
+              <ion-button (click)="editKeahlian()">Edit Keahlian</ion-button>
+            </ion-item>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -105,5 +140,4 @@
     </ion-content>
 
   </ion-router-outlet>
-
 </ion-app>

@@ -7,7 +7,43 @@ import { Observable } from 'rxjs';
 })
 export class GuruPrivatService {
   constructor(private http: HttpClient) { }
+  editKeahlianService(data: FormData): Observable<any> {
+    return this.http.post('http://localhost:8888/db_ta/edit_profil_guru_keahlian.php', data)
+  }
+  editFotoService(data: FormData): Observable<any> {
+    return this.http.post('http://localhost:8888/db_ta/edit_profil_guru_foto.php', data)
+  }
 
+  editProfilService(jenis_kelamin:string, tempat_jenjang_terakhir:string,
+    jenjang_terakhir:string, lat:string,long:string,telepon:string,
+    nama:string, tgl_lahir:string, pengalaman:string, alamat:string,
+    kecamatan:string, kelurahan:string, kota:string, prov:string,email:string): Observable<any> {
+    let body = new HttpParams()
+    body = body.set('jenisKel',jenis_kelamin)
+    body = body.set('tempat_jenjang_terakhir',tempat_jenjang_terakhir)
+    body = body.set('jenjang',jenjang_terakhir)
+    body = body.set('lat',lat)
+    body = body.set('long',long)
+    body = body.set('telepon',telepon)
+    body = body.set('nama',nama)
+    body = body.set('tgl_lahir',tgl_lahir)
+    body = body.set('pengalaman',pengalaman)
+    body = body.set('alamat',alamat)
+    body = body.set('kecamatan',kecamatan)
+    body = body.set('kelurahan',kelurahan)
+    body = body.set('kota',kota)
+    body = body.set('provinsi',prov)
+    body = body.set('email',email)
+
+
+    return this.http.post('http://localhost:8888/db_ta/edit_profil_guru.php', body)
+  }
+
+  listKeahlianService(): Observable<any> {
+    // let body = new HttpParams()
+    // body = body.set('id',id)
+    return this.http.get('http://localhost:8888/db_ta/list_keahlian.php')
+  }
   riwayatTarikDanaService(idguru: number): Observable<any> {
     let body = new HttpParams()
     body = body.set('idguru', idguru)
