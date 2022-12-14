@@ -10,6 +10,21 @@ export class TempatKursusService {
 
   constructor(private http: HttpClient) { }
 
+  updateStatusPesanOrtuService(idortu:number): Observable<any> {
+    let body = new HttpParams;
+    body = body.set('idortu', idortu)
+    return this.http.post("http://localhost:8888/db_ta/update_pesan_kursus_ortu.php",body);
+  }
+  
+  listPesanService(idkursus:number): Observable<any> {
+    // return this.http.get("http://localhost:8888/db_ta/list_chat_kursus_ortu.php");
+    
+    let body = new HttpParams;
+    body = body.set('idkursus', idkursus)
+    return this.http.post("http://localhost:8888/db_ta/list_chat_kursus_ortu.php",body);
+  }
+
+
   keahlianTempatKursusService(id: number): Observable<any> {
     let body = new HttpParams()
     body = body.set('id', id)
@@ -24,8 +39,12 @@ export class TempatKursusService {
 
   }
 
-  listTempatKursusService(): Observable<any> {
-    return this.http.get("http://localhost:8888/db_ta/list_kursus.php");
+  listTempatKursusService(search:string): Observable<any> {
+    let body = new HttpParams()
+    body = body.set('search', search)
+    return this.http.post("http://localhost:8888/db_ta/list_kursus.php",body);
+    // return this.http.get("http://localhost:8888/db_ta/list_kursus.php");
+
   }
   editKeahlianService(data: FormData): Observable<any> {
     return this.http.post('http://localhost:8888/db_ta/edit_kursus_keahlian.php', data)
@@ -36,13 +55,17 @@ export class TempatKursusService {
   }
 
   editProfilService(id:number,informasi: string, nama: string, alamat: string, kecamatan:string,
-    kelurahan:string,lat:number,long:number,email: string): Observable<any> {
+    kelurahan:string,lat:number,long:number,email: string,kota:string, prov:string): Observable<any> {
     let body = new HttpParams()
     body = body.set('informasi', informasi)
     body = body.set('nama', nama)
     body = body.set('alamat', alamat)
     body = body.set('kecamatan', kecamatan)
     body = body.set('kelurahan', kelurahan)
+    body = body.set('kota', kota)
+    body = body.set('prov', prov)
+
+
     body = body.set('lat', lat)
     body = body.set('long', long)
 

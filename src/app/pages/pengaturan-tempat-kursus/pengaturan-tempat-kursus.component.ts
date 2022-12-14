@@ -219,6 +219,10 @@ export class PengaturanTempatKursusComponent {
           this.alamat = data['data'][0].alamat
           this.kecamatan = data['data'][0].kecamatan
           this.kelurahan = data['data'][0].kelurahan
+          this.provinsi = data['data'][0].provinsi
+          this.kota = data['data'][0].kota
+
+
           // this.input_x = data['data'][0].lokasi_lat
           // this.input_y = data['data'][0].lokasi_long
           this.id = data['data'][0].idtempat_kursus
@@ -247,6 +251,7 @@ export class PengaturanTempatKursusComponent {
     const city = splitKota[1]
     const kec = splitKec[1]
     const kel = splitKel[1]
+    console.log(prov)
     this.alamat_lengkap = this.alamat + ", " + city + ", " + kec + ", " + kel + ", " + prov
 
 
@@ -270,12 +275,14 @@ export class PengaturanTempatKursusComponent {
 
 
         this.tk.editProfilService(this.id, this.informasi, this.nama, this.alamat, kec,
-          kel, this.location.lat, this.location.lng, this.email).subscribe(
+          kel, this.location.lat, this.location.lng, this.email, city, prov).subscribe(
             (data) => {
               if (data['result'] == 'success') {
                 alert("Data Profil Berhasil di Edit")
                 // this.router.navigate(['/'])
                 window.location.reload()
+                // this.getProfil()
+
 
 
               }

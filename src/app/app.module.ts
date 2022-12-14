@@ -55,6 +55,15 @@ import { RiwayatTransaksiGuruPrivatComponent } from './pages/riwayat-transaksi-g
 import { PenarikanDanaGuruComponent } from './pages/penarikan-dana-guru/penarikan-dana-guru.component';
 import { PengaturanOrangTuaComponent } from './pages/pengaturan-orang-tua/pengaturan-orang-tua.component';
 import { PengaturanGuruPrivatComponent } from './pages/pengaturan-guru-privat/pengaturan-guru-privat.component';
+import { PesanOrtuComponent } from './pages/pesan-ortu/pesan-ortu.component';
+import { ListPesanOrtuComponent } from './pages/list-pesan-ortu/list-pesan-ortu.component';
+import { IonicRatingComponentModule } from 'ionic-rating-component'; 
+import { DetailPesanOrtuComponent } from './pages/detail-pesan-ortu/detail-pesan-ortu.component'; 
+import { ListPesanTempatKursusComponent } from './pages/list-pesan-tempat-kursus/list-pesan-tempat-kursus.component';
+import { DetailPesanTempatKursusComponent } from './pages/detail-pesan-tempat-kursus/detail-pesan-tempat-kursus.component';
+import { DetailPesanOrtuGuruComponent } from './pages/detail-pesan-ortu-guru/detail-pesan-ortu-guru.component';
+import { ListPesanGuruPrivatComponent } from './pages/list-pesan-guru-privat/list-pesan-guru-privat.component';
+import { DetailPesanGuruPrivatComponent } from './pages/detail-pesan-guru-privat/detail-pesan-guru-privat.component';
 
 
 
@@ -104,7 +113,7 @@ const appRoutes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'detail-kursus/:id',
+    path: 'detail-kursus/:idkursus',
     component: DetailKursusComponent,
     canActivate: [AuthGuard]
   },
@@ -253,6 +262,46 @@ const appRoutes: Routes = [
     component: PengaturanGuruPrivatComponent,
     canActivate: [AuthGuard]
   },
+  {
+    path: 'detail-kursus/:idkursus/pesan-ortu/:idortu',
+    component: PesanOrtuComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'list-pesan-ortu/:idortu',
+    component: ListPesanOrtuComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'detail-pesan-ortu/:idkepada',
+    component: DetailPesanOrtuComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'list-pesan-tempat-kursus/:idkursus',
+    component: ListPesanTempatKursusComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'detail-pesan-tempat-kursus/:idkepada',
+    component: DetailPesanTempatKursusComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'detail-pesan-ortu-guru/:idkepada',
+    component: DetailPesanOrtuGuruComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'list-pesan-guru-privat/:idguru',
+    component: ListPesanGuruPrivatComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'detail-pesan-guru-privat/:idkepada',
+    component: DetailPesanGuruPrivatComponent,
+    canActivate: [AuthGuard]
+  },
  
   
   // {path: 'detail/:id', component:ProductdetailComponent},
@@ -275,11 +324,15 @@ const appRoutes: Routes = [
     BukaAbsenGuruComponent,EditAbsenGuruComponent,KursusOrangTuaComponent,AbsenOrangTuaComponent,
     DetailKontrakOrangTuaComponent,RegisterAdminComponent,BayarOrangTuaComponent,
     HomeAdminComponent,ProfilGuruPrivatComponent,SaldoGuruPrivatComponent,RiwayatTransaksiGuruPrivatComponent,
-    PenarikanDanaGuruComponent,PengaturanOrangTuaComponent,PengaturanGuruPrivatComponent
+    PenarikanDanaGuruComponent,PengaturanOrangTuaComponent,PengaturanGuruPrivatComponent,
+    PesanOrtuComponent,ListPesanOrtuComponent,DetailPesanOrtuComponent,
+    ListPesanTempatKursusComponent,DetailPesanTempatKursusComponent,
+    DetailPesanOrtuGuruComponent,ListPesanGuruPrivatComponent,DetailPesanGuruPrivatComponent,
     
+
     
   ],
-  imports: [
+  imports: [IonicRatingComponentModule,
     HttpClientModule,
     IonicStorageModule.forRoot(),
     BrowserModule,

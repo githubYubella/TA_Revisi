@@ -15,7 +15,9 @@
       <ion-buttons slot="start" style="z-index: 100;">
         <ion-back-button defaultHref="/"></ion-back-button>
       </ion-buttons>
-      <ion-title style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;text-align: center;" > <p>Detail Inbox</p> </ion-title>
+      <ion-title style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;text-align: center;">
+        <p>Detail Inbox</p>
+      </ion-title>
     </ion-toolbar>
   </ion-header>
 
@@ -29,33 +31,54 @@
     </ion-header>
     <ion-content class="ion-padding">
       <ion-grid>
-        <ion-col  style="height: 100%; ">
+        <ion-row>
+          <ion-col style="height: 100%; ">
 
 
 
-          <ion-row size="auto">
-            <img style="width: 150px" src="http://localhost:8888/db_ta/gambar/{{gambar}}" alt="">
-          </ion-row>
-          <ion-row>
-            <h1>{{nama}}</h1>
-          </ion-row>
-          <ion-row>
-            <h3>Informasi:</h3>
-          </ion-row>
-          <ion-row>
-            <p>{{informasi}}</p>
-          </ion-row>
-          <ion-row>
-            <h3>Alamat:</h3>
-          </ion-row>
-          <ion-row>
-            <p>{{alamat}}, Kelurahan {{kelurahan}}, Kecamatan {{kecamatan}}</p>
-          </ion-row>
-          <ion-row>
-          <capacitor-google-maps #maps>sss</capacitor-google-maps>
+            <ion-row size="auto">
+              <img style="width: 150px" src="http://localhost:8888/db_ta/gambar/{{gambar}}" alt="">
+            </ion-row>
+            <ion-row>
+              <h1>{{nama}}</h1>
+            </ion-row>
+            <ion-row>
+              <h3>Informasi:</h3>
+            </ion-row>
+            <ion-row>
+              <p>{{informasi}}</p>
+            </ion-row>
+            <ion-row>
+              <h3>Alamat:</h3>
+            </ion-row>
+            <ion-row>
+              <p>{{alamat}}, Kelurahan {{kelurahan}}, Kecamatan {{kecamatan}}</p>
+            </ion-row>
+            <ion-row>
+              <capacitor-google-maps #maps>sss</capacitor-google-maps>
 
-          </ion-row>
-        </ion-col>
+            </ion-row>
+            <ion-row class="ion-padding">
+              <ion-button routerLink="pesan-ortu/{{idortu}}">Kirim Pesan</ion-button>
+              <!-- <ion-button href="detail-pesan-ortu/{{idkursus}}">Kirim Pesan</ion-button> -->
+              
+              <ion-item>
+                <!-- <ion-router-link color="tertiary" href="/detail-pesan-ortu/{{idkursus}}">Tertiary</ion-router-link> -->
+
+              </ion-item>
+            </ion-row>
+          </ion-col>
+          <!-- <ion-col style="width: 50%; ">
+            <ion-card>
+              <ion-item>
+                <ion-label>Tulis Pesan:</ion-label> <br />
+                <ion-textarea placeholder="Tuliskan pesan anda. Misal, berapa kali pertemuan kursus ini?">
+                </ion-textarea>
+              </ion-item>
+
+            </ion-card>
+          </ion-col> -->
+        </ion-row>
 
       </ion-grid>
 

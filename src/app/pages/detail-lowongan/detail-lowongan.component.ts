@@ -94,38 +94,6 @@ export class DetailLowonganComponent implements OnInit {
     })
   }
 
-  // async titikGuru() {
-  //   this.gp.profilService(this.email).subscribe(
-  //     async (data) => {
-  //       this.lokasiGP = {
-  //         lat: parseFloat(data['data'][0].lokasi_lat),
-  //         lng: parseFloat(data['data'][0].lokasi_long)
-  //       }
-  //       this.newMap = await GoogleMap.create({
-  //         //   const data = this.getProfil();
-  //         id: 'capacitor-google-maps',
-  //         element: this.maps.nativeElement,
-  //         apiKey: environment.key,
-  //         config:
-  //         {
-  //           center: {
-  //             lat: parseFloat(data['data'][0].lokasi_lat),
-  //             lng: parseFloat(data['data'][0].lokasi_long)
-  //           },
-  //           zoom: 10,
-  //         },
-  //       })
-  //       // const marker = this.newMap.addMarker({
-  //       //   coordinate: {
-  //       //     lat: parseFloat(data['data'][0].lokasi_lat),
-  //       //     lng: parseFloat(data['data'][0].lokasi_long)
-  //       //   },
-  //       //   draggable: true
-  //       // })
-  //     }
-  //   )
-  // }
-
   async detailLowongan() {
     var id: number = this.at.snapshot.params['id']
 
@@ -148,7 +116,7 @@ export class DetailLowonganComponent implements OnInit {
           this.jenjang = data['data'][0].jenjang//k
           this.deskripsi = data['data'][0].deskripsi//k
           this.banyak_pertemuan = data['data'][0].banyak_pertemuan//k
-          this.jadwal = data['data']
+          this.jadwal = data['data'][0].jadwal
           //  .forEach((val) => {
           //     this.hari=val.hari
           //     this.jam_awal=val.jam_awal
@@ -178,7 +146,7 @@ export class DetailLowonganComponent implements OnInit {
 
   async ngOnInit() {
     this.detailLowongan()
-  
+  console.log(this.at.snapshot.params['id']+ 'ID LOWONGAN')
    
   }
 

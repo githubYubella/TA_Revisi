@@ -7,6 +7,20 @@ import { Observable } from 'rxjs';
 })
 export class GuruPrivatService {
   constructor(private http: HttpClient) { }
+
+  updateStatusPesanOrtuService(idortu:number): Observable<any> {
+    let body = new HttpParams;
+    body = body.set('idortu', idortu)
+    return this.http.post("http://localhost:8888/db_ta/update_pesan_guru_ortu.php",body);
+  }
+  
+
+  listPesanService(idguru:number): Observable<any> {
+    let body = new HttpParams;
+    body = body.set('idguru', idguru)
+    return this.http.post("http://localhost:8888/db_ta/list_chat_guru_ortu.php",body);
+  }
+
   editKeahlianService(data: FormData): Observable<any> {
     return this.http.post('http://localhost:8888/db_ta/edit_profil_guru_keahlian.php', data)
   }
@@ -127,8 +141,10 @@ export class GuruPrivatService {
     return this.http.post('http://localhost:8888/db_ta/detail_lowongan_guru.php', body)
   }
 
-  listLowonganService(): Observable<any> {
-    return this.http.get("http://localhost:8888/db_ta/list_lowongan.php");
+  listLowonganService(search:string): Observable<any> {
+    let body = new HttpParams()
+    body = body.set('search', search)
+    return this.http.post("http://localhost:8888/db_ta/list_lowongan.php",body);
   }
 
   profilService(email: string): Observable<any> {

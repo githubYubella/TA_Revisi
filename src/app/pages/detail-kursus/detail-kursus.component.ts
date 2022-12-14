@@ -25,6 +25,8 @@ export class DetailKursusComponent implements OnInit {
   newMap: GoogleMap;
 
   map2: GoogleMap;
+  idkurus:number
+  idortu:number
 
   @ViewChild('maps') maps: ElementRef<HTMLElement>;
   email: string = ''
@@ -37,60 +39,6 @@ export class DetailKursusComponent implements OnInit {
   }
 
 
-  // async titikLokasi() {
-
-  //   this.newMap = await GoogleMap.create({
-  //     //   const data = this.getProfil();
-  //     id: 'capacitor-google-maps',
-  //     element: this.maps.nativeElement,
-  //     apiKey: environment.key,
-  //     config:
-  //     {
-  //       // lokasi tempat kursus
-  //       center: {
-  //         lat: this.lokasi.lat,
-  //         lng: this.lokasi.lng,
-  //       },
-  //       zoom: 10,
-  //     },
-  //   })
-
-  //   const marker = this.newMap.addMarker({
-  //     coordinate: {
-  //       lat: this.lokasi.lat,
-  //       lng: this.lokasi.lng
-  //     },
-  //     draggable: true
-  //   })
-
-  //   // lokasi guru privat
-  //   this.gp.profilService(this.email).subscribe(
-  //     async (data) => {
-  //       this.lokasiGP = {
-  //         lat: parseFloat(data['data'][0].lokasi_lat),
-  //         lng: parseFloat(data['data'][0].lokasi_long)
-  //       }
-
-  //       const marker = this.newMap.addMarker({
-  //         coordinate: {
-  //           lat: this.lokasiGP.lat,
-  //           lng: this.lokasiGP.lng,
-  //         },
-  //         draggable: true
-  //       })
-  //     }
-  //   )
-
-
-  //   await this.newMap.setCamera({
-  //     coordinate: {
-  //       lat: this.lokasi.lat,
-  //       lng: this.lokasi.lng
-
-  //     },
-  //     zoom: 8,
-  //   })
-  // }
 
   async lokasi() {
     // console.log(this.location.lat + "-->location")
@@ -123,6 +71,7 @@ export class DetailKursusComponent implements OnInit {
     // lokasi ortu
     this.ot.profilService(this.email).subscribe(
       async (data) => {
+        this.idortu=data['data'][0].idorang_tua
         this.location_ortu = {
           lat: parseFloat(data['data'][0].lokasi_lat),
           lng: parseFloat(data['data'][0].lokasi_long)
@@ -144,50 +93,12 @@ export class DetailKursusComponent implements OnInit {
 
   }
 
-  // async lokasi_ortu() {
-  //   console.log(this.location.lat + "-->location")
-  //   this.map2 = await GoogleMap.create({
-  //     //   const data = this.getProfil();
-  //     id: 'capacitor-google-maps',
-  //     element: this.maps.nativeElement,
-  //     apiKey: environment.key,
-  //     config:
-  //     {
 
-  //       center: {
-  //         lat: this.location_ortu.lat,
-  //         lng: this.location_ortu.lng,
-  //       },
-
-  //       zoom: 17,
-  //     },
-  //   })
-
-  //   const marker = this.map2.addMarker({
-  //     coordinate: {
-  //       lat: this.location_ortu.lat,
-  //       lng: this.location_ortu.lng
-  //     },
-  //     draggable: true
-
-
-
-  //   })
-
-  //   await this.map2.setCamera({
-  //     coordinate: {
-  //       lat: this.location_ortu.lat,
-  //       lng: this.location_ortu.lng
-
-  //     },
-  //     zoom: 14,
-  //   })
-  // }
 
   async detailKursus() {
-    var id: number = this.at.snapshot.params['id']
+    this.idkurus= this.at.snapshot.params['idkursus']
 
-    this.tk.detailTempatKursusService(id).subscribe(
+    this.tk.detailTempatKursusService(this.idkurus).subscribe(
       (data) => {
         if (data['result'] = 'success') {
           this.informasi = data['data'][0].informasi
@@ -217,23 +128,7 @@ export class DetailKursusComponent implements OnInit {
 
   }
 
-  // async titikOrtu() {
-  //   this.ot.profilService(this.email).subscribe(
-  //     (data) => {
-  //       if (data['result'] = 'success') {
-  //         this.location_ortu = {
-  //           lat: parseFloat(data['data'][0].lokasi_lat),
-  //           lng: parseFloat(data['data'][0].lokasi_long)
-
-  //         }
-  //         this.lokasi_ortu()
-
-  //       }
-
-  //     }
-  //   )
-  // }
-
+  
   async ngAfterViewInit() {
     // var id: number = this.at.snapshot.params['id']
     // console.log('emil '+this.email)
@@ -283,6 +178,8 @@ export class DetailKursusComponent implements OnInit {
 
   async ngOnInit() {
     this.detailKursus()
+    this.idkurus= this.at.snapshot.params['idkursus']
+
 
 
     // console.log(this.location.lat + "-->location init")

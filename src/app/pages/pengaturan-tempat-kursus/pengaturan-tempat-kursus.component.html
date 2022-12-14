@@ -40,20 +40,24 @@
             <ion-item class="ion-padding">
               <ion-label position="fixed">Provinsi:</ion-label>
               <select required  [(ngModel)]="provinsi" (change)="onShowKotaKab($event)">
-                <option selected="{{provinsi}}" *ngFor="let item of provinsi_list" value="{{item.id}}_{{item.nama}}">{{item.nama}}</option>
+                <option  hidden >{{provinsi}}</option>
+                <option  *ngFor="let item of provinsi_list" value="{{item.id}}_{{item.nama}}">{{item.nama}}</option>
               </select>
             </ion-item>
 
             <ion-item class="ion-padding">
               <ion-label>Kota: </ion-label>
               <!-- <ion-input [(ngModel)]="kota"></ion-input> -->
-              <select required [(ngModel)]="kota" (change)="onShowKecamatan($event)">
+              <select  required [(ngModel)]="kota" (change)="onShowKecamatan($event)">
+                <!-- <option selected="true " disabled value="{{item.id}}_{{item.nama}}">cok</option> -->
+                <option  hidden >{{kota}}</option>
                 <option *ngFor="let item of kota_list" value="{{item.id}}_{{item.nama}}">{{item.nama}}</option>
               </select>
             </ion-item>
             <ion-item class="ion-padding">
               <ion-label>Kecamatan: </ion-label>
               <select required [(ngModel)]="kecamatan" (change)="onShowKelurahan($event)">
+                <option  hidden >{{kecamatan}}</option>
                 <option *ngFor="let item of kecamatan_list" value="{{item.id}}_{{item.nama}}">{{item.nama}}</option>
               </select>
               <!-- <ion-input [(ngModel)]="kecamatan"  (change)="onSelectKecamatan($event)"></ion-input> -->
@@ -61,6 +65,7 @@
             <ion-item class="ion-padding">
               <ion-label>Kelurahan: </ion-label>
               <select required [(ngModel)]="kelurahan">
+                <option  hidden >{{kelurahan}}</option>
                 <option *ngFor="let item of kelurahan_list" value="{{item.id}}_{{item.nama}}">{{item.nama}}</option>
               </select>
             </ion-item>

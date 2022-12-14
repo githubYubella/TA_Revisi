@@ -20,6 +20,9 @@ export class BayarOrangTuaComponent implements OnInit {
   tgl_bayar=''
   list_admin:[]
   bank_dipilih:number
+  valRate:number
+  ulasan:string
+  tgl_tagihan:string
   constructor(private ot: OrangTuaService, private at: ActivatedRoute,
     private router:Router) {
 
@@ -38,6 +41,7 @@ export class BayarOrangTuaComponent implements OnInit {
           this.bayar_bersih = data['bayar_bersih']
           this.kode_bayar = data['kode']
           this.total_bayar = data['total_bayar']
+          this.tgl_tagihan=data['tgl_tagihan']
 
           console.log('bersih '+this.bayar_bersih+". kode"+this.kode_bayar+". totalBYR= "+this.total_bayar)
         }
@@ -72,6 +76,12 @@ export class BayarOrangTuaComponent implements OnInit {
     uploadData.append('idadmin', this.bank_dipilih.toString());
     uploadData.append('idOrtu', idOrtu.toString());
     uploadData.append('idGuru', idGuru.toString());
+    uploadData.append('rating', this.valRate.toString());
+    uploadData.append('komentar',this.ulasan);
+    uploadData.append('tgl_tagihan',this.tgl_tagihan);
+
+
+
     // uploadData.append('idLowongan', idLowongan.toString());
 // console.log('kirim'+this.kode_bayar)
     this.ot.kirimBuktiService(uploadData).subscribe(

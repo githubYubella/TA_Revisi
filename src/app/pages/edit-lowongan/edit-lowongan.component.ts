@@ -170,9 +170,9 @@ export class EditLowonganComponent implements OnInit {
       (data) => {
         if (data['result'] == 'success') {
           alert("Data Lowongan Berhasil di Edit")
-          // window.location.reload()
+          window.location.reload()
 
-          this.router.navigate(['/postingan-lowongan'])
+          // this.router.navigate(['/postingan-lowongan'])
 
         }
         else {

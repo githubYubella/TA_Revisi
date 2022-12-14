@@ -28,6 +28,9 @@ export class HomeOrangTuaComponent implements OnInit {
 
   kursus = []
   nama_login=""
+  idortu:number
+  search=''
+  
 
   constructor( private geo: Geolocation,
     private storage: Storage,
@@ -40,8 +43,15 @@ export class HomeOrangTuaComponent implements OnInit {
     this.role = authService.role
     this.email_profil = authService.email
   }
+
+  searchbar(ev: any){
+    let search_value = ev.target.value
+    this.search = search_value
+    this.listKursus()
+  }
+
   listKursus() {
-    this.tk.listTempatKursusService().subscribe(
+    this.tk.listTempatKursusService(this.search).subscribe(
       (data) => {
         if (data['result'] == 'success') {
           this.kursus = data['data']
@@ -104,6 +114,7 @@ export class HomeOrangTuaComponent implements OnInit {
       (data) => {
         if (data['result'] == 'success') {
           this.nama_login = data['data'][0].nama_orang_tua
+          this.idortu=data['data'][0].idorang_tua
           // console.log("syal: "+data['data'][0].nama_orang_tua)
         }
       }

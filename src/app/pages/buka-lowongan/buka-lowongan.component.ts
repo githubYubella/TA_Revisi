@@ -5,6 +5,9 @@ import { format } from "date-fns";
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { OrangTuaService } from 'src/app/services/orang-tua/orang-tua.service';
 import { Router } from '@angular/router';
+import { LatLng } from '@capacitor/google-maps/dist/typings/definitions';
+import { ForwardOptions, NativeGeocoder } from '@capgo/nativegeocoder';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-buka-lowongan',
@@ -36,18 +39,26 @@ export class BukaLowonganComponent implements OnInit {
   banyak_pertemuan: number = 1
   biaya_jasa: number
   tanggal_mulai = ''
-  alamat=''
-  alamat_lengkap=''
-  kecamatan=''
-  kelurahan=''
-  input_x:number
-  input_y:number
-  
+  alamat = ''
 
 
+
+  jadwal_kursus: string
+  provinsi_list: []
+  provinsi = ''
+  kota_list: []
+  kota = ''
+  kecamatan_list: []
+  kecamatan: string
+  kelurahan_list: []
+  kelurahan: string
+  alamat_lengkap: string
+  keahlian_dipilih: string[] = []
+  checkBoxterpilih: string[]
+  location: LatLng
 
   constructor(public ot: OrangTuaService, public tk: TempatKursusService, private authService: AuthService,
-    private router:Router) {
+    private router: Router) {
     this.email = authService.email
   }
 
@@ -80,9 +91,46 @@ export class BukaLowonganComponent implements OnInit {
     )
   }
 
+  onShowKotaKab(event) {
+    if (this.provinsi != '') {
+      var valProv = this.provinsi.split('_')
+      // console.log(a[0])
+      fetch('https://dev.farizdotid.com/api/daerahindonesia/kota?id_provinsi=' + valProv[0]).then(res => res.json())
+        .then(json => {
+          this.kota_list = json['kota_kabupaten']
+          // console.log(json)
+        });
 
+    }
+  }
 
-  submit() {
+  onShowKecamatan(event) {
+    if (this.kota != '') {
+      var valKota = this.kota.split('_')
+      // console.log(a[0])
+      fetch('https://dev.farizdotid.com/api/daerahindonesia/kecamatan?id_kota=' + valKota[0]).then(res => res.json())
+        .then(json => {
+          this.kecamatan_list = json['kecamatan']
+          // console.log(json)
+        });
+
+    }
+  }
+
+  onShowKelurahan(event) {
+    if (this.kecamatan != '') {
+      var valKec = this.kecamatan.split('_')
+      // console.log(valKec[0])
+      fetch('https://dev.farizdotid.com/api/daerahindonesia/kelurahan?id_kecamatan=' + valKec[0]).then(res => res.json())
+        .then(json => {
+          this.kelurahan_list = json['kelurahan']
+          // console.log(json)
+        });
+
+    }
+  }
+
+  async submit() {
     console.log('save')
     console.log(this.tanggal_mulai)
     console.log(this.kategori_dipilih)
@@ -96,11 +144,39 @@ export class BukaLowonganComponent implements OnInit {
     //   }
     // )
     //  let terpilih = this.jadwal.filter((item) => item.checked)
- 
+    const splitProv = this.provinsi.split('_')
+    const splitKota = this.kota.split('_')
+    const splitKec = this.kecamatan.split('_')
+    const splitKel = this.kelurahan.split('_')
+    this.provinsi = splitProv[1]
+    this.kota = splitKota[1]
+    this.kecamatan = splitKec[1]
+    this.kelurahan = splitKel[1]
+    this.alamat_lengkap = this.alamat + ", " + this.kota + ", " + this.kecamatan + ", " + this.kelurahan + ", " + this.provinsi
+    var today = format(new Date(), "yyyy-MM-dd")
+    
 
+
+    const op: ForwardOptions = {
+      'addressString': this.alamat_lengkap,
+      'apiKey': environment.key,
+      'maxResults': 5
+
+    }
+    await NativeGeocoder.forwardGeocode(op).then(
+      (res) => {
+        this.location = {
+          lat: res.addresses[0].latitude,
+          lng: res.addresses[0].longitude
+        }
+
+      }
+    )
     this.ot.bukaLowonganService(this.biaya_jasa, this.banyak_pertemuan, this.metode_dipilih,
       this.durasi_lowongan, this.tanggal_mulai, this.judul_lowongan, this.deskripsi_lowongan, this.jenjang_dipilih,
-      this.id, this.kategori_dipilih, chechBoxterpilih,this.alamat,this.kecamatan,this.kelurahan,this.input_x,this.input_y).subscribe(
+      this.id, this.kategori_dipilih,
+      // chechBoxterpilih,
+      this.alamat, this.kecamatan, this.kelurahan, this.location.lat, this.location.lng, this.jadwal_kursus, this.provinsi,today).subscribe(
         data => {
           if (data['result'] == 'success') {
             alert('data berhasil disimpan')
@@ -111,17 +187,16 @@ export class BukaLowonganComponent implements OnInit {
             this.jenjang_dipilih = ''
             this.metode_dipilih = ''
             this.tanggal_mulai = ''
-            this.kategori_dipilih=0
-            this.durasi_lowongan=null
-            this.banyak_pertemuan=null
-            this.biaya_jasa=null
-            this.alamat=''
-            this.kecamatan=''
-            this.kelurahan=''
-            this.input_x=null
-            this.input_y=null
+            this.kategori_dipilih = 0
+            this.durasi_lowongan = null
+            this.banyak_pertemuan = null
+            this.biaya_jasa = null
+            this.alamat = ''
+            this.kecamatan = ''
+            this.kelurahan = ''
 
-            this.jadwal['checked']=false
+
+            // this.jadwal['checked']=false
             // tanggal
 
 
@@ -152,7 +227,7 @@ export class BukaLowonganComponent implements OnInit {
       (data) => {
         if (data['result'] == 'success') {
           this.keahlian_list = data['data']
-         
+
         }
       }
     )
@@ -162,6 +237,13 @@ export class BukaLowonganComponent implements OnInit {
     this.category()
 
     this.getProfil()
+    fetch('http://dev.farizdotid.com/api/daerahindonesia/provinsi').then(res => res.json())
+      .then(json => {
+        this.provinsi_list = json['provinsi']
+        // console.log(json['provinsi'])
+
+
+      });
   }
 
 

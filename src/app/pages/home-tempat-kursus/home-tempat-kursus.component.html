@@ -8,7 +8,7 @@
         <h1>
           <ion-title>E-Kursus ● Orang Tua</ion-title>
         </h1>
-        <ion-title>Halo , {{nama_login}} </ion-title>
+        <ion-title>Halo , {{nama}} </ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content>
@@ -17,10 +17,14 @@
           <ion-icon name="mail-outline" slot="start"></ion-icon>
           <ion-label routerLink='/'>Beranda</ion-label>
         </ion-item>
+        <ion-item>
+          <ion-icon name="send-outline" slot="start"></ion-icon>
+          <ion-label routerLink='/list-pesan-tempat-kursus/{{id}}'>Pesan Anda </ion-label>
+        </ion-item>
 
         <ion-item>
           <ion-icon name="send-outline" slot="start"></ion-icon>
-          <ion-label routerLink='/pengaturan-tempat-kursus'>Pengaturan </ion-label>
+          <ion-label routerLink='/pengaturan-tempat-kursus'>Pengaturan Profil </ion-label>
         </ion-item>
 
       </ion-menu-toggle>

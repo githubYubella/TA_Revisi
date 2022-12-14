@@ -11,6 +11,10 @@ export class DetailKontrakOrangTuaComponent implements OnInit {
   kesepakatan = ''
   biaya_jasa: number
   tanggal_mulai = ''
+  status = ''
+  idguru: number
+  idortu: number
+  status2 = ''
   constructor(private at: ActivatedRoute, private ot: OrangTuaService) { }
 
   getDetailKontrak() {
@@ -21,6 +25,20 @@ export class DetailKontrakOrangTuaComponent implements OnInit {
           this.kesepakatan = data['data'][0].kesepakatan
           this.biaya_jasa = data['data'][0].biaya_jasa
           this.tanggal_mulai = data['data'][0].tgl_mulai
+          this.status = data['data'][0].status_privat
+          this.idguru = data['data'][0].idguru_privat
+          this.idortu = data['data'][0].idorang_tua
+
+
+
+          this.ot.cekTglTagihan(this.idguru, this.idortu, id).subscribe(
+            (data) => {
+              if (data['result'] == 'success') {
+                this.status = data['status']
+              }
+            }
+          )
+
         }
       }
     )

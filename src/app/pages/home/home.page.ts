@@ -43,16 +43,16 @@ export class HomePage {
     this.email_profil = authService.email
   }
 
-  listKursus() {
-    this.tk.listTempatKursusService().subscribe(
-      (data) => {
-        if (data['result'] == 'success') {
-          this.kursus = data['data']
-        }
-      }
-    )
+  // listKursus() {
+  //   this.tk.listTempatKursusService().subscribe(
+  //     (data) => {
+  //       if (data['result'] == 'success') {
+  //         this.kursus = data['data']
+  //       }
+  //     }
+  //   )
 
-  }
+  // }
 
   async getProfil() {
     this.tk.profilService(this.email_profil).subscribe(
@@ -147,7 +147,7 @@ export class HomePage {
     // this.role = await this.storage.get('role_save')
     console.log('this is home' + this.email)
     console.log('this is home role' + this.role)
-    this.listKursus()
+    // this.listKursus()
     this.getNamaOrtu()
   }
 

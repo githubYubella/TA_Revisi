@@ -94,8 +94,14 @@
             <ion-label>{{item.judul}} - {{item.tanggal}}</ion-label>
           </ion-item>
         </ion-row>
+      
         <ion-row>
           <!-- <ion-button (click)="terima()">Terima</ion-button> -->
+          <ion-row>
+            <!-- <ion-button (click)="terima()">Terima</ion-button> -->
+            <ion-button routerLink="/detail-pesan-ortu-guru/{{idPendaftar}}">Kirim Pesan</ion-button>
+  
+          </ion-row>
           <ion-button (click)="terima()">Terima</ion-button>
 
         </ion-row>
