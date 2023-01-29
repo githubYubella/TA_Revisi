@@ -26,7 +26,7 @@ export class RegisterGuruPrivatComponent implements OnInit {
   gambar = ''
   alamat = ''
   image: any
-  berkas: any
+  file: any
   pengalaman = ''
 
   keahlian_list = []
@@ -42,8 +42,8 @@ export class RegisterGuruPrivatComponent implements OnInit {
   kelurahan: string
   alamat_lengkap: string
   keahlianDipilih = []
-  location:LatLng
-
+  location: LatLng
+  combobox = "Pilihlah"
 
 
   constructor(private tk: TempatKursusService, private router: Router, private gp: GuruPrivatService) { }
@@ -86,6 +86,7 @@ export class RegisterGuruPrivatComponent implements OnInit {
 
     }
   }
+
   async setTanggalLahir(event) {
     this.tgl_lahir = format(new Date(event.target.value), "yyyy-MM-dd")
     console.log('tgl_mulai' + this.tgl_lahir)
@@ -116,7 +117,17 @@ export class RegisterGuruPrivatComponent implements OnInit {
 
   }
 
-  
+  onFileSelected(event) {
+    this.file = event.target.files[0]
+    console.log(this.file)
+    // if(this.file==null){
+    //   this.file="default-file.pdf"
+    // }
+
+  }
+
+
+
   async register_guru_privat() {
     const splitProv = this.provinsi.split('_')
     const splitKota = this.kota.split('_')
@@ -124,10 +135,10 @@ export class RegisterGuruPrivatComponent implements OnInit {
     const splitKel = this.kelurahan.split('_')
     this.provinsi = splitProv[1]
     this.kota = splitKota[1]
-   this.kecamatan = splitKec[1]
+    this.kecamatan = splitKec[1]
     this.kelurahan = splitKel[1]
     this.alamat_lengkap = this.alamat + ", " + this.kota + ", " + this.kecamatan + ", " + this.kelurahan + ", " + this.provinsi
-    console.log('mat alamat'+this.alamat_lengkap)
+    // console.log('mat alamat'+this.alamat_lengkap)
     const uploadData = new FormData();
     const op: ForwardOptions = {
       'addressString': this.alamat_lengkap,
@@ -155,44 +166,52 @@ export class RegisterGuruPrivatComponent implements OnInit {
         uploadData.append('idkeahlian[]', this.keahlian_list[i].idkeahlian);
       }
     })
+    if (this.file == null || this.image==null) {
+      alert("Harap upload file ")
+      // this.file = ""
+    }
+    else {
+      uploadData.append('email', this.email);
+      uploadData.append('password', this.password);
+      uploadData.append('jenis_kelamin', this.jenisKelamin_dipilih);
+      uploadData.append('berkas_cv', this.file, this.file.name);
+  
+      uploadData.append('tempat_jenjang_terakhir', this.tempat_pendidikan);
+      uploadData.append('jenjang_terakhir', this.jenjang_dipilih.toString());
+      uploadData.append('telepon', this.telepon);
+      uploadData.append('nama', this.nama);
+      uploadData.append('image', this.image, this.image.name);
+      uploadData.append('tgl_lahir', this.tgl_lahir);
+      uploadData.append('pengalaman', this.pengalaman);
+  
+  
+      uploadData.append('alamat', this.alamat);
+  
+      uploadData.append('kec', this.kecamatan);
+      uploadData.append('kel', this.kelurahan);
+      uploadData.append('kota', this.kota);
+      uploadData.append('prov', this.provinsi);
+  
+  
+      this.gp.registergpService(uploadData).subscribe((resp) => {
+        const parse = JSON.parse(JSON.stringify(resp))
+        console.log(resp);
+        if (parse['result'] == 'success') {
+          alert("Register Success")
+          this.router.navigate(['/'])
+  
+        }
+        else {
+          alert("Register Error : " + resp['message'])
+        }
+      })
+    }
 
-    uploadData.append('email', this.email);
-    uploadData.append('password', this.password);
-    uploadData.append('jenis_kelamin', this.jenisKelamin_dipilih);
-    // uploadData.append('berkas_cv',this.berkas.files, this.berkas.name);
 
-    uploadData.append('tempat_jenjang_terakhir', this.tempat_pendidikan);
-    uploadData.append('jenjang_terakhir', this.jenjang_dipilih.toString());
-    uploadData.append('telepon', this.telepon);
-    uploadData.append('nama', this.nama);
-    uploadData.append('image', this.image, this.image.name);
-    uploadData.append('tgl_lahir', this.tgl_lahir);
-    uploadData.append('pengalaman', this.pengalaman);
-
-
-    uploadData.append('alamat', this.alamat);
-
-    uploadData.append('kec', this.kecamatan);
-    uploadData.append('kel', this.kelurahan);
-    uploadData.append('kota', this.kota);
-    uploadData.append('prov', this.provinsi);
-
-
-    this.gp.registergpService(uploadData).subscribe((resp) => {
-      const parse = JSON.parse(JSON.stringify(resp))
-      console.log(resp);
-      if (parse['result'] == 'success') {
-        alert("Register Success")
-        this.router.navigate(['/'])
-
-      }
-      else {
-        alert("Register Error : " + resp['message'])
-      }
-    })
+    
   }
 
-  async ngOnInit  () {
+  async ngOnInit() {
     this.category()
 
     fetch('http://dev.farizdotid.com/api/daerahindonesia/provinsi').then(res => res.json())

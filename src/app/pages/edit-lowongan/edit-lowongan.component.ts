@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { GoogleMap } from '@capacitor/google-maps';
 import { LatLng } from '@capacitor/google-maps/dist/typings/definitions';
 import { environment } from 'src/environments/environment';
+import { ForwardOptions, NativeGeocoder } from '@capgo/nativegeocoder';
 
 @Component({
   selector: 'app-edit-lowongan',
@@ -40,8 +41,13 @@ export class EditLowonganComponent implements OnInit {
   input_y: number
   alamat = ''
   kecamatan = ''
-  kelurahan =''
-  kelurahann =''
+  kelurahan = ''
+  provinsi = ''
+
+
+  jadwal_kursus: string
+  alamat_lengkap = ''
+  kota = ''
 
   newMapw: GoogleMap;
   @ViewChild('maps') maps: ElementRef<HTMLElement>;
@@ -49,7 +55,7 @@ export class EditLowonganComponent implements OnInit {
   idortu: number
   idlowongan: number
 
-  constructor(public router:Router,public at: ActivatedRoute, private tk: TempatKursusService, private ot: OrangTuaService) { }
+  constructor(public router: Router, public at: ActivatedRoute, private tk: TempatKursusService, private ot: OrangTuaService) { }
 
 
   category() {
@@ -61,18 +67,18 @@ export class EditLowonganComponent implements OnInit {
       }
     )
   }
-  async setTimePukul(i, event) {
-    let pukul = format(new Date(event.target.value), "HH:mm")
-    console.log('setTimePukul(' + i + '): ' + pukul)
-    this.jadwal[i].pukul = pukul
-  }
+  // async setTimePukul(i, event) {
+  //   let pukul = format(new Date(event.target.value), "HH:mm")
+  //   console.log('setTimePukul(' + i + '): ' + pukul)
+  //   this.jadwal[i].pukul = pukul
+  // }
 
-  async setTimeSampai(i, event) {
-    let sampai = format(new Date(event.target.value), "HH:mm")
-    console.log('setTimeSampai(' + i + '): ' + sampai)
-    this.jadwal[i].sampai = sampai
+  // async setTimeSampai(i, event) {
+  //   let sampai = format(new Date(event.target.value), "HH:mm")
+  //   console.log('setTimeSampai(' + i + '): ' + sampai)
+  //   this.jadwal[i].sampai = sampai
 
-  }
+  // }
   async setTanggalMulai(event) {
     this.tanggal_mulai = format(new Date(event.target.value), "yyyy-MM-dd")
     // console.log('tgl_mulai edit'+this.tanggal_mulai)
@@ -94,9 +100,11 @@ export class EditLowonganComponent implements OnInit {
           this.kecamatan = data['data'][0].kecamatan
           this.kelurahan = data['data'][0].kelurahan
           this.banyak_pertemuan = data['data'][0].banyak_pertemuan
+          this.jadwal_kursus = data['data'][0].jadwal
+
           this.biaya_jasa = data['data'][0].biaya_jasa
-          this.input_x = data['data'][0].lokasi_lat
-          this.input_y = data['data'][0].lokasi_long
+          // this.input_x = data['data'][0].lokasi_lat
+          // this.input_y = data['data'][0].lokasi_long
           this.location = {
             lat: parseFloat(data['data'][0].lokasi_lat),
             lng: parseFloat(data['data'][0].lokasi_long)
@@ -104,13 +112,17 @@ export class EditLowonganComponent implements OnInit {
           this.lokasi()
           this.idortu = data['data'][0].idorang_tua
           this.idlowongan = data['data'][0].idbuka_lowongan
+          this.kota = data['data'][0].kota
+          this.provinsi = data['data'][0].provinsi
+
+
 
         }
       }
     )
   }
 
-  
+
   async lokasi() {
     console.log(this.location.lat + "-->location edit")
     this.newMapw = await GoogleMap.create({
@@ -120,11 +132,6 @@ export class EditLowonganComponent implements OnInit {
       apiKey: environment.key,
       config:
       {
-        // center: {
-        //   lat:-7.8272244,
-        //   lng:  112.030143,
-        // },
-        // -7.322807268052824 , 112.76524684911493
         center: {
           lat: this.location.lat,
           lng: this.location.lng,
@@ -139,7 +146,7 @@ export class EditLowonganComponent implements OnInit {
         lat: this.location.lat,
         lng: this.location.lng
       },
-      draggable: true
+      draggable: false
 
 
     })
@@ -156,50 +163,67 @@ export class EditLowonganComponent implements OnInit {
   async ngAfterViewInit() {
     this.getDetailLowongan()
 
+
   }
   async ngOnInit() {
     this.category()
-    // this.lokasi()
   }
 
-  editLowongan() {
-    this.ot.editLowonganService(this.biaya_jasa, this.banyak_pertemuan, this.metode_dipilih,
-      this.durasi_lowongan, this.tanggal_mulai, this.judul_lowongan, this.deskripsi_lowongan, this.jenjang_dipilih, this.idortu,
-      this.kategori_dipilih, this.alamat, this.kecamatan, this.kelurahan, this.input_x, this.input_y, this.idlowongan
-    ).subscribe(
-      (data) => {
-        if (data['result'] == 'success') {
-          alert("Data Lowongan Berhasil di Edit")
-          window.location.reload()
+  async editLowongan() {
+    this.alamat_lengkap = this.alamat + ", " + this.kota + ", " + this.kecamatan + ", " +
+      this.kelurahan + ", " + this.provinsi
 
-          // this.router.navigate(['/postingan-lowongan'])
+    const op: ForwardOptions = {
+      'addressString': this.alamat_lengkap,
+      'apiKey': environment.key,
+      'maxResults': 5
 
+    }
+    await NativeGeocoder.forwardGeocode(op).then(
+      (res) => {
+        this.location = {
+          lat: res.addresses[0].latitude,
+          lng: res.addresses[0].longitude
         }
-        else {
-          alert("Data Lowongan Gagal di Edit");
-          // this.router.navigate(['/'])
 
-        }
+        this.ot.editLowonganService(this.biaya_jasa, this.banyak_pertemuan, this.metode_dipilih,
+          this.durasi_lowongan, this.tanggal_mulai, this.judul_lowongan, this.deskripsi_lowongan, this.jenjang_dipilih, this.idortu,
+          this.kategori_dipilih, this.alamat, this.kecamatan, this.kelurahan,
+          this.location.lat.toString(), this.location.lng.toString(), this.jadwal_kursus, this.provinsi,
+          this.kota, this.idlowongan
+        ).subscribe(
+          (data) => {
+            if (data['result'] == 'success') {
+              alert("Data Lowongan Berhasil di Edit")
+              window.location.reload()
+
+              // this.router.navigate(['/postingan-lowongan'])
+
+            }
+            else {
+              alert("Data Lowongan Gagal di Edit");
+              // this.router.navigate(['/'])
+
+            }
+          }
+
+        )
       }
-
     )
   }
 
-  async nonaktifkan() {
-    this.ot.editNonaktifLowonganService(this.idlowongan).subscribe(
-      (data) => {
-        if (data['result'] == 'success') {
-          alert('Pencarian Guru Privat Telah Diberhentikan.'+this.idlowongan)
-          // this.router.navigate(['/postingan-lowongan'])
-          this.router.navigate(['/'])
+  // async nonaktifkan() {
+  //   this.ot.editNonaktifLowonganService(this.idlowongan).subscribe(
+  //     (data) => {
+  //       if (data['result'] == 'success') {
+  //         alert('Pencarian Guru Privat Telah Diberhentikan.' + this.idlowongan)
+  //         // this.router.navigate(['/postingan-lowongan'])
+  //         this.router.navigate(['/'])
 
-          
-
-
-
-        }
-      }
-    )}
+  //       }
+  //     }
+  //   )
+  // }
 
 
 }

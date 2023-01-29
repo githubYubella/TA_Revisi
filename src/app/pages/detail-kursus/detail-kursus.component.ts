@@ -63,7 +63,7 @@ export class DetailKursusComponent implements OnInit {
         lat: this.location.lat,
         lng: this.location.lng
       },
-      draggable: true
+      draggable: false
 
 
     })
@@ -83,7 +83,9 @@ export class DetailKursusComponent implements OnInit {
             lat: this.location_ortu.lat,
             lng: this.location_ortu.lng,
           },
-          draggable: true
+       
+          draggable: false,
+          iconUrl:"http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
         })
 
 

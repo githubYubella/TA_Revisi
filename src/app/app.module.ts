@@ -64,7 +64,10 @@ import { DetailPesanTempatKursusComponent } from './pages/detail-pesan-tempat-ku
 import { DetailPesanOrtuGuruComponent } from './pages/detail-pesan-ortu-guru/detail-pesan-ortu-guru.component';
 import { ListPesanGuruPrivatComponent } from './pages/list-pesan-guru-privat/list-pesan-guru-privat.component';
 import { DetailPesanGuruPrivatComponent } from './pages/detail-pesan-guru-privat/detail-pesan-guru-privat.component';
-
+import { KumpulanGuruPrivatComponent } from './pages/kumpulan-guru-privat/kumpulan-guru-privat.component';
+import { DetailKumpulanGuruPrivatComponent } from './pages/detail-kumpulan-guru-privat/detail-kumpulan-guru-privat.component';
+import { RiwayatTransaksiOrangTuaComponent } from './pages/riwayat-transaksi-orang-tua/riwayat-transaksi-orang-tua.component';
+import { SelesaiKursusOrangTuaComponent } from './pages/selesai-kursus-orang-tua/selesai-kursus-orang-tua.component';
 
 
 import { AuthGuard } from './guards/auth/auth.guard';
@@ -302,6 +305,26 @@ const appRoutes: Routes = [
     component: DetailPesanGuruPrivatComponent,
     canActivate: [AuthGuard]
   },
+  {
+    path: 'kumpulan-guru-privat',
+    component: KumpulanGuruPrivatComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'detail-kumpulan-guru-privat/:idguru',
+    component: DetailKumpulanGuruPrivatComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'riwayat-transaksi-orang-tua',
+    component: RiwayatTransaksiOrangTuaComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'selesai-kursus-orang-tua/:idlowongan',
+    component: SelesaiKursusOrangTuaComponent,
+    canActivate: [AuthGuard]
+  },
  
   
   // {path: 'detail/:id', component:ProductdetailComponent},
@@ -328,6 +351,8 @@ const appRoutes: Routes = [
     PesanOrtuComponent,ListPesanOrtuComponent,DetailPesanOrtuComponent,
     ListPesanTempatKursusComponent,DetailPesanTempatKursusComponent,
     DetailPesanOrtuGuruComponent,ListPesanGuruPrivatComponent,DetailPesanGuruPrivatComponent,
+    KumpulanGuruPrivatComponent,DetailKumpulanGuruPrivatComponent,RiwayatTransaksiOrangTuaComponent,
+    SelesaiKursusOrangTuaComponent,
     
 
     

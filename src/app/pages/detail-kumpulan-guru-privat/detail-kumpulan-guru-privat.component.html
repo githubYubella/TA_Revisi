@@ -2,10 +2,10 @@
   <ion-header>
     <ion-toolbar color="dark">
       <ion-buttons slot="start" style="z-index: 100;">
-        <ion-back-button defaultHref="/pendaftar-lowongan/{{idLowongan}}"></ion-back-button>
+        <ion-back-button defaultHref="/kumpulan-guru-privat"></ion-back-button>
       </ion-buttons>
       <ion-title style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;text-align: center;">
-        <p>Detail Pendaftar</p>
+        <p>Detail Guru</p>
       </ion-title>
     </ion-toolbar>
   </ion-header>
@@ -29,12 +29,15 @@
 
 
             </ion-row>
+            <!-- <p>idnya shay{{idguru}}</p> -->
             <ion-row><b>{{nama}}</b></ion-row>
-            <ion-row>{{usia}} Tahun ({{jenis_kelamin}} )</ion-row>
-            <ion-row>{{pendidikan}} - {{tempat_pendidikan}}</ion-row>
-            <ion-row>Berkas Profil Guru: 
-              <a href="http://localhost:8888/db_ta/{{berkas_profil_guru}}">Download</a>
-             </ion-row>
+            <ion-row>Usia           : {{usia}} Tahun </ion-row>
+            <ion-row>Jenis Kelamin  : {{jenis_kelamin}} </ion-row>
+
+            <ion-row>Pendidikan     : {{pendidikan}} - {{tempat_pendidikan}}</ion-row>
+            <ion-row>No. Telepon/HP : {{telepon}}</ion-row>
+            <ion-row>Alamat: {{alamat}},  {{kelurahan}}, {{kecamatan}}, {{kota}}, {{provinsi}} </ion-row>
+
 
 
 
@@ -45,12 +48,15 @@
         <ion-item>
           <ion-grid>
             <ion-row>
+
               <ion-title>
                 <ion-label><b>Pengalaman</b></ion-label>
               </ion-title>
+
+
             </ion-row>
             <ion-row>
-              <ion-label class="ion-text-wrap">{{pengalaman}}</ion-label>
+              <ion-label>{{pengalaman}}</ion-label>
             </ion-row>
           </ion-grid>
         </ion-item>
@@ -60,7 +66,7 @@
           <ion-grid>
             <ion-row>
               <ion-title>
-                <ion-label><b>Data Lamaran</b></ion-label>
+                <ion-label><b>Daftar Riwayat Hidup</b></ion-label>
               </ion-title>
             </ion-row>
             <ion-row>
@@ -68,20 +74,16 @@
                 Berkas:
 
                 <!-- <a href="https://list-coba.000webhostapp.com/file/{{berkas_cv}}">Download</a> -->
-                <a href="http://localhost:8888/db_ta/{{berkas_pendaftar}}">Download</a>
+                <a href="http://localhost:8888/db_ta/file/{{berkas_cv}}">Download</a>
+
               </ion-label>
             </ion-row>
-            <ion-row>
+            <!-- <ion-row>
               <ion-label>Note / Deskripsi diri:</ion-label>
             </ion-row>
             <ion-row>
               <ion-text>{{note}}</ion-text>
-            </ion-row>
-            <ion-row>
-              <ion-label>Biaya tawar / nego:</ion-label>
-
-              <ion-text> <b>  Rp. {{biaya_tawar}} </b></ion-text>
-            </ion-row>
+            </ion-row> -->
 
           </ion-grid>
         </ion-item>
@@ -101,13 +103,13 @@
         </ion-row>
       
         <ion-row>
-          <!-- <ion-button (click)="terima()">Terima</ion-button> -->
-          <ion-row>
-            <!-- <ion-button (click)="terima()">Terima</ion-button> -->
-            <ion-button routerLink="/detail-pesan-ortu-guru/{{idPendaftar}}">Kirim Pesan</ion-button>
+       
+        
+      
+            <ion-button routerLink="/detail-pesan-ortu-guru/{{idkepada}}">Kirim Pesan</ion-button>
   
-          </ion-row>
-          <ion-button (click)="terima()">Terima</ion-button>
+       
+        
 
         </ion-row>
       </ion-card>

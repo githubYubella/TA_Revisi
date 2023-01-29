@@ -26,17 +26,23 @@
         </ion-item>
         <ion-item>
           <ion-label>Biaya jasa</ion-label>
-          <ion-input required placeholder="Tulis nominal biaya jasa yang telah disepakati" [(ngModel)]="biaya_jasa"></ion-input>
+          <ion-input required placeholder="Tulis nominal biaya jasa yang telah disepakati. Misal: 250000" [(ngModel)]="biaya_jasa"></ion-input>
 
         </ion-item>
-        <ion-item>
+        <!-- <ion-item>
           <ion-label>Tanggal mulai: </ion-label>
           <ion-datetime (ionChange)="setTanggalMulai($event)" presentation="date"></ion-datetime>
-
+        </ion-item> -->
+        <ion-item class="ion-padding">
+          <ion-label position="fixed">Bank: </ion-label>
+          <select [(ngModel)]="bank_dipilih">
+            <option *ngFor="let n of list_admin" placeholder='pilih' value="{{n.idadmin}}">{{n.bank}}</option>
+          </select>
         </ion-item>
         <ion-button (click)="terima()">Terima</ion-button>
       </ion-card>
-      <ion-card>
+      
+      <!-- <ion-card>
         <ion-item>
           <ion-grid>
             <ion-row>
@@ -65,7 +71,7 @@
             <ion-label>
               Berkas: 
    
-             <!-- <a href="https://list-coba.000webhostapp.com/file/{{berkas_cv}}">Download</a> -->
+            
              <a href="http://localhost:8888/db_ta/file/{{berkas_cv}}">Download</a>
 
             </ion-label>
@@ -87,11 +93,11 @@
           </ion-label>
         </ion-row>
         <ion-row>
-          <!-- <ion-button (click)="terima()">Terima</ion-button> -->
+           <ion-button (click)="terima()">Terima</ion-button> 
           <ion-button (click)="terima()">Terima</ion-button>
 
         </ion-row>
-      </ion-card>
+      </ion-card> -->
 
     </ion-content>
 

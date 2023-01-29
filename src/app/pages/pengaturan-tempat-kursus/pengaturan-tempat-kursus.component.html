@@ -22,12 +22,12 @@
       <ion-grid>
         <ion-row style="height: 100%;">
           <ion-col style="border: 2px black solid; height: 100%;" class=ion-text-center>
-            <ion-item>
-              <ion-label>Nama:</ion-label>
+            <ion-item class="ion-padding">
+              <ion-label position="floating">Nama:</ion-label>
               <ion-input [(ngModel)]="nama" placeholder="{{nama}}"></ion-input>
             </ion-item>
-            <ion-item>
-              <ion-label>Informasi:</ion-label>
+            <ion-item class="ion-padding">
+              <ion-label position="floating">Informasi:</ion-label>
               <ion-textarea style="height: 100%;" class="ion-text-wrap" [(ngModel)]="informasi"
                 placeholder="{{informasi}}"></ion-textarea>
             </ion-item>
@@ -39,25 +39,25 @@
             </ion-item>
             <ion-item class="ion-padding">
               <ion-label position="fixed">Provinsi:</ion-label>
-              <select required  [(ngModel)]="provinsi" (change)="onShowKotaKab($event)">
-                <option  hidden >{{provinsi}}</option>
-                <option  *ngFor="let item of provinsi_list" value="{{item.id}}_{{item.nama}}">{{item.nama}}</option>
+              <select required [(ngModel)]="provinsi" (change)="onShowKotaKab($event)">
+                <option hidden>{{provinsi}}</option>
+                <option *ngFor="let item of provinsi_list" value="{{item.id}}_{{item.nama}}">{{item.nama}}</option>
               </select>
             </ion-item>
 
             <ion-item class="ion-padding">
               <ion-label>Kota: </ion-label>
               <!-- <ion-input [(ngModel)]="kota"></ion-input> -->
-              <select  required [(ngModel)]="kota" (change)="onShowKecamatan($event)">
+              <select required [(ngModel)]="kota" (change)="onShowKecamatan($event)">
                 <!-- <option selected="true " disabled value="{{item.id}}_{{item.nama}}">cok</option> -->
-                <option  hidden >{{kota}}</option>
+                <option hidden>{{kota}}</option>
                 <option *ngFor="let item of kota_list" value="{{item.id}}_{{item.nama}}">{{item.nama}}</option>
               </select>
             </ion-item>
             <ion-item class="ion-padding">
               <ion-label>Kecamatan: </ion-label>
               <select required [(ngModel)]="kecamatan" (change)="onShowKelurahan($event)">
-                <option  hidden >{{kecamatan}}</option>
+                <option hidden>{{kecamatan}}</option>
                 <option *ngFor="let item of kecamatan_list" value="{{item.id}}_{{item.nama}}">{{item.nama}}</option>
               </select>
               <!-- <ion-input [(ngModel)]="kecamatan"  (change)="onSelectKecamatan($event)"></ion-input> -->
@@ -65,7 +65,7 @@
             <ion-item class="ion-padding">
               <ion-label>Kelurahan: </ion-label>
               <select required [(ngModel)]="kelurahan">
-                <option  hidden >{{kelurahan}}</option>
+                <option hidden>{{kelurahan}}</option>
                 <option *ngFor="let item of kelurahan_list" value="{{item.id}}_{{item.nama}}">{{item.nama}}</option>
               </select>
             </ion-item>
@@ -73,7 +73,7 @@
               <ion-label position="floating">No. Telepon</ion-label>
               <ion-input type="tel" placeholder="888-888-8888" required [(ngModel)]="telepon"></ion-input>
             </ion-item> -->
-           
+
             <ion-button (click)="editProfil()">Simpan</ion-button>
           </ion-col>
 
@@ -84,25 +84,28 @@
             <ion-button (click)="editFoto()">Simpan Foto</ion-button>
 
           </ion-col>
-          <ion-col>
-            <ion-item>
-              <h2>Bidang Keahlian</h2>
-              <ion-grid>
-                <ion-row>
-                  <ion-col>
-                    <ion-list>
-                      <ion-item *ngFor="let item of keahlian_list; let i = index" value="{{item.idkeahlian}}">
-                        <ion-checkbox [(ngModel)]="keahlianDipilih[i]"></ion-checkbox>
-                        <ion-label>{{item.nama}}</ion-label>
-                      </ion-item>
-                    </ion-list>
-                  </ion-col>
+          <ion-col style="border: 2px red solid;" class="ion-text-center">
+            <h2>Bidang Keahlian</h2>
 
-                </ion-row>
-              </ion-grid>
+            <!-- <ion-item> -->
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <ion-list>
+                    <ion-item *ngFor="let item of keahlian_list; let i = index" value="{{item.idkeahlian}}">
+                      <ion-checkbox [(ngModel)]="keahlianDipilih[i]"></ion-checkbox>
+                      <ion-label>{{item.nama}}</ion-label>
+                    </ion-item>
+                  </ion-list>
+                </ion-col>
+
+              </ion-row>
+
+            </ion-grid>
+            <ion-item class="ion-padding">
+              <ion-button (click)="editKeahlian()">Edit Keahlian</ion-button>
+
             </ion-item>
-            <ion-button (click)="editKeahlian()">Edit Keahlian</ion-button>
-
           </ion-col>
         </ion-row>
       </ion-grid>

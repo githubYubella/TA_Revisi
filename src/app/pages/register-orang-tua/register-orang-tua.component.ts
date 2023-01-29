@@ -35,8 +35,16 @@ export class RegisterOrangTuaComponent implements OnInit {
 
   location: LatLng
 
+  image: any
 
   constructor(private ot: OrangTuaService, private router: Router) { }
+
+  onFileSelected(event) {
+    // console.log(event)
+    this.image = event.target.files[0]
+    // this.conString=this.selected.readAsText(this.selected,'s')
+    console.log(this.image)
+  }
 
   onShowKotaKab(event) {
     if (this.provinsi != '') {
@@ -87,12 +95,13 @@ export class RegisterOrangTuaComponent implements OnInit {
     // const kec = splitKec[1]
     // const kel = splitKel[1]
     this.provinsi = splitProv[1]
-   this.kota = splitKota[1]
-    this.kecamatan= splitKec[1]
+    this.kota = splitKota[1]
+    this.kecamatan = splitKec[1]
     this.kelurahan = splitKel[1]
     // this.alamat_lengkap = this.alamat + ", " + city + ", " + kec + ", " + kel + ", " + prov
     this.alamat_lengkap = this.alamat + ", " + this.kota + ", " + this.kecamatan + ", " + this.kelurahan + ", " + this.provinsi
-    
+
+    const uploadData = new FormData();
     const op: ForwardOptions = {
       'addressString': this.alamat_lengkap,
       'apiKey': environment.key,
@@ -105,29 +114,63 @@ export class RegisterOrangTuaComponent implements OnInit {
           lat: res.addresses[0].latitude,
           lng: res.addresses[0].longitude
         }
+        uploadData.append('lat', this.location.lat.toString());
+        uploadData.append('long', this.location.lng.toString());
 
-       
         // console.log('lat: ' + this.location.lat)
         // console.log('long: ' + this.location.lng)
 
       }
-
-
     )
+
     console.log('lat: ' + this.location.lat)
     console.log('long: ' + this.location.lng)
-    this.ot.registerService(this.email, this.password, this.nama, this.jenisKelamin_dipilih,
-      this.telepon, this.nama_siswa, this.alamat, this.kecamatan, this.kelurahan, this.kota, this.provinsi,this.location.lat,this.location.lng).subscribe(
-        (data) => {
-          if (data['result'] == 'success') {
-            alert("Register Success")
-            this.router.navigate(['/'])
+    // this.ot.registerService(this.email, this.password, this.nama, this.jenisKelamin_dipilih,
+    //   this.telepon, this.nama_siswa, this.alamat, this.kecamatan, this.kelurahan, this.kota, this.provinsi, this.location.lat, this.location.lng).subscribe(
+    //     (data) => {
+    //       if (data['result'] == 'success') {
+    //         alert("Register Success")
+    //         this.router.navigate(['/'])
 
-          } else {
-            alert("Register Error : " + "Email atau Password tidak boleh kosong.")
-          }
+    //       } else {
+    //         alert("Register Error : " + "Email atau Password tidak boleh kosong.")
+    //       }
+    //     }
+    //   )
+    if (this.image == null) {
+      alert("Harap upload file ")
+      // this.file = ""
+    } else {
+
+      uploadData.append('email', this.email);
+      uploadData.append('password', this.password);
+      uploadData.append('nama_ortu', this.nama);
+      uploadData.append('jenis_kelamin', this.jenisKelamin_dipilih);
+      uploadData.append('telepon', this.telepon);
+      uploadData.append('nama_siswa', this.nama_siswa);
+
+      uploadData.append('alamat', this.alamat);
+
+      uploadData.append('kecamatan', this.kecamatan);
+      uploadData.append('kelurahan', this.kelurahan);
+      uploadData.append('prov', this.provinsi);
+      uploadData.append('kota', this.kota);
+      uploadData.append('image', this.image, this.image.name);
+      this.ot.registerService(uploadData).subscribe((resp) => {
+        console.log(resp);
+        if (resp['result'] == 'success') {
+          alert("Register Success")
+          this.router.navigate(['/'])
+
+
         }
-      )
+        else {
+          alert("Register Error : " + resp['message'])
+        }
+      })
+      ///
+    }
+
   }
   async ngOnInit() {
     fetch('http://dev.farizdotid.com/api/daerahindonesia/provinsi').then(res => res.json())
@@ -137,6 +180,6 @@ export class RegisterOrangTuaComponent implements OnInit {
 
 
       });
-   }
+  }
 
 }

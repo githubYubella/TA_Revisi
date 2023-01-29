@@ -28,6 +28,8 @@
       <ion-item class="ion-padding">
         <ion-label>Jenis Kelamin:</ion-label> <br>
         <select  required [(ngModel)]="jenisKelamin_dipilih">
+          <option  hidden >--Pilih jenis kelamin--</option>
+          
           <option value="Pria">Pria</option>
           <option value="Wanita">Wanita</option>
         </select>
@@ -47,6 +49,8 @@
       <ion-item class="ion-padding">
         <ion-label position="fixed">Provinsi:</ion-label>
         <select required [(ngModel)]="provinsi" (change)="onShowKotaKab($event)">
+          <option  hidden >--Pilih provinsi--</option>
+          
           <option *ngFor="let item of provinsi_list" value="{{item.id}}_{{item.nama}}">{{item.nama}}</option>
         </select>
       </ion-item>
@@ -55,6 +59,8 @@
         <ion-label>Kota: </ion-label>
         <!-- <ion-input [(ngModel)]="kota"></ion-input> -->
         <select required [(ngModel)]="kota" (change)="onShowKecamatan($event)">
+          
+          
           <option *ngFor="let item of kota_list" value="{{item.id}}_{{item.nama}}">{{item.nama}}</option>
         </select>
       </ion-item>
@@ -71,6 +77,13 @@
           <option *ngFor="let item of kelurahan_list" value="{{item.id}}_{{item.nama}}">{{item.nama}}</option>
         </select>
         <!-- <ion-input [(ngModel)]="kelurahan"  (change)="onSelectKelurahan($event)"></ion-input> -->
+      </ion-item>
+      <div class="ion-padding" *ngIf="image == null">
+        <ion-label class="ion-padding" color="danger">Upload berkas foto/gambar Anda</ion-label>
+      </div>
+      <ion-item class="ion-padding">
+        <ion-label>Upload Gambar</ion-label>
+        <ion-input type="file" (change)="onFileSelected($event)" [(ngModel)]="gambar"></ion-input>
       </ion-item>
       <ion-item>
         <ion-button (click)="register_orang_tua()">Register</ion-button>

@@ -27,28 +27,31 @@ export class HomeOrangTuaComponent implements OnInit {
   newMapw: GoogleMap;
 
   kursus = []
-  nama_login=""
-  idortu:number
-  search=''
-  
+  nama_login = ""
+  idortu: number
+  search = ''
+  status_privat = ""
 
-  constructor( private geo: Geolocation,
+
+  constructor(private geo: Geolocation,
     private storage: Storage,
     private tk: TempatKursusService,
     private authService: AuthService,
     private router: Router,
-    private ot:OrangTuaService
+    private ot: OrangTuaService
   ) {
     this.email = authService.email
     this.role = authService.role
     this.email_profil = authService.email
   }
 
-  searchbar(ev: any){
+  searchbar(ev: any) {
     let search_value = ev.target.value
     this.search = search_value
     this.listKursus()
   }
+
+
 
   listKursus() {
     this.tk.listTempatKursusService(this.search).subscribe(
@@ -58,6 +61,7 @@ export class HomeOrangTuaComponent implements OnInit {
         }
       }
     )
+
 
   }
 
@@ -95,7 +99,7 @@ export class HomeOrangTuaComponent implements OnInit {
         lat: this.location.lat,
         lng: this.location.lng
       },
-      draggable: true
+      draggable: false
 
 
     })
@@ -114,8 +118,18 @@ export class HomeOrangTuaComponent implements OnInit {
       (data) => {
         if (data['result'] == 'success') {
           this.nama_login = data['data'][0].nama_orang_tua
-          this.idortu=data['data'][0].idorang_tua
+          this.idortu = data['data'][0].idorang_tua
           // console.log("syal: "+data['data'][0].nama_orang_tua)
+
+          // Cek tanggal tagihan pembayaran
+          this.ot.cekTglTagihan(this.idortu).subscribe(
+            (data) => {
+              if (data['result'] == 'success') {
+                this.status_privat = data['status'] 
+              }
+            }
+          )
+
         }
       }
     )

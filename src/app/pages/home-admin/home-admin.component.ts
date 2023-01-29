@@ -25,6 +25,7 @@ export class HomeAdminComponent implements OnInit {
 
   bayarLunas(idtrans: number) {
     console.log('trans' + idtrans)
+    // get 
     this.ad.detailBayarAdminService(idtrans).subscribe(
       (data) => {
         if (data['result'] = 'success') {

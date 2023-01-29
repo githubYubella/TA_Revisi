@@ -14,6 +14,8 @@ export class BukaAbsenGuruComponent implements OnInit {
   materi = ''
   idguru: number
   email = ''
+  idLowongan: number = this.at.snapshot.params['id']
+  status_pembayaran = ""
   constructor(private gp: GuruPrivatService, private authService: AuthService,
     private at: ActivatedRoute, private router: Router) {
     this.email = authService.email
@@ -29,21 +31,31 @@ export class BukaAbsenGuruComponent implements OnInit {
         if (data['result'] == 'success') {
           this.idguru = data['data'][0].idguru_privat
 
+          // cek status pembayaran lunas/belum untuk akses halaman buka absen
+          this.gp.cekStatusPembayaranService(this.idLowongan).subscribe(
+            (data) => {
+              if (data['result'] == 'success') {
+                this.status_pembayaran = data['data'][0].status_lunas
+
+              }
+            }
+          )
+
         }
       }
     )
   }
 
   simpan() {
-    var idLowongan: number = this.at.snapshot.params['id']
 
-    this.gp.bukaAbsenService(this.tanggal_buka, this.materi, idLowongan, this.idguru).subscribe(
+
+    this.gp.bukaAbsenService(this.tanggal_buka, this.materi, this.idLowongan, this.idguru).subscribe(
       (data) => {
         if (data['result'] == 'success') {
           alert('Absensi Telah Dibuka')
-          
 
-          this.tanggal_buka=format(Date.now(), "yyyy-MM-dd")
+
+          this.tanggal_buka = format(Date.now(), "yyyy-MM-dd")
 
           this.materi = ''
           // this.router.navigate(['/presensi-guru-privat'])

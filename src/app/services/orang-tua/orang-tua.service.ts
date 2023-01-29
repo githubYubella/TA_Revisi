@@ -7,13 +7,62 @@ import { Observable } from 'rxjs';
 })
 export class OrangTuaService {
 
-  cekTglTagihan(idguru:number,idortu:number,idlowongan:number): Observable<any> {
+  akhiriKursusService(idlowongan:number,rating: number,komentar:string,tgl_selesai:string): Observable<any> {
+    // Untuk melakukan pembayaran selanjutnya
+    let body = new HttpParams;
+    body = body.set('idlowongan', idlowongan)
+    body = body.set('rating', rating)
+    body = body.set('komentar', komentar)
+    body = body.set('tgl_selesai', tgl_selesai)
+    return this.http.post('http://localhost:8888/db_ta/akhiri_kursus.php', body)
+  }
+
+  kirimBuktiBerikutnyaService(data: FormData): Observable<any> {
+    return this.http.post('http://localhost:8888/db_ta/kirim_bukti_bayar_berikutnya.php', data)
+  }
+
+  cekKumpulanDetailBayarService(idortu:number,idlowongan:number,idguru: number): Observable<any> {
+    // Untuk melakukan pembayaran selanjutnya
     let body = new HttpParams;
     body = body.set('idortu', idortu)
     body = body.set('idguru', idguru)
     body = body.set('idlowongan', idlowongan)
+    return this.http.post('http://localhost:8888/db_ta/cek_kumpulan_detail_bayar.php', body)
+  }
 
-    return this.http.post("http://localhost:8888/db_ta/cek_tgl_tagihan.php",body);
+  listRiwayatTransaksiService(idortu:number): Observable<any> {
+    let body = new HttpParams;
+    body = body.set('idortu', idortu)
+    return this.http.post("http://localhost:8888/db_ta/riwayat_transaksi_orang_tua.php", body);
+  }
+
+  detailProfilKumpulanGuruPrivatSerivce(idguru: number): Observable<any> {
+    // Menampilkan detail profil guru privat dari halaman kumpulan guru privat
+    let body = new HttpParams;
+    body = body.set('idguru', idguru)
+
+    return this.http.post('http://localhost:8888/db_ta/detail_profil_guru_privat.php', body)
+  }
+
+  listGuruPrivatService(search_keahlian: string, search_jenjang: string): Observable<any> {
+    let body = new HttpParams;
+    body = body.set('search_keahlian', search_keahlian)
+    body = body.set('search_jenjang', search_jenjang)
+    return this.http.post("http://localhost:8888/db_ta/list_kumpulan_guru.php", body);
+  }
+
+  editFotoService(data: FormData): Observable<any> {
+    return this.http.post('http://localhost:8888/db_ta/edit_ortu_foto.php', data)
+  }
+
+
+  cekTglTagihan( idortu: number): Observable<any> {
+    let body = new HttpParams;
+    body = body.set('idortu', idortu)
+    // body = body.set('idguru', idguru)
+    // body = body.set('idlowongan', idlowongan)
+
+    return this.http.post("http://localhost:8888/db_ta/cek_tgl_tagihan.php", body);
   }
 
   chatKeGuruService(pesan: string, tgl: string, idortu: number, idguru: number): Observable<any> {
@@ -28,50 +77,50 @@ export class OrangTuaService {
     return this.http.post('http://localhost:8888/db_ta/chat_ortu_guru.php', body)
   }
 
-  detailPesanOrtuGuruService(idortu:number,idkepada:number): Observable<any> {
+  detailPesanOrtuGuruService(idortu: number, idkepada: number): Observable<any> {
     let body = new HttpParams;
     body = body.set('idortu', idortu)
     body = body.set('idguru', idkepada)
 
-    return this.http.post("http://localhost:8888/db_ta/detail_pesan_ortu_guru.php",body);
+    return this.http.post("http://localhost:8888/db_ta/detail_pesan_ortu_guru.php", body);
   }
 
-  updateStatusPesanGuruService(idguru:number): Observable<any> {
+  updateStatusPesanGuruService(idguru: number): Observable<any> {
     let body = new HttpParams;
     body = body.set('idguru', idguru)
-    return this.http.post("http://localhost:8888/db_ta/update_pesan_ortu_guru.php",body);
+    return this.http.post("http://localhost:8888/db_ta/update_pesan_ortu_guru.php", body);
   }
 
-  listPesanOrtuGuruService(idortu:number): Observable<any> {
+  listPesanOrtuGuruService(idortu: number): Observable<any> {
     // return this.http.get("http://localhost:8888/db_ta/list_chat_ortu_guru.php");
-    
+
     let body = new HttpParams;
     body = body.set('idortu', idortu)
-    return this.http.post("http://localhost:8888/db_ta/list_chat_ortu_guru.php",body);
+    return this.http.post("http://localhost:8888/db_ta/list_chat_ortu_guru.php", body);
   }
 
 
-  updateStatusPesanKursusService(idkursus:number): Observable<any> {
+  updateStatusPesanKursusService(idkursus: number): Observable<any> {
     let body = new HttpParams;
     body = body.set('idkursus', idkursus)
-    return this.http.post("http://localhost:8888/db_ta/update_pesan_ortu_kursus.php",body);
+    return this.http.post("http://localhost:8888/db_ta/update_pesan_ortu_kursus.php", body);
   }
 
 
-  detailPesanOrtuKursusService(idortu:number,idkepada:number): Observable<any> {
+  detailPesanOrtuKursusService(idortu: number, idkepada: number): Observable<any> {
     let body = new HttpParams;
     body = body.set('idortu', idortu)
     body = body.set('idkursus', idkepada)
 
-    return this.http.post("http://localhost:8888/db_ta/detail_pesan_ortu_kursus.php",body);
+    return this.http.post("http://localhost:8888/db_ta/detail_pesan_ortu_kursus.php", body);
   }
 
-  listPesanOrtuKursusService(idortu:number): Observable<any> {
+  listPesanOrtuKursusService(idortu: number): Observable<any> {
     // return this.http.get("http://localhost:8888/db_ta/list_chat_ortu_kursus.php");
-    
+
     let body = new HttpParams;
     body = body.set('idortu', idortu)
-    return this.http.post("http://localhost:8888/db_ta/list_chat_ortu_kursus.php",body);
+    return this.http.post("http://localhost:8888/db_ta/list_chat_ortu_kursus.php", body);
   }
 
 
@@ -153,8 +202,8 @@ export class OrangTuaService {
   }
 
   terimaPendaftarSerivce(idLowongan: number, idPendaftar: number, idOrtu: number,
-    kesepakatan: string, biaya: number, tgl_mulai: string
-    // ,tgl_tagihan:string
+    kesepakatan: string, biaya: number, tgl_kontrak: string
+    , idadmin: number
   ): Observable<any> {
     let body = new HttpParams;
     body = body.set('idLowongan', idLowongan)
@@ -162,7 +211,9 @@ export class OrangTuaService {
     body = body.set('idOrtu', idOrtu)
     body = body.set('kesepakatan', kesepakatan)
     body = body.set('biaya', biaya)
-    body = body.set('tgl_mulai', tgl_mulai)
+    body = body.set('tgl_kontrak', tgl_kontrak)
+    body = body.set('idadmin', idadmin)
+
     // body = body.set('tgl_tagihan', tgl_tagihan)
 
 
@@ -197,7 +248,9 @@ export class OrangTuaService {
     deskripsi: string, jenjang: string, idortu: number,
     idkeahlian: number, alamat: string,
     kecamatan: string, kelurahan: string,
-    lat: number, long: number, idlowongan: number): Observable<any> {
+    lat: string, long: string, jadwal: string, provinsi: string,
+    kota: string,
+    idlowongan: number): Observable<any> {
     let body = new HttpParams;
     body = body.set('biaya_jasa', biaya)
     body = body.set('banyak_pertemuan', banyak_pertemuan)
@@ -215,6 +268,11 @@ export class OrangTuaService {
 
     body = body.set('lat', lat)
     body = body.set('long', long)
+    body = body.set('jadwal', jadwal)
+    body = body.set('provinsi', provinsi)
+    body = body.set('kota', kota)
+
+
     body = body.set('idlowongan', idlowongan)
     return this.http.post('http://localhost:8888/db_ta/edit_lowongan.php', body)
   }
@@ -233,7 +291,8 @@ export class OrangTuaService {
 
   bukaLowonganService(biaya_jasa: number, banyak_pertemuan: number, metode: string, durasi: number,
     tgl_mulai: string, judul_lowongan: string, deskripsi: string, jenjang: string, idortu: number, idkeahlian: number,
-    alamat: string, kecamatan: string, kelurahan: string, loc_x: number, loc_y: number,jadwal:string,prov:string,tgl_buka_lowongan:string): Observable<any> {
+    alamat: string, kecamatan: string, kelurahan: string, loc_x: number, loc_y: number, jadwal: string,
+    prov: string, tgl_buka_lowongan: string, kota: string): Observable<any> {
     let body = new HttpParams;
     body = body.set('biaya_jasa', biaya_jasa)
     body = body.set('banyak_pertemuan', banyak_pertemuan)
@@ -255,6 +314,8 @@ export class OrangTuaService {
     body = body.set('jadwal', jadwal)
     body = body.set('prov', prov)
     body = body.set('tgl_buka_lowongan', tgl_buka_lowongan)
+    body = body.set('kota', kota)
+
 
 
 
@@ -280,33 +341,30 @@ export class OrangTuaService {
 
   }
 
-  registerService(email: string, password: string, nama_ortu: string,
-    jenis_kelamin: string, telepon: string,
-    nama_siswa: string, alamat: string, kecamatan: string, kelurahan: string, kota: string, prov: string, lat: number, long: number): Observable<any> {
+  // registerService(email: string, password: string, nama_ortu: string,
+  //   jenis_kelamin: string, telepon: string,
+  //   nama_siswa: string, alamat: string, kecamatan: string, kelurahan: string, kota: string, prov: string, lat: number, long: number): Observable<any> {
 
-    let body = new HttpParams;
-    body = body.set('email', email)
-    body = body.set('password', password)
-    body = body.set('nama_ortu', nama_ortu)
-    body = body.set('jenis_kelamin', jenis_kelamin)
-    body = body.set('telepon', telepon)
-    body = body.set('nama_siswa', nama_siswa)
-    body = body.set('alamat', alamat)
-    body = body.set('kecamatan', kecamatan)
-    body = body.set('kelurahan', kelurahan)
-    body = body.set('kota', kota)
-    body = body.set('prov', prov)
+  //   let body = new HttpParams;
+  //   body = body.set('email', email)
+  //   body = body.set('password', password)
+  //   body = body.set('nama_ortu', nama_ortu)
+  //   body = body.set('jenis_kelamin', jenis_kelamin)
+  //   body = body.set('telepon', telepon)
+  //   body = body.set('nama_siswa', nama_siswa)
+  //   body = body.set('alamat', alamat)
+  //   body = body.set('kecamatan', kecamatan)
+  //   body = body.set('kelurahan', kelurahan)
+  //   body = body.set('kota', kota)
+  //   body = body.set('prov', prov)
 
+  //   // body = body.set('lat', lat)
+  //   // body = body.set('long', long)
+  //   return this.http.post('http://localhost:8888/db_ta/register_ortu.php', body)
 
-
-    body = body.set('lat', lat)
-    body = body.set('long', long)
-    return this.http.post('http://localhost:8888/db_ta/register_ortu.php', body)
-
-
-
-
-
+  // }
+  registerService(data: FormData): Observable<any> {
+    return this.http.post('http://localhost:8888/db_ta/register_ortu.php', data)
   }
 
   constructor(private http: HttpClient) { }

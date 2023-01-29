@@ -37,10 +37,10 @@ export class ListPesanOrtuComponent implements OnInit {
   }
 
   listGuru() {
-    // this.ot.listPesanOrtuKursusService().subscribe(
-    //   (data) => {
-    //     if (data['result'] == 'success') {
-    //       this.listChat = data['data']
+    this.ot.listPesanOrtuGuruService(this.idortu).subscribe(
+      (data) => {
+        if (data['result'] == 'success') {
+          this.listChatGuru = data['data']
 
           // list pesan ortu dengan guru privat
           // this.ot.listPesanOrtuGuruService().subscribe(
@@ -52,9 +52,9 @@ export class ListPesanOrtuComponent implements OnInit {
           //   }
           // )
 
-      //   }
-      // }
-    // )
+        }
+      }
+    )
 
   }
   doRefresh(event) {

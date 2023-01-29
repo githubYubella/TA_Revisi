@@ -19,64 +19,83 @@
       </ion-toolbar>
     </ion-header>
     <ion-content class="ion-padding">
-      <ion-card>
-        <ion-item class="ion-padding">
-          <ion-label>Nama:</ion-label>
-          <ion-input [(ngModel)]="nama_ortu" placeholder="{{nama_ortu}}"></ion-input>
-        </ion-item>
-        <ion-item class="ion-padding">
-          <ion-label>Nama Siswa:</ion-label>
-          <ion-input [(ngModel)]="nama_siswa" placeholder="{{nama_siswa}}"></ion-input>
-        </ion-item>
-        <ion-item class="ion-padding">
-          <ion-label>Jenis Kelamin:</ion-label> <br>
-          <select selected="{{jenisKelamin_dipilih}}" required [(ngModel)]="jenisKelamin_dipilih">
-            <option value="Pria">Pria</option>
-            <option value="Wanita">Wanita</option>
-          </select>
-        </ion-item>
-        <ion-item class="ion-padding">
-          <ion-label position="floating">No. Telepon</ion-label>
-          <ion-input type="tel" placeholder="888-888-8888" required [(ngModel)]="telepon"></ion-input>
-        </ion-item>
-        <ion-item class="ion-padding">
+      <ion-grid>
+        <ion-row style="height: 100%;">
+          <ion-col style="border: 2px black solid; height: 100%;" class=ion-text-center>
+            <ion-card>
+              <ion-item class="ion-padding">
+                <ion-label>Nama:</ion-label>
+                <ion-input [(ngModel)]="nama_ortu" placeholder="{{nama_ortu}}"></ion-input>
+              </ion-item>
+              <ion-item class="ion-padding">
+                <ion-label>Nama Siswa:</ion-label>
+                <ion-input [(ngModel)]="nama_siswa" placeholder="{{nama_siswa}}"></ion-input>
+              </ion-item>
+              <ion-item class="ion-padding">
+                <ion-label>Jenis Kelamin:</ion-label> <br>
+                <select selected="{{jenisKelamin_dipilih}}" required [(ngModel)]="jenisKelamin_dipilih">
+                  <option value="Pria">Pria</option>
+                  <option value="Wanita">Wanita</option>
+                </select>
+              </ion-item>
+              <ion-item class="ion-padding">
+                <ion-label position="floating">No. Telepon</ion-label>
+                <ion-input type="tel" placeholder="888-888-8888" required [(ngModel)]="telepon"></ion-input>
+              </ion-item>
+              <ion-item class="ion-padding">
 
-          <ion-label position="floating">Alamat</ion-label>
-          <ion-input [(ngModel)]="alamat" placeholder="Masukkan alamat anda"></ion-input> <br>
+                <ion-label position="floating">Alamat</ion-label>
+                <ion-input [(ngModel)]="alamat" placeholder="Masukkan alamat anda"></ion-input> <br>
 
-        </ion-item>
-        <ion-item class="ion-padding">
-          <ion-label position="fixed">Provinsi:</ion-label>
-          <select selected="{{provinsi}}" required [(ngModel)]="provinsi" (change)="onShowKotaKab($event)">
-            <option *ngFor="let item of provinsi_list" value="{{item.id}}_{{item.nama}}">
-              {{item.nama}}</option>
-          </select>
-        </ion-item>
+              </ion-item>
+              <ion-item class="ion-padding">
+                <ion-label position="fixed">Provinsi:</ion-label>
+                <select selected="{{provinsi}}" required [(ngModel)]="provinsi" (change)="onShowKotaKab($event)">
+                  <option hidden>{{provinsi}}</option>
+                  <option *ngFor="let item of provinsi_list" value="{{item.id}}_{{item.nama}}">
+                    {{item.nama}}</option>
+                </select>
+              </ion-item>
 
-        <ion-item class="ion-padding">
-          <ion-label>Kota: </ion-label>
-          <select selected="{{kota}}" required [(ngModel)]="kota" (change)="onShowKecamatan($event)">
-            <option *ngFor="let item of kota_list" value="{{item.id}}_{{item.nama}}">{{item.nama}}</option>
-          </select>
-        </ion-item>
-        <ion-item class="ion-padding">
-          <ion-label>Kecamatan: </ion-label>
-          <select selected="{{kecamatan}}" required [(ngModel)]="kecamatan" (change)="onShowKelurahan($event)">
-            <option *ngFor="let item of kecamatan_list" value="{{item.id}}_{{item.nama}}">{{item.nama}}</option>
-          </select>
-        </ion-item>
-        <ion-item class="ion-padding">
-          <ion-label>Kelurahan: </ion-label>
-          <select selected="{{kelurahan}}" required [(ngModel)]="kelurahan">
-            <option *ngFor="let item of kelurahan_list" value="{{item.id}}_{{item.nama}}">{{item.nama}}</option>
-          </select>
-        </ion-item>
-        <ion-item class="ion-padding">
-          <ion-button (click)="editProfil()">Simpan</ion-button>
+              <ion-item class="ion-padding">
+                <ion-label>Kota: </ion-label>
+                <select selected="{{kota}}" required [(ngModel)]="kota" (change)="onShowKecamatan($event)">
+                  <option hidden>{{kota}}</option>
+                  <option *ngFor="let item of kota_list" value="{{item.id}}_{{item.nama}}">{{item.nama}}</option>
+                </select>
+              </ion-item>
+              <ion-item class="ion-padding">
+                <ion-label>Kecamatan: </ion-label>
+                <select selected="{{kecamatan}}" required [(ngModel)]="kecamatan" (change)="onShowKelurahan($event)">
+                  <option hidden>{{kecamatan}}</option>
+                  <option *ngFor="let item of kecamatan_list" value="{{item.id}}_{{item.nama}}">{{item.nama}}</option>
+                </select>
+              </ion-item>
+              <ion-item class="ion-padding">
+                <ion-label>Kelurahan: </ion-label>
+                <select selected="{{kelurahan}}" required [(ngModel)]="kelurahan">
+                  <option hidden>{{kelurahan}}</option>
+                  <option *ngFor="let item of kelurahan_list" value="{{item.id}}_{{item.nama}}">{{item.nama}}</option>
+                </select>
+              </ion-item>
+              <ion-item class="ion-padding">
+                <ion-button (click)="editProfil()">Simpan</ion-button>
 
-        </ion-item>
+              </ion-item>
 
-      </ion-card>
+            </ion-card>
+          </ion-col>
+
+          <ion-col style="border: 2px red solid;" class="ion-text-center">
+            <img src="http://localhost:8888/db_ta/{{gambar}}" alt="">
+            <ion-input type="file" (change)="onFileSelected($event)" name="gambar">Unggah Foto Baru
+            </ion-input>
+            <ion-button (click)="editFoto()">Simpan Foto</ion-button>
+
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
     </ion-content>
 
   </ion-router-outlet>

@@ -34,28 +34,31 @@
         <ion-label>Tanggal bayar: </ion-label>
         <ion-datetime (ionChange)="setTanggalBayar($event)" presentation="date"></ion-datetime>
       </ion-item>
-      <ion-item class="ion-padding">
+      <!-- <ion-item class="ion-padding">
         <ion-label position="fixed">Bank: </ion-label>
         <select [(ngModel)]="bank_dipilih">
           <option *ngFor="let n of list_admin" placeholder='pilih' value="{{n.idadmin}}">{{n.bank}}</option>
         </select>
-      </ion-item>
+      </ion-item> -->
       <ion-item class="ion-padding">
         <ion-label>Upload Bukti Bayar:</ion-label>
         <ion-input type="file" (change)="onFileSelected($event)"></ion-input>
       </ion-item>
-      <ion-item class="ion-padding">
+      <!-- <ion-item class="ion-padding">
         <ion-label>Penilaian kepada guru privat: </ion-label>
-        <ionic-rating-component [(ngModel)]="valRate"></ionic-rating-component>
-        <!-- <ion-label>Rate: {{valRate}}</ion-label> -->
-      </ion-item>
-      <ion-item class="ion-padding">
+        <ionic-rating-component [(ngModel)]="valRate"></ionic-rating-component> -->
+        <!-- <ion-label>Rate: {{valRate}}</ion-label>  -->
+      <!-- </ion-item> -->
+      <!-- <ion-item class="ion-padding">
         <ion-label>Ulasan: </ion-label>
         <ion-input [(ngModel)]="ulasan"></ion-input>
-      </ion-item>
+      </ion-item> -->
       <ion-item class="ion-padding">
-        <ion-button (click)="kirimBuktiBayar()">
+        <ion-button *ngIf="keterangan_pembayaran == 'Pembayaran pertama'" (click)="kirimBuktiBayar()">
           Upload Bukti Bayar
+        </ion-button>
+        <ion-button *ngIf="keterangan_pembayaran == 'Pembayaran berikutnya'" (click)="kirimBuktiBayarBerikutnya()">
+          Upload Bukti Bayar berikutnya
         </ion-button>
       </ion-item>
     </ion-content>

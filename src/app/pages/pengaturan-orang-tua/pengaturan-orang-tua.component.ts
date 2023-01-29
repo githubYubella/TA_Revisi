@@ -84,6 +84,34 @@ export class PengaturanOrangTuaComponent implements OnInit {
     }
   }
 
+  onFileSelected(event) {
+    // console.log(event)
+    this.image = event.target.files[0]
+    // this.conString=this.selected.readAsText(this.selected,'s')
+    console.log(this.image)
+  }
+
+  editFoto() {
+    const uploadData = new FormData();
+    uploadData.append('image', this.image, this.image.name);
+    uploadData.append('email', this.email);
+    this.ot.editFotoService(uploadData).subscribe((resp) => {
+
+      const parse = JSON.parse(JSON.stringify(resp))
+
+      console.log('resp: ' + parse.result);
+      if (resp['result'] == 'sukses') {
+        alert("Foto berhasl di ubah")
+        // this.router.navigate(['/home'])
+        window.location.reload()
+      }
+      else {
+        alert("Update Error : " + resp)
+      }
+    })
+
+  }
+
   async getProfil() {
     this.ot.profilService(this.email).subscribe(
       (data) => {
@@ -98,6 +126,8 @@ export class PengaturanOrangTuaComponent implements OnInit {
           this.telepon = data['data'][0].no_telepon
           this.id = data['data'][0].idorang_tua
           this.jenisKelamin_dipilih=data['data'][0].jenis_kelamin
+          this.gambar = data['data'][0].gambar
+
       
         }
       }

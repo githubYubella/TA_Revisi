@@ -21,6 +21,7 @@ export class DetailPesanOrtuGuruComponent implements OnInit {
   nama_saya = ''
   idKepada: number
   idchat: number
+  teks_data = ''
   constructor(private router: Router, private at: ActivatedRoute, private ot: OrangTuaService, private authService: AuthService) {
     this.email = authService.email
   }
@@ -75,12 +76,28 @@ export class DetailPesanOrtuGuruComponent implements OnInit {
             (data) => {
               if (data['result'] == 'success') {
                 console.log(data['result'] + ' status')
+              } 
+            }
+          )
+
+          // Get nama Penerima(Guru)
+          this.ot.detailProfilKumpulanGuruPrivatSerivce(this.idKepada).subscribe(
+            (data) => {
+              if (data['result'] = 'success') {
+                this.nama_kepada = data['data'][0].nama_guru_privat//o
+                
+      
+      
+      
+      
+      
               }
             }
           )
 
 
         }
+        
       }
     )
 
@@ -88,13 +105,13 @@ export class DetailPesanOrtuGuruComponent implements OnInit {
 
   onBackClick() {
     console.log("Login Clicked");
-    this.router.navigate(['./list-pesan-ortu/'+this.idortu]);
+    this.router.navigate(['./list-pesan-ortu/' + this.idortu]);
     // window.location.reload(['./list-pesan-ortu/'+this.idortu])
   }
 
- async  ngOnInit() {
+  async ngOnInit() {
 
-  this.listPesan()
- }
+    this.listPesan()
+  }
 
 }

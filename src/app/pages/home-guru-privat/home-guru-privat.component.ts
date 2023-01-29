@@ -9,20 +9,20 @@ import { GuruPrivatService } from 'src/app/services/guru-privat/guru-privat.serv
   styleUrls: ['./home-guru-privat.component.scss'],
 })
 export class HomeGuruPrivatComponent implements OnInit {
-  nama_login=""
-  email=""
-  role=''
-  lowongan=[]
-  search=''
-  idguru:number
-  constructor(private gp:GuruPrivatService, 
-    private authService: AuthService, private router:Router) { 
+  nama_login = ""
+  email = ""
+  role = ''
+  lowongan = []
+  search = ''
+  idguru: number
+  constructor(private gp: GuruPrivatService,
+    private authService: AuthService, private router: Router) {
     this.email = authService.email
     this.role = authService.role
   }
 
-  
-  searchbar(ev: any){
+
+  searchbar(ev: any) {
     let search_value = ev.target.value
     this.search = search_value
     this.listLowongan()
@@ -32,10 +32,12 @@ export class HomeGuruPrivatComponent implements OnInit {
     this.router.navigateByUrl('login')
   }
 
-  listLowongan(){
-    this.gp.listLowonganService(this.search).subscribe(
+  listLowongan() {
+    this.gp.listLowonganService(this.idguru, this.search).subscribe(
       (data) => {
         if (data['result'] == 'success') {
+          this.lowongan = data['data']
+        }else{
           this.lowongan = data['data']
         }
       }
@@ -47,7 +49,11 @@ export class HomeGuruPrivatComponent implements OnInit {
       (data) => {
         if (data['result'] == 'success') {
           this.nama_login = data['data'][0].nama_guru_privat
-          this.idguru=data['data'][0].idguru_privat
+          this.idguru = data['data'][0].idguru_privat
+          this.listLowongan()
+
+
+          // console.log("tes id" + this.idguru)
           // console.log("syal: "+data['data'][0].nama_orang_tua)
         }
       }
@@ -56,7 +62,7 @@ export class HomeGuruPrivatComponent implements OnInit {
 
   async ngOnInit() {
     this.getNamaGuru()
-    this.listLowongan()
+    // this.listLowongan()
   }
 
 }

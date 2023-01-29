@@ -62,7 +62,7 @@ export class DetailLowonganComponent implements OnInit {
         lat: this.lokasi.lat,
         lng: this.lokasi.lng
       },
-      draggable: true
+      draggable: false
     })
 
     // lokasi guru privat
@@ -78,7 +78,8 @@ export class DetailLowonganComponent implements OnInit {
             lat: this.lokasiGP.lat,
             lng: this.lokasiGP.lng,
           },
-          draggable: true
+          draggable: false,
+          iconUrl:"http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
         })
       }
     )

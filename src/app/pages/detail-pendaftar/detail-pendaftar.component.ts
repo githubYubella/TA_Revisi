@@ -13,7 +13,9 @@ export class DetailPendaftarComponent implements OnInit {
   idLowongan: number = this.at.snapshot.params['idLowongan']
 
   pengalaman: string = ''
-  berkas_cv: string = ''
+  berkas_pendaftar: string = ''
+  berkas_profil_guru: string = ''
+
   note: string = ''
   tempat_pendidikan: string = ''
   pendidikan: string = ''
@@ -24,6 +26,7 @@ export class DetailPendaftarComponent implements OnInit {
   usia: number
 jenis_kelamin:string=''
 list_history_kontrak:[]
+biaya_tawar:number
 
   constructor(private at: ActivatedRoute, private ot: OrangTuaService,private router:Router,
     private alertController: AlertController) { }
@@ -74,7 +77,8 @@ list_history_kontrak:[]
       (data) => {
         if (data['result'] = 'success') {
           this.pengalaman = data['data'][0].pengalaman//o
-          this.berkas_cv = data['data'][0].berkas_cv
+          this.berkas_pendaftar = data['data'][0].berkas_pendaftar
+          this.berkas_profil_guru = data['data'][0].berkas_guru
           this.note = data['data'][0].note_pendaftar 
           this.tempat_pendidikan = data['data'][0].tempat_jenjang_terakhir//k
           this.pendidikan = data['data'][0].jenjang_terakhir//k
@@ -89,6 +93,7 @@ list_history_kontrak:[]
           this.usia = tahunSkg - tahun_lahir//o
 
           this.telepon = data['data'][0].telepon//k
+          this.biaya_tawar=data['data'][0].biaya_tawar//k
 
           // get History
           this.ot.historyKontrakGuruSerivce(this.idPendaftar).subscribe(

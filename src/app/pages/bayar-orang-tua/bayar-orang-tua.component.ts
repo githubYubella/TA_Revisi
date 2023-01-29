@@ -17,45 +17,106 @@ export class BayarOrangTuaComponent implements OnInit {
   bayar_bersih: number
   kode_bayar: string
   total_bayar: number
-  tgl_bayar=''
-  list_admin:[]
-  bank_dipilih:number
-  valRate:number
-  ulasan:string
-  tgl_tagihan:string
+  tgl_bayar = ''
+  list_admin: []
+  bank_dipilih: number
+  tgl_tagihan: string
+  idtransaksi: number
+  keterangan_pembayaran = ''
+  idLowongan: number = this.at.snapshot.params['idLowongan']
+  idGuru: number = this.at.snapshot.params['idGuru']
+  idOrtu: number = this.at.snapshot.params['idOrtu']
+  idadmin: number
   constructor(private ot: OrangTuaService, private at: ActivatedRoute,
-    private router:Router) {
+    private router: Router) {
 
   }
-  async setTanggalBayar(event){
+  async setTanggalBayar(event) {
     this.tgl_bayar = format(new Date(event.target.value), "yyyy-MM-dd")
-}
+  }
 
   getDetailBayar() {
     var idLowongan: number = this.at.snapshot.params['idLowongan']
-    console.log("idlow"+idLowongan)
+    console.log("idlow" + idLowongan)
 
-    this.ot.detailBayarSerivce(idLowongan).subscribe(
+    // this.ot.detailBayarSerivce(idLowongan).subscribe(
+    //   (data) => {
+    //     if (data['result'] == 'success') {
+
+    //       this.bayar_bersih = data['bayar_bersih']
+    //       this.kode_bayar = data['kode']
+    //       this.total_bayar = data['total_bayar']
+    //       this.tgl_tagihan = data['tgl_tagihan']
+    //       this.idtransaksi = data['idtransaksi']
+    //       // console.log('idtransaksi'+this.idtransaksi)
+    //       // console.log('bersih '+this.bayar_bersih+". kode"+this.kode_bayar+". totalBYR= "+this.total_bayar)
+    //     }
+    //   }
+    // )
+
+    // Cek untuk melakukan pembayaran selanjutnya
+    this.ot.cekKumpulanDetailBayarService(this.idOrtu, idLowongan, this.idGuru).subscribe(
       (data) => {
         if (data['result'] == 'success') {
-          this.bayar_bersih = data['bayar_bersih']
-          this.kode_bayar = data['kode']
-          this.total_bayar = data['total_bayar']
-          this.tgl_tagihan=data['tgl_tagihan']
-
-          console.log('bersih '+this.bayar_bersih+". kode"+this.kode_bayar+". totalBYR= "+this.total_bayar)
+          // this.idadmin = data['data'][0].idadmin
+          this.keterangan_pembayaran = 'Pembayaran berikutnya'
+          // this.bayar_bersih = data['data'][0].bayar_bersih
+          // this.kode_bayar = data['data'][0].kode
+          // this.total_bayar = data['data'][0].total_bayar_bersih
+          // this.tgl_tagihan = data['data'][0].tgl_tagihan
+          // this.idtransaksi = data['data'][0].idtransaksi
+          console.log('Sudah ada pembayaran pada lowongan ini sebelumya.')
         }
+        else {
+          this.keterangan_pembayaran = 'Pembayaran pertama'
+          // this.ot.detailBayarSerivce(idLowongan).subscribe(
+          //   (data) => {
+          //     if (data['result'] == 'success') {
+          //       this.bayar_bersih = data['bayar_bersih']
+          //       this.kode_bayar = data['kode']
+          //       this.total_bayar = data['total_bayar']
+          //       this.tgl_tagihan = data['tgl_tagihan']
+          //       this.idtransaksi = data['idtransaksi']
+          //       // console.log('idtransaksi'+this.idtransaksi)
+          //       // console.log('bersih '+this.bayar_bersih+". kode"+this.kode_bayar+". totalBYR= "+this.total_bayar)
+
+
+
+          //     }
+          //   }
+          // )
+        }
+        this.ot.detailBayarSerivce(idLowongan).subscribe(
+            (data) => {
+              if (data['result'] == 'success') {
+
+                this.bayar_bersih = data['bayar_bersih']
+                this.kode_bayar = data['kode']
+                this.total_bayar = data['total_bayar']
+                this.tgl_tagihan = data['tgl_tagihan']
+                this.idtransaksi = data['idtransaksi']
+                this.idadmin = data['idadmin']
+                
+
+                // console.log('idadm'+this.idadmin)
+                // console.log('bersih '+this.bayar_bersih+". kode"+this.kode_bayar+". totalBYR= "+this.total_bayar)
+
+
+
+              }
+            }
+          )
       }
     )
 
     // get Data Admin
-    this.ot.listAdminService().subscribe(
-      (data)=>{
-        if (data['result'] == 'success') {
-          this.list_admin=data['data']
-        }
-      }
-    )
+    // this.ot.listAdminService().subscribe(
+    //   (data)=>{
+    //     if (data['result'] == 'success') {
+    //       this.list_admin=data['data']
+    //     }
+    //   }
+    // )
 
 
 
@@ -64,33 +125,33 @@ export class BayarOrangTuaComponent implements OnInit {
   }
 
   kirimBuktiBayar() {
-    var idLowongan: number = this.at.snapshot.params['idLowongan']
-    var idGuru: number = this.at.snapshot.params['idGuru']
-    var idOrtu: number = this.at.snapshot.params['idOrtu']
+    // var idLowongan: number = this.at.snapshot.params['idLowongan']
+    // var idGuru: number = this.at.snapshot.params['idGuru']
+    // var idOrtu: number = this.at.snapshot.params['idOrtu']
 
     const uploadData = new FormData();
     uploadData.append('image', this.file, this.file.name);
     uploadData.append('tgl_bayar', this.tgl_bayar);
     uploadData.append('bayar_bersih', this.bayar_bersih.toString());
     uploadData.append('kode_bayar', this.kode_bayar);
-    uploadData.append('idadmin', this.bank_dipilih.toString());
-    uploadData.append('idOrtu', idOrtu.toString());
-    uploadData.append('idGuru', idGuru.toString());
-    uploadData.append('rating', this.valRate.toString());
-    uploadData.append('komentar',this.ulasan);
-    uploadData.append('tgl_tagihan',this.tgl_tagihan);
+    // uploadData.append('idadmin', this.bank_dipilih.toString());
+    // uploadData.append('idOrtu', idOrtu.toString());
+    // uploadData.append('idGuru', idGuru.toString());
+    // uploadData.append('rating', this.valRate.toString());
+    // uploadData.append('komentar',this.ulasan);
+    // uploadData.append('tgl_tagihan',this.tgl_tagihan);
 
 
 
     // uploadData.append('idLowongan', idLowongan.toString());
-// console.log('kirim'+this.kode_bayar)
+    // console.log('kirim'+this.kode_bayar)
     this.ot.kirimBuktiService(uploadData).subscribe(
-      (data)=>{
+      (data) => {
         if (data['result'] == 'success') {
-          alert("Register Success")
+          alert("Bukti Pembayaran telah dikirim.")
           this.router.navigate(['/'])
-  
-  
+
+
         }
         else {
           alert("Register Error : " + ['message'])
@@ -112,10 +173,42 @@ export class BayarOrangTuaComponent implements OnInit {
     //   }
     // })
   }
+
+  kirimBuktiBayarBerikutnya() {
+    var idLowongan: number = this.at.snapshot.params['idLowongan']
+    // var idGuru: number = this.at.snapshot.params['idGuru']
+    // var idOrtu: number = this.at.snapshot.params['idOrtu']
+
+    const uploadData = new FormData();
+    uploadData.append('image', this.file, this.file.name);
+    uploadData.append('tgl_bayar', this.tgl_bayar);
+    uploadData.append('bayar_bersih', this.bayar_bersih.toString());
+    uploadData.append('kode_bayar', this.kode_bayar);
+    uploadData.append('idadmin', this.idadmin.toString());
+    uploadData.append('idOrtu', this.idOrtu.toString());
+    uploadData.append('idGuru', this.idGuru.toString());
+    // uploadData.append('rating', this.valRate.toString());
+    // uploadData.append('komentar',this.ulasan);
+    uploadData.append('tgl_tagihan',this.tgl_tagihan);
+    uploadData.append('idLowongan', idLowongan.toString());
+    // console.log('kirim'+this.kode_bayar)
+    this.ot.kirimBuktiBerikutnyaService(uploadData).subscribe(
+      (data) => {
+        if (data['result'] == 'success') {
+          alert("Bukti Pembayaran telah dikirim.")
+          this.router.navigate(['/'])
+
+        }
+        else {
+          alert("Register Error : " + ['message'])
+        }
+      }
+    )
+  }
+
   onFileSelected(event) {
     this.file = event.target.files[0]
     console.log(this.file)
-
   }
 
   async ngOnInit() {

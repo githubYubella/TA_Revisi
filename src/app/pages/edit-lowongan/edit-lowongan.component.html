@@ -74,6 +74,11 @@
               <ion-input type="number" min="1" max="7" [(ngModel)]="banyak_pertemuan"></ion-input>
             </ion-item>
             <ion-item class="ion-margin-vertical">
+              <ion-label>Jadwal:</ion-label>
+              <ion-input [(ngModel)]="jadwal_kursus"
+                placeholder="Contoh: Jam 15.00 s/d 17.00, Senin dan Rabu"></ion-input>
+            </ion-item>
+            <ion-item class="ion-margin-vertical">
               <ion-label>Biaya Jasa: <br>
                 IDR
               </ion-label>
@@ -81,15 +86,24 @@
             </ion-item>
 
             <ion-item class="ion-margin-vertical">
-              
-              <ion-label >Tanggal mulai: </ion-label>
-              <ion-datetime [value]="tanggal_mulai" (ionChange)="setTanggalMulai($event)" presentation="date"></ion-datetime>
+
+              <ion-label>Tanggal mulai: </ion-label>
+              <ion-datetime [value]="tanggal_mulai" (ionChange)="setTanggalMulai($event)"
+                presentation="date"></ion-datetime>
 
 
             </ion-item>
             <ion-item class="ion-padding">
               <ion-label>Alamat: </ion-label>
               <ion-input [(ngModel)]="alamat"></ion-input>
+            </ion-item>
+            <ion-item class="ion-padding">
+              <ion-label>Provinsi: </ion-label>
+              <ion-input [(ngModel)]="provinsi"></ion-input>
+            </ion-item>
+            <ion-item class="ion-padding">
+              <ion-label>Kota: </ion-label>
+              <ion-input [(ngModel)]="kota"></ion-input>
             </ion-item>
             <ion-item class="ion-padding">
               <ion-label>Kecamatan: </ion-label>
@@ -100,7 +114,7 @@
               <ion-input [(ngModel)]="kelurahan"></ion-input>
             </ion-item>
             <ion-item class="ion-padding">
-              <ion-grid>
+              <!-- <ion-grid>
                 <ion-row>
                   <ion-label>Titik koordinat lokasi: </ion-label> <br>
                 </ion-row>
@@ -111,60 +125,25 @@
                   </ion-col>
                   <ion-col>
                     <ion-label>Titik koordinat bujur</ion-label>
-                    <ion-input  placeholder="Masukkan titik koordinat bujur" [(ngModel)]="input_y"></ion-input>
+                    <ion-input placeholder="Masukkan titik koordinat bujur" [(ngModel)]="input_y"></ion-input>
                   </ion-col>
                 </ion-row>
-              </ion-grid>
+              </ion-grid> -->
               <ion-button (click)="editLowongan()">Simpan</ion-button>
-      
-      
+
+
+            </ion-item>
+
+          </ion-col>
+
+          <!-- edit hari -->
+          <ion-col style="border: 2px red solid;" class="ion-text-center">
+            <ion-item>
+              <capacitor-google-maps #maps>sss</capacitor-google-maps>
             </ion-item>
             
           </ion-col>
-
-<!-- edit hari -->
-          <ion-col style="border: 2px red solid;" class="ion-text-center">
-            <ion-item>
-
-              <ion-grid>
-                <ion-label >pada hari:</ion-label>
-                <ion-row *ngFor="let item of jadwal; let i = index">
-                  <ion-col>
-                    <ion-item>
-                      <ion-checkbox [disabled]="item.disabled" [(ngModel)]="jadwal[i].checked" slot="start">
-                      </ion-checkbox>
-                      <ion-label>{{item.hari}}</ion-label>
-                    </ion-item>
-                  </ion-col>
-                  <ion-col>
-                    <ion-label>Pukul</ion-label>
-                    <ion-datetime locale="id" [hourCycle]="h24" presentation="time"
-                      (ionChange)="setTimePukul(i, $event)" [hidden]="!jadwal[i].checked"></ion-datetime>
-                  </ion-col>
-                  <ion-col>
-                    <ion-label>Sampai</ion-label>
-                    <ion-datetime locale="id" [hourCycle]="h24" presentation="time"
-                      (ionChange)="setTimeSampai(i, $event)" [hidden]="!jadwal[i].checked"></ion-datetime>
-                  </ion-col>
-                  <ion-col>WIB</ion-col>
-                  
-                </ion-row>
-                <ion-row></ion-row>
-                <ion-item>
-                  <ion-button slot="end" (click)="editProfil()">Simpan</ion-button>
-
-                </ion-item>
-                <ion-item>
-                  <capacitor-google-maps #maps>sss</capacitor-google-maps>
-                </ion-item>
-                <ion-item>
-              <ion-button  (click)="nonaktifkan()" >Nonaktifkan</ion-button>
-
-                </ion-item>
-
-              </ion-grid>
-            </ion-item>
-          </ion-col>
+       
         </ion-row>
       </ion-grid>
     </ion-content>

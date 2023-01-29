@@ -8,6 +8,12 @@ import { Observable } from 'rxjs';
 export class GuruPrivatService {
   constructor(private http: HttpClient) { }
 
+  cekStatusPembayaranService(idlowongan:number):Observable<any>{
+    let body = new HttpParams;
+    body = body.set('idlowongan', idlowongan)
+    return this.http.post("http://localhost:8888/db_ta/cek_status_pembayaran.php",body);
+  }
+  
   updateStatusPesanOrtuService(idortu:number): Observable<any> {
     let body = new HttpParams;
     body = body.set('idortu', idortu)
@@ -141,8 +147,9 @@ export class GuruPrivatService {
     return this.http.post('http://localhost:8888/db_ta/detail_lowongan_guru.php', body)
   }
 
-  listLowonganService(search:string): Observable<any> {
+  listLowonganService(idguru:number,search:string): Observable<any> {
     let body = new HttpParams()
+    body = body.set('idguru', idguru)
     body = body.set('search', search)
     return this.http.post("http://localhost:8888/db_ta/list_lowongan.php",body);
   }

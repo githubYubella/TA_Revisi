@@ -51,6 +51,7 @@
         <tr>
           <th>Tanggal bayar</th>
           <th>Total Bersih</th>
+          <th>Total Bayar</th>
           <th>Kode Pembayaran</th>
           <th>Nama Bank Pembayaran</th>
           <th>ID orang tua</th>
@@ -62,6 +63,7 @@
         <tr *ngFor="let item of list_bayar; let i=index">
           <td>{{item.tanggal_bayar}}</td>
           <td>{{item.total_bayar_bersih}}</td>
+          <td>{{item.total_bayar_bersih+item.kode_pembayaran}}</td>
           <td>{{item.kode_pembayaran}}</td>
           <td>{{item.bank}}</td>
 

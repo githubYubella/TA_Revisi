@@ -154,7 +154,7 @@ export class BukaLowonganComponent implements OnInit {
     this.kelurahan = splitKel[1]
     this.alamat_lengkap = this.alamat + ", " + this.kota + ", " + this.kecamatan + ", " + this.kelurahan + ", " + this.provinsi
     var today = format(new Date(), "yyyy-MM-dd")
-    
+      
 
 
     const op: ForwardOptions = {
@@ -176,7 +176,8 @@ export class BukaLowonganComponent implements OnInit {
       this.durasi_lowongan, this.tanggal_mulai, this.judul_lowongan, this.deskripsi_lowongan, this.jenjang_dipilih,
       this.id, this.kategori_dipilih,
       // chechBoxterpilih,
-      this.alamat, this.kecamatan, this.kelurahan, this.location.lat, this.location.lng, this.jadwal_kursus, this.provinsi,today).subscribe(
+      this.alamat, this.kecamatan, this.kelurahan, this.location.lat, this.location.lng,
+       this.jadwal_kursus, this.provinsi,today,this.kota).subscribe(
         data => {
           if (data['result'] == 'success') {
             alert('data berhasil disimpan')
@@ -194,6 +195,8 @@ export class BukaLowonganComponent implements OnInit {
             this.alamat = ''
             this.kecamatan = ''
             this.kelurahan = ''
+            this.kota = ''
+
 
 
             // this.jadwal['checked']=false

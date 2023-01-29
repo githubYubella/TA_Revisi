@@ -1,5 +1,4 @@
-
-<ion-app >
+<ion-app>
   <ion-header>
     <ion-toolbar color="dark">
       <ion-buttons slot="start" style="z-index: 100;">
@@ -21,21 +20,38 @@
     </ion-header>
     <ion-content class="ion-padding">
 
-      <ion-item>
+      <!-- <ion-item>
         <ion-title>Promosikan Diri Anda</ion-title>
-      </ion-item>
-      <ion-item>
-        <ion-textarea [(ngModel)]="note" placeholder="Beritahu mengapa Anda paling cocok untuk mengajar privat di bidang ini">
+      </ion-item> -->
+      <ion-item class="ion-padding">
+        <ion-label position="floating">Promosikan Diri Anda</ion-label>
 
+        <ion-textarea [(ngModel)]="note"
+          placeholder="Beritahu mengapa Anda paling cocok untuk mengajar privat di bidang ini">
         </ion-textarea>
       </ion-item>
-      <ion-item>
-        <ion-item class="ion-padding">
-          <ion-label>Upload Berkas CV:</ion-label>
-          <ion-input type="file" accept="application/pdf" (change)="onFileSelected($event)" ></ion-input>
-        </ion-item>
+      <ion-item class="ion-padding">
+        <ion-label position="floating">Biaya tawar dari Rp. {{biaya}}:</ion-label>
+        
+          <ion-input min="0" type="number"  [(ngModel)]="biaya_tawar"></ion-input>
+        
+       
       </ion-item>
-      <ion-item>
+
+    
+        <ion-item lines="none"   class="ion-padding-start" *ngIf="file == null">
+          <ion-label   color="danger">Upload berkas Anda <br></ion-label>
+        </ion-item >
+     
+      <ion-item class="ion-padding-start">
+        
+       
+        <ion-label  >Upload Berkas CV:</ion-label>
+        <ion-input type="file" accept="application/pdf" (change)="onFileSelected($event)"></ion-input>
+      </ion-item>
+
+
+      <ion-item class="ion-padding">
         <ion-button (click)="kirimLamaran()">
           Lamar Pekerjaan
         </ion-button>
