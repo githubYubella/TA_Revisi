@@ -50,6 +50,11 @@ export class TempatKursusService {
     return this.http.post('http://localhost:8888/db_ta/edit_kursus_keahlian.php', data)
   }
 
+  editDokumenService(data: FormData): Observable<any> {
+    return this.http.post('http://localhost:8888/db_ta/edit_kursus_dokumen.php', data)
+  }
+
+
   editFotoService(data: FormData): Observable<any> {
     return this.http.post('http://localhost:8888/db_ta/edit_kursus_foto.php', data)
   }

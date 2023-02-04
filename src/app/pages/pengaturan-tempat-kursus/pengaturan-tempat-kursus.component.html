@@ -78,10 +78,32 @@
           </ion-col>
 
           <ion-col style="border: 2px red solid;" class="ion-text-center">
-            <img src="http://localhost:8888/db_ta/{{gambar}}" alt="">
-            <ion-input type="file" (change)="onFileSelected($event)" name="gambar">Unggah Foto Baru
-            </ion-input>
-            <ion-button (click)="editFoto()">Simpan Foto</ion-button>
+            <ion-card>
+              
+                <img src="http://localhost:8888/db_ta/{{gambar}}" alt="">
+                <ion-input type="file" (change)="onFileSelected($event)" name="gambar">Unggah Foto Baru
+                </ion-input>
+                <ion-button (click)="editFoto()">Simpan Foto</ion-button>
+            
+             
+            </ion-card>
+
+
+            <br> <br>
+            <ion-card>
+                <a href="http://localhost:8888/db_ta/{{dokumen_tambahan}}">Lihat Dokumen</a>
+                <ion-input text-wrap type="file" (change)="onFileSelected2($event)" name="gambar">Unggah Dokumen Baru
+                </ion-input>
+                <ion-button (click)="editDokumen()">Simpan Dokumen</ion-button>
+            
+             
+            </ion-card>
+          
+
+
+
+
+
 
           </ion-col>
           <ion-col style="border: 2px red solid;" class="ion-text-center">

@@ -83,8 +83,11 @@
               <ion-col>
                 <ion-item>
                   <!-- routerLink='/buka-absen/{{item.idbuka_lowongan}}' -->
-                  <ion-label>
-                    <a href="selesai-kursus-orang-tua/{{item.idbuka_lowongan}}">SELESAI</a>
+                  <ion-label *ngIf="item.status_privat == 'Berlangsung'">
+                    <a href="selesai-kursus-orang-tua/{{item.idbuka_lowongan}}">Akhiri Kontrak</a>
+                  </ion-label>
+                  <ion-label *ngIf="item.status_privat == 'Selesai'">
+                    Berakhir
                   </ion-label>
 
                 </ion-item>

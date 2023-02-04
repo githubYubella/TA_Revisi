@@ -31,6 +31,11 @@ export class DetailKursusComponent implements OnInit {
   @ViewChild('maps') maps: ElementRef<HTMLElement>;
   email: string = ''
   location_ortu: LatLng
+  valRate:number=0
+  komentars=[]
+  dokumen_tambahan=''
+  detail_keahlian = []
+
 
 
   constructor(public at: ActivatedRoute, public tk: TempatKursusService,
@@ -99,11 +104,13 @@ export class DetailKursusComponent implements OnInit {
 
   async detailKursus() {
     this.idkurus= this.at.snapshot.params['idkursus']
-
     this.tk.detailTempatKursusService(this.idkurus).subscribe(
       (data) => {
         if (data['result'] = 'success') {
+          this.komentars=data['data']
+          this.valRate=data.rerata_rating
           this.informasi = data['data'][0].informasi
+          this.dokumen_tambahan = data['data'][0].dokumen_tambahan
           this.x = parseFloat(data['data'][0].lokasi_lat)
           this.location = {
             lat: parseFloat(data['data'][0].lokasi_lat),
@@ -118,6 +125,13 @@ export class DetailKursusComponent implements OnInit {
 
 
           this.lokasi()
+          this.tk.keahlianTempatKursusService(this.idkurus).subscribe(
+            (data) => {
+              if (data['result'] == 'success') {
+                this.detail_keahlian = data['data']
+              }
+            }
+          )
 
 
         }
@@ -132,6 +146,8 @@ export class DetailKursusComponent implements OnInit {
 
   
   async ngAfterViewInit() {
+
+
     // var id: number = this.at.snapshot.params['id']
     // console.log('emil '+this.email)
     //  this.titikOrtu()

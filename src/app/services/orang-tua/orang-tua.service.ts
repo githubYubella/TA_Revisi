@@ -7,6 +7,15 @@ import { Observable } from 'rxjs';
 })
 export class OrangTuaService {
 
+  kirimUlasanTempatKursusService(idkursus:number,idortu:number,rating: number,komentar:string): Observable<any> {
+    let body = new HttpParams;
+    body = body.set('idkursus', idkursus)
+    body = body.set('idortu', idortu)
+    body = body.set('rating', rating)
+    body = body.set('komentar', komentar)
+    return this.http.post('http://localhost:8888/db_ta/kirim_ulasan_tempat_kursus.php', body)
+  }
+
   akhiriKursusService(idlowongan:number,rating: number,komentar:string,tgl_selesai:string): Observable<any> {
     // Untuk melakukan pembayaran selanjutnya
     let body = new HttpParams;

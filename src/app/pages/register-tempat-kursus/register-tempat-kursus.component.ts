@@ -24,10 +24,9 @@ export class RegisterTempatKursusComponent {
   alamat: string = ""
   gambar: string = ""
   image: any
-
+  file: any
   keahlian_list = []
   dipilih: number
-
   input_x: number
   input_y: number
   provinsi_list: []
@@ -39,8 +38,6 @@ export class RegisterTempatKursusComponent {
   kelurahan_list: []
   kelurahan: string
   alamat_lengkap: string
-
-
   keahlianDipilih = []
   location: LatLng
 
@@ -50,6 +47,12 @@ export class RegisterTempatKursusComponent {
     this.image = event.target.files[0]
     // this.conString=this.selected.readAsText(this.selected,'s')
     console.log(this.image)
+  }
+  onFileSelected2(event) {
+    // console.log(event)
+    this.file = event.target.files[0]
+    // this.conString=this.selected.readAsText(this.selected,'s')
+    console.log(this.file)
   }
 
   onShowKotaKab(event) {
@@ -103,9 +106,9 @@ export class RegisterTempatKursusComponent {
     )
 
 
-    
+
   }
-  
+
 
 
   async register() {
@@ -121,7 +124,7 @@ export class RegisterTempatKursusComponent {
     const kec = splitKec[1]
     const kel = splitKel[1]
     this.alamat_lengkap = this.alamat + ", " + city + ", " + kec + ", " + kel + ", " + prov
-    
+
     const uploadData = new FormData();
     const op: ForwardOptions = {
       'addressString': this.alamat_lengkap,
@@ -152,41 +155,50 @@ export class RegisterTempatKursusComponent {
 
 
     // console.log( this.input_x+"," +   this.input_y )
-
-    uploadData.append('email', this.email);
-    uploadData.append('password', this.password);
-    uploadData.append('nama', this.nama);
-    uploadData.append('informasi', this.informasi);
-    uploadData.append('alamat', this.alamat);
-
-    uploadData.append('kecamatan', kec);
-    uploadData.append('kelurahan', kel);
-    uploadData.append('provinsi', prov);
-    uploadData.append('kota', city);
-    uploadData.append('image', this.image, this.image.name);
-    ///
-    console.log('keahlian dipilih:')
-    this.keahlianDipilih.forEach((cb, i) => {
-      console.log(this.keahlian_list[i].nama + '(' + this.keahlian_list[i].idkeahlian + '): ' + cb)
-      if (cb === true) {
-        uploadData.append('idkeahlian[]', this.keahlian_list[i].idkeahlian);
-      }
-    })
-
-    // console.log("alamat lengkap: " + this.alamat_lengkap)
-
-    this.tk.registerService(uploadData).subscribe((resp) => {
-      console.log(resp);
-      if (resp['result'] == 'success') {
-        alert("Register Success")
-        this.router.navigate(['/'])
+    if (this.file == null || this.image == null) {
+      alert("Harap upload file ")
+      // this.file = ""
+    } else {
 
 
-      }
-      else {
-        alert("Register Error : " + resp['message'])
-      } 
-    })
+      uploadData.append('email', this.email);
+      uploadData.append('password', this.password);
+      uploadData.append('nama', this.nama);
+      uploadData.append('informasi', this.informasi);
+      uploadData.append('alamat', this.alamat);
+
+      uploadData.append('kecamatan', kec);
+      uploadData.append('kelurahan', kel);
+      uploadData.append('provinsi', prov);
+      uploadData.append('kota', city);
+      uploadData.append('image', this.image, this.image.name);
+      uploadData.append('berkas_dokumen', this.file, this.file.name);
+
+      ///
+      console.log('keahlian dipilih:')
+      this.keahlianDipilih.forEach((cb, i) => {
+        console.log(this.keahlian_list[i].nama + '(' + this.keahlian_list[i].idkeahlian + '): ' + cb)
+        if (cb === true) {
+          uploadData.append('idkeahlian[]', this.keahlian_list[i].idkeahlian);
+        }
+      })
+
+      // console.log("alamat lengkap: " + this.alamat_lengkap)
+
+      this.tk.registerService(uploadData).subscribe((resp) => {
+        console.log(resp);
+        if (resp['result'] == 'success') {
+          alert("Register Success")
+          this.router.navigate(['/'])
+
+
+        }
+        else {
+          alert("Register Error : " + resp['message'])
+        }
+
+      })
+    }
 
     //--
     // this.http.post('https://list-coba.000webhostapp.com/upload2.php', uploadData).subscribe(res => {

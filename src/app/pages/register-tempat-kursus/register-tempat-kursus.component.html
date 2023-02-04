@@ -27,7 +27,7 @@
       </ion-item>
       <ion-item class="ion-padding">
         <ion-label position="floating">Informasi Tempat Kursus</ion-label>
-        <ion-input [(ngModel)]="informasi"  placeholder="Masukkan informasi secara detail"></ion-input>
+        <ion-textarea [(ngModel)]="informasi"  placeholder="Masukkan informasi secara detail (Jadwal, Peraturan, List biaya, Metode yang digunakan, dll. )"></ion-textarea>
       </ion-item>
       <ion-item class="ion-padding">
         <ion-label position="floating">Alamat Tempat Kursus</ion-label>
@@ -66,7 +66,7 @@
         <ion-input type="tel" placeholder="888-888-8888" required [(ngModel)]="telepon"></ion-input>
       </ion-item>
       <ion-item>
-        <h2>Bidang Keahlian</h2>
+        <ion-label>Bidang Keahlian</ion-label>
         <ion-grid>
           <ion-row>
             <ion-col>
@@ -81,10 +81,20 @@
           </ion-row>
         </ion-grid>
       </ion-item>
-
+      <div class="ion-padding" *ngIf="image == null">
+        <ion-label class="ion-padding" color="danger">Upload berkas file CV Anda</ion-label>
+      </div>
       <ion-item class="ion-padding">
-        <ion-label>Upload Gambar</ion-label>
+        <ion-label>Upload Gambar/Foto Profil</ion-label>
         <ion-input type="file" (change)="onFileSelected($event)" [(ngModel)]="gambar"></ion-input>
+      </ion-item>
+
+      <div class="ion-padding" *ngIf="file == null">
+        <ion-label class="ion-padding" color="danger">Upload berkas file CV Anda</ion-label>
+      </div>
+      <ion-item class="ion-padding">
+        <ion-label text-wrap>Upload data tambahan (Misal: Surat resmi, Foto tambahan, Dokumen lainnya):</ion-label>
+        <ion-input required type="file" accept="application/pdf" (change)="onFileSelected2($event)"></ion-input>
       </ion-item>
 
       <ion-item>

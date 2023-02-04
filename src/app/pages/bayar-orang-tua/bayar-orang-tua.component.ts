@@ -67,7 +67,7 @@ export class BayarOrangTuaComponent implements OnInit {
           // this.idtransaksi = data['data'][0].idtransaksi
           console.log('Sudah ada pembayaran pada lowongan ini sebelumya.')
         }
-        else {
+        else if (data['result'] == 'success_1') {
           this.keterangan_pembayaran = 'Pembayaran pertama'
           // this.ot.detailBayarSerivce(idLowongan).subscribe(
           //   (data) => {

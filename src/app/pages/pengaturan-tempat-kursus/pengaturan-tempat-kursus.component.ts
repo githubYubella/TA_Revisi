@@ -18,6 +18,8 @@ export class PengaturanTempatKursusComponent {
   gambar = ''
   alamat = ''
   image: any
+  dokumen_tambahan: any
+
   // telepon=''
   kecamatan_edit = ''
   kelurahan_edit = ''
@@ -140,12 +142,6 @@ export class PengaturanTempatKursusComponent {
       }
     )
 
-
-    // this.tk.listProvinsi().subscribe(
-    //   (data)=>{
-    //     this.provinsi_list=data
-    //   }
-    // )
   }
 
   editKeahlian() {
@@ -184,7 +180,11 @@ export class PengaturanTempatKursusComponent {
     // this.conString=this.selected.readAsText(this.selected,'s')
     console.log(this.image)
   }
-
+  onFileSelected2(event) {
+    // console.log(event)
+    this.dokumen_tambahan = event.target.files[0]
+    console.log(this.dokumen_tambahan)
+  }
 
 
   editFoto() {
@@ -208,6 +208,27 @@ export class PengaturanTempatKursusComponent {
 
   }
 
+  editDokumen() {
+    const uploadData = new FormData();
+    uploadData.append('dokumen_tambahan', this.dokumen_tambahan, this.dokumen_tambahan.name);
+    uploadData.append('email', this.email);
+    this.tk.editDokumenService(uploadData).subscribe((resp) => {
+
+      const parse = JSON.parse(JSON.stringify(resp))
+
+      console.log('resp: ' + parse.result);
+      if (resp['result'] == 'sukses') {
+        alert("Dokumen berhasl di ubah")
+        // this.router.navigate(['/home'])
+        window.location.reload()
+      }
+      else {
+        alert("Update Error : " + resp)
+      }
+    })
+
+  }
+
 
   async getProfil() {
     this.tk.profilService(this.email).subscribe(
@@ -221,6 +242,7 @@ export class PengaturanTempatKursusComponent {
           this.kelurahan = data['data'][0].kelurahan
           this.provinsi = data['data'][0].provinsi
           this.kota = data['data'][0].kota
+          this.dokumen_tambahan=data['data'][0].dokumen_tambahan
 
 
           // this.input_x = data['data'][0].lokasi_lat

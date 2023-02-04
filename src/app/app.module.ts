@@ -68,7 +68,8 @@ import { KumpulanGuruPrivatComponent } from './pages/kumpulan-guru-privat/kumpul
 import { DetailKumpulanGuruPrivatComponent } from './pages/detail-kumpulan-guru-privat/detail-kumpulan-guru-privat.component';
 import { RiwayatTransaksiOrangTuaComponent } from './pages/riwayat-transaksi-orang-tua/riwayat-transaksi-orang-tua.component';
 import { SelesaiKursusOrangTuaComponent } from './pages/selesai-kursus-orang-tua/selesai-kursus-orang-tua.component';
-
+import { KirimUlasanUntukTempatKursusComponent } from './pages/kirim-ulasan-untuk-tempat-kursus/kirim-ulasan-untuk-tempat-kursus.component';
+import { BantuanOrangTuaComponent } from './pages/bantuan-orang-tua/bantuan-orang-tua.component';
 
 import { AuthGuard } from './guards/auth/auth.guard';
 import { GuestGuard } from './guards/guest/guest.guard';
@@ -325,6 +326,16 @@ const appRoutes: Routes = [
     component: SelesaiKursusOrangTuaComponent,
     canActivate: [AuthGuard]
   },
+  {
+    path: 'detail-kursus/:idkursus/kirim-ulasan/:idOrtu',
+    component: KirimUlasanUntukTempatKursusComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'bantuan-orang-tua',
+    component: BantuanOrangTuaComponent,
+    canActivate: [AuthGuard]
+  },
  
   
   // {path: 'detail/:id', component:ProductdetailComponent},
@@ -352,7 +363,7 @@ const appRoutes: Routes = [
     ListPesanTempatKursusComponent,DetailPesanTempatKursusComponent,
     DetailPesanOrtuGuruComponent,ListPesanGuruPrivatComponent,DetailPesanGuruPrivatComponent,
     KumpulanGuruPrivatComponent,DetailKumpulanGuruPrivatComponent,RiwayatTransaksiOrangTuaComponent,
-    SelesaiKursusOrangTuaComponent,
+    SelesaiKursusOrangTuaComponent, KirimUlasanUntukTempatKursusComponent, BantuanOrangTuaComponent,
     
 
     

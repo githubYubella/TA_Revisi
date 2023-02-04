@@ -43,7 +43,9 @@ export class HomeTempatKursusComponent {
   checkBoxterpilih: string[]
   id: number
   detail_keahlian = []
-
+  dokumen_tambahan=''
+  komentars=[]
+  valRate=0
   constructor(
     private geo: Geolocation,
     private storage: Storage,
@@ -62,12 +64,15 @@ export class HomeTempatKursusComponent {
       (data) => {
         if (data['result'] == 'success') {
           this.nama = data['data'][0].nama
+          this.komentars=data['data']
+          this.valRate=data['rerata_rating']
           this.informasi = data['data'][0].informasi
           this.gambar = data['data'][0].gambar
           this.alamat = data['data'][0].alamat
           this.kecamatan = data['data'][0].kecamatan
           this.kelurahan = data['data'][0].kelurahan
           this.id = data['data'][0].idtempat_kursus
+          this.dokumen_tambahan= data['data'][0].dokumen_tambahan
 
           this.location = {
             lat: parseFloat(data['data'][0].lokasi_lat),
@@ -108,9 +113,7 @@ export class HomeTempatKursusComponent {
         lat: this.location.lat,
         lng: this.location.lng
       },
-      draggable: true
-
-
+      draggable: false
     })
 
     await this.newMapw.setCamera({
