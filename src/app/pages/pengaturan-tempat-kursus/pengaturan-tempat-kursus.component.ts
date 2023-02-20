@@ -40,6 +40,7 @@ export class PengaturanTempatKursusComponent {
   alamat_lengkap: string
   keahlianDipilih = []
   location: LatLng
+  pass_baru=''
 
 
   constructor(private router: Router, private storage: Storage, public tk: TempatKursusService, private authService: AuthService) {
@@ -242,7 +243,7 @@ export class PengaturanTempatKursusComponent {
           this.kelurahan = data['data'][0].kelurahan
           this.provinsi = data['data'][0].provinsi
           this.kota = data['data'][0].kota
-          this.dokumen_tambahan=data['data'][0].dokumen_tambahan
+          this.dokumen_tambahan = data['data'][0].dokumen_tambahan
 
 
           // this.input_x = data['data'][0].lokasi_lat
@@ -269,12 +270,17 @@ export class PengaturanTempatKursusComponent {
     const splitKota = this.kota.split('_')
     const splitKec = this.kecamatan.split('_')
     const splitKel = this.kelurahan.split('_')
-    const prov = splitProv[1]
-    const city = splitKota[1]
-    const kec = splitKec[1]
-    const kel = splitKel[1]
-    console.log(prov)
-    this.alamat_lengkap = this.alamat + ", " + city + ", " + kec + ", " + kel + ", " + prov
+    // const prov = splitProv[1]
+    // const city = splitKota[1]
+    // const kec = splitKec[1]
+    // const kel = splitKel[1]
+    //     this.provinsi = splitProv[1]
+    //  this.kota = splitKota[1]
+    // this.kecamatan = splitKec[1]
+    //     this.kelurahan = splitKel[1]
+    // console.log(prov)
+    // this.alamat_lengkap = this.alamat + ", " + city + ", " + kec + ", " + kel + ", " + prov
+    this.alamat_lengkap = this.alamat + ", " + this.kota + ", " + this.kecamatan + ", " + this.kelurahan + ", " + this.provinsi
 
 
     const op: ForwardOptions = {
@@ -296,34 +302,37 @@ export class PengaturanTempatKursusComponent {
         // console.log('long: ' + this.location.lng)
 
 
-        this.tk.editProfilService(this.id, this.informasi, this.nama, this.alamat, kec,
-          kel, this.location.lat, this.location.lng, this.email, city, prov).subscribe(
+        this.tk.editProfilService(this.id, this.informasi, this.nama, this.alamat, this.kecamatan,
+          this.kelurahan, this.location.lat, this.location.lng, this.email, this.kota, this.provinsi).subscribe(
             (data) => {
               if (data['result'] == 'success') {
                 alert("Data Profil Berhasil di Edit")
                 // this.router.navigate(['/'])
                 window.location.reload()
                 // this.getProfil()
-
-
-
               }
               else {
                 alert("Data Profil Gagal di Edit");
                 // this.router.navigate(['/'])
-
               }
             }
           )
       }
-
-
     )
-
-    ///
-
-
   }
+
+  editPassword(){
+    this.tk.editPassTempatKursusService(this.pass_baru,this.email).subscribe((resp) => {
+      if (resp['result'] == 'success') {
+        alert("Kata Sandi Berhasil Diperbarui")
+        window.location.reload()
+      }
+      else {
+        alert("Update Error : " + resp)
+      }
+    })
+  }
+
 
 
 

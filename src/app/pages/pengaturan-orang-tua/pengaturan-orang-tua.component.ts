@@ -39,50 +39,14 @@ export class PengaturanOrangTuaComponent implements OnInit {
   keahlianDipilih = []
   location: LatLng
   jenisKelamin_dipilih = ''
+  pass_baru=''
 
   constructor(private ot: OrangTuaService, private router: Router, private authService: AuthService) {
     this.email = authService.email
   }
 
 
-  onShowKotaKab(event) {
-    if (this.provinsi != '') {
-      var valProv = this.provinsi.split('_')
-      // console.log(a[0])
-      fetch('https://dev.farizdotid.com/api/daerahindonesia/kota?id_provinsi=' + valProv[0]).then(res => res.json())
-        .then(json => {
-          this.kota_list = json['kota_kabupaten']
-          // console.log(json)
-        });
-
-    }
-  }
-
-  onShowKecamatan(event) {
-    if (this.kota != '') {
-      var valKota = this.kota.split('_')
-      // console.log(a[0])
-      fetch('https://dev.farizdotid.com/api/daerahindonesia/kecamatan?id_kota=' + valKota[0]).then(res => res.json())
-        .then(json => {
-          this.kecamatan_list = json['kecamatan']
-          // console.log(json)
-        });
-
-    }
-  }
-
-  onShowKelurahan(event) {
-    if (this.kecamatan != '') {
-      var valKec = this.kecamatan.split('_')
-      // console.log(valKec[0])
-      fetch('https://dev.farizdotid.com/api/daerahindonesia/kelurahan?id_kecamatan=' + valKec[0]).then(res => res.json())
-        .then(json => {
-          this.kelurahan_list = json['kelurahan']
-          // console.log(json)
-        });
-
-    }
-  }
+ 
 
   onFileSelected(event) {
     // console.log(event)
@@ -112,6 +76,18 @@ export class PengaturanOrangTuaComponent implements OnInit {
 
   }
 
+  editPassword(){
+    this.ot.editPassService(this.pass_baru,this.email).subscribe((resp) => {
+      if (resp['result'] == 'success') {
+        alert("Kata Sandi Berhasil Diperbarui")
+        window.location.reload()
+      }
+      else {
+        alert("Update Error : " + resp)
+      }
+    })
+  }
+
   async getProfil() {
     this.ot.profilService(this.email).subscribe(
       (data) => {
@@ -127,7 +103,9 @@ export class PengaturanOrangTuaComponent implements OnInit {
           this.id = data['data'][0].idorang_tua
           this.jenisKelamin_dipilih = data['data'][0].jenis_kelamin
           this.gambar = data['data'][0].gambar
+      
 
+          
 
         }
       }
@@ -138,22 +116,19 @@ export class PengaturanOrangTuaComponent implements OnInit {
   // kec = ''
   // kel = ''
   async editProfil() {
-    const splitProv = this.provinsi.split('_')
-    const splitKota = this.kota.split('_')
-    const splitKec = this.kecamatan.split('_')
-    const splitKel = this.kelurahan.split('_')
-    // 
-    const prov = splitProv[1]
-    const city = splitKota[1]
-    const kec = splitKec[1]
-    const kel = splitKel[1]
-
-
-
-
-    this.alamat_lengkap = this.alamat + ", " + city + ", " + kec + ", " + kel + ", " + prov
-    // this.alamat_lengkap = this.alamat + ", " + this.kota + ", " + this.kecamatan + ", " + this.kelurahan + ", " + this.provinsi
-    console.log('alamat lengkap: ' + this.alamat_lengkap)
+    // const splitProv = this.provinsi.split('_')
+    // const splitKota = this.kota.split('_')
+    // const splitKec = this.kecamatan.split('_')
+    // const splitKel = this.kelurahan.split('_')
+    // // 
+    // const prov = splitProv[1]
+    // const city = splitKota[1]
+    // const kec = splitKec[1]
+    // const kel = splitKel[1]
+    // this.alamat_lengkap = this.alamat + ", " + city + ", " + kec + ", " + kel + ", " + prov
+   
+    this.alamat_lengkap = this.alamat + ", " + this.kota + ", " + this.kecamatan + ", " + this.kelurahan + ", " + this.provinsi
+    // console.log('alamat lengkap: ' + this.alamat_lengkap)
 
     const op: ForwardOptions = {
       'addressString': this.alamat_lengkap,
@@ -176,8 +151,10 @@ export class PengaturanOrangTuaComponent implements OnInit {
 
         this.ot.editProfilSerivce(this.alamat,this.location.lat.toString(),this.location.lng.toString(),
           this.jenisKelamin_dipilih,this.telepon,this.nama_siswa,this.nama_ortu,
-          kec,kel,
-          city,prov,
+          // kec,kel,
+          // city,prov,
+          this.kecamatan,this.kelurahan,
+          this.kota,this.provinsi,
 
           this.email).subscribe(
             (data) => {

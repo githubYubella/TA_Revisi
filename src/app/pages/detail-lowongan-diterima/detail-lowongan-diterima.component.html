@@ -21,28 +21,28 @@
     <ion-content class="ion-padding">
       <ion-card>
         <ion-grid>
-          <ion-row>
-            <ion-grid>
+          <ion-row class="ion-align-items-center">
+            <ion-col size="7" class="ion-justify-content-center">
               <ion-row>
-                <ion-item>Lowongan Privat {{judul}}</ion-item>
+                <ion-item> <b>{{judul}}</b> </ion-item>
+              </ion-row>
+            </ion-col>
+            <ion-col>
+              <ion-row>
+                <ion-item>Pemilik lowongan: {{nama_ortu}}</ion-item>
               </ion-row>
               <ion-row>
-                <ion-col>
-                  <ion-item>👤 {{nama_ortu}}</ion-item>
-                </ion-col>
-                <ion-col>
-                  <ion-item>
-                    ✍🏻 {{keahlian}}
-                  </ion-item>
-                </ion-col>
-                <ion-col>
-                  <ion-item>💵 Rp. {{biaya}}</ion-item>
-                </ion-col>
-                <ion-col>
-                  <ion-item>Metode: {{metode}}</ion-item>
-                </ion-col>
+                <ion-item>
+                  Bidang pendidikan: {{keahlian}}
+                </ion-item>
               </ion-row>
-            </ion-grid>
+              <ion-row>
+                <ion-item>Biaya per bulan: Rp. {{biaya}}</ion-item>
+              </ion-row>
+              <ion-row>
+                <ion-item>Metode: {{metode}}</ion-item>
+              </ion-row>
+            </ion-col>
           </ion-row>
         </ion-grid>
       </ion-card>
@@ -50,85 +50,55 @@
         <ion-grid>
           <ion-row>
             <ion-item>
-              <b>Tanggal Mulai: {{tanggal_mulai}}</b>
-
+              Tanggal Mulai: {{tanggal_mulai}}
             </ion-item>
           </ion-row>
           <ion-row class="ion-padding-top">
             <ion-item>
-              Nama siswa:
-              <ion-label> <b>{{nama_siswa}}</b></ion-label>
+              Nama siswa:<b>{{nama_siswa}}</b>
             </ion-item>
-
           </ion-row>
           <ion-row>
             <ion-grid>
               <ion-row>
                 <ion-item>
-                  {{deskripsi}}
+                  Deskripsi: {{deskripsi}}
                 </ion-item>
               </ion-row>
               <ion-row class="ion-padding-top">
                 <ion-item>
-                  Jenjang pendidikan siswa:
-                  <ion-label>{{jenjang}}</ion-label>
+                  Jenjang pendidikan siswa: {{jenjang}}
                 </ion-item>
-
               </ion-row>
               <ion-row class="ion-padding-top">
                 <ion-item>
                   Banyak Pertemuan:
-                  <ion-label>{{banyak_pertemuan}}</ion-label>
+                  {{banyak_pertemuan}}
                 </ion-item>
-
               </ion-row>
               <ion-row class="ion-padding-top">
                 <ion-item>
                   Durasi privat:
-                  <ion-label>{{durasi}} Jam</ion-label>
+                  {{durasi}} Jam
                 </ion-item>
-
               </ion-row>
               <ion-row class="ion-padding-top">
-
-                <ion-item> Jadwal privat:</ion-item>
-                <ion-list>
-                  <ion-item *ngFor="let item of jadwal; let i=index">
-                    <ion-label>{{item.hari}} Pukul {{item.jam_awal}} Sampai {{item.jam_akhir}}</ion-label>
-
-                  </ion-item>
-
-                </ion-list>
-
-
-
+                <ion-item> Jadwal privat: {{jadwal}}
+                </ion-item>
               </ion-row>
               <ion-row>
                 <ion-item>
                   Alamat:
-                  <ion-label>
-                    <b>{{alamat}}, Kecamatan {{kecamatan}}, Kelurahan {{kelurahan}}</b>
-                  </ion-label>
+                  <b>{{alamat}}, Kecamatan {{kecamatan}}, Kelurahan {{kelurahan}}</b>
                 </ion-item>
               </ion-row>
               <ion-row>
-                <capacitor-google-maps #maps>sss</capacitor-google-maps>
-
+                <capacitor-google-maps #maps>Loading Google Maps</capacitor-google-maps>
               </ion-row>
-
             </ion-grid>
-
-
           </ion-row>
         </ion-grid>
-
-
       </ion-card>
-
-
-
     </ion-content>
-
   </ion-router-outlet>
-
 </ion-app>

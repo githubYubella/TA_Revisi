@@ -11,6 +11,7 @@ export class KumpulanGuruPrivatComponent implements OnInit {
   search_bidang=''
   kumpulan_guru_privat=[]
   jenjang_dipilih=''
+  jenisKelamin_dipilih = ''
 
   constructor(
     private ot:OrangTuaService
@@ -25,7 +26,7 @@ export class KumpulanGuruPrivatComponent implements OnInit {
     // this.listKursus()
   }
 
-  searchbarCombobox(ev: any){
+  searchbarComboboxPendidikan(ev: any){
     let search_value = ev.target.value
     this.jenjang_dipilih = ev.target.value
     console.log(this.jenjang_dipilih.toString())
@@ -33,10 +34,18 @@ export class KumpulanGuruPrivatComponent implements OnInit {
     this.listGuru()
 
   }
+  searchbarComboboxKelamin(ev: any){
+    let search_value = ev.target.value
+    this.jenisKelamin_dipilih = ev.target.value
+    console.log(this.jenisKelamin_dipilih.toString())
+    // this.listKursus()
+    this.listGuru()
+
+  }
 
   listGuru() {
     var kosong=""
-    this.ot.listGuruPrivatService(this.search_bidang,this.jenjang_dipilih).subscribe(
+    this.ot.listGuruPrivatService(this.search_bidang,this.jenjang_dipilih,this.jenisKelamin_dipilih).subscribe(
       (data) => {
         if (data['result'] == 'success') {
           this.kumpulan_guru_privat = data['data']

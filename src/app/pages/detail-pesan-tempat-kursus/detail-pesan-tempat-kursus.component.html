@@ -85,14 +85,15 @@
 
   </ion-router-outlet>
   <ion-footer>
-    <ion-toolbar color="light">
-      <ion-row>
-
-        <ion-col size="10">
-          <ion-textarea placeholder="Write your pesan here.." auto-grow class="inputBox" rows="1" [(ngModel)]="pesan">
+    <ion-toolbar >
+    
+      <ion-row class="input-pesan">
+        <ion-col class="input-pesan" size="10">
+          <ion-textarea id="area-input-pesan"  placeholder="Tulis pesan Anda disini.. " auto-grow
+            rows="1" [(ngModel)]="pesan">
           </ion-textarea>
         </ion-col>
-        <ion-col size="2">
+        <ion-col class="input-pesan" size="1">
           <ion-button expand="block" fill="clear" color="primary" class="sendBtn" (click)="kirim()">
             <ion-icon name="send" slot="icon-only"></ion-icon>
           </ion-button>
@@ -100,6 +101,7 @@
 
 
       </ion-row>
+    
 
 
     </ion-toolbar>

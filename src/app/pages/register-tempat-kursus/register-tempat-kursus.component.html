@@ -12,13 +12,13 @@
   </ion-header>
   <ion-content>
     <ion-card>
-      <h1>Register Tempat Kursus</h1>
+      <!-- <h1>Register Tempat Kursus</h1> -->
       <ion-item class="ion-padding">
         <ion-label position="floating">Email</ion-label>
         <ion-input required [(ngModel)]="email" placeholder="contoh@gmail.com"></ion-input>
       </ion-item>
       <ion-item class="ion-padding">
-        <ion-label position="floating">Password</ion-label>
+        <ion-label position="floating">Kata Sandi</ion-label>
         <ion-input required type="password" [(ngModel)]="password"></ion-input>
       </ion-item>
       <ion-item class="ion-padding">
@@ -65,20 +65,23 @@
         <ion-label position="floating">No. Telepon</ion-label>
         <ion-input type="tel" placeholder="888-888-8888" required [(ngModel)]="telepon"></ion-input>
       </ion-item>
-      <ion-item>
-        <ion-label>Bidang Keahlian</ion-label>
+      <ion-item class="ion-padding">
+        <!-- <ion-label>Bidang Keahlian</ion-label> -->
         <ion-grid>
-          <ion-row>
-            <ion-col>
+          <ion-col>
+            <ion-row>
+              <ion-label >Bidang Keahlian</ion-label>
+            </ion-row>
+            <ion-row>
               <ion-list>
                 <ion-item *ngFor="let item of keahlian_list; let i = index" value="{{item.idkeahlian}}">
                     <ion-checkbox [(ngModel)]="keahlianDipilih[i]"></ion-checkbox>
                     <ion-label>{{item.nama}}</ion-label>
                 </ion-item>
               </ion-list>
-            </ion-col>
+            </ion-row>
 
-          </ion-row>
+          </ion-col>
         </ion-grid>
       </ion-item>
       <div class="ion-padding" *ngIf="image == null">
@@ -98,7 +101,7 @@
       </ion-item>
 
       <ion-item>
-        <ion-button (click)="register()">Register</ion-button>
+        <ion-button (click)="register()">Registrasi</ion-button>
       </ion-item>
     </ion-card>
   </ion-content>

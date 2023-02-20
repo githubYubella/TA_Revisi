@@ -53,15 +53,24 @@ export class OrangTuaService {
     return this.http.post('http://localhost:8888/db_ta/detail_profil_guru_privat.php', body)
   }
 
-  listGuruPrivatService(search_keahlian: string, search_jenjang: string): Observable<any> {
+  listGuruPrivatService(search_keahlian: string, search_jenjang: string, search_gender:string): Observable<any> {
     let body = new HttpParams;
     body = body.set('search_keahlian', search_keahlian)
     body = body.set('search_jenjang', search_jenjang)
+    body = body.set('search_gender', search_gender)
     return this.http.post("http://localhost:8888/db_ta/list_kumpulan_guru.php", body);
   }
 
   editFotoService(data: FormData): Observable<any> {
     return this.http.post('http://localhost:8888/db_ta/edit_ortu_foto.php', data)
+  }
+  
+  editPassService(pass: string,email:string): Observable<any> {
+    let body = new HttpParams;
+    body = body.set('pass', pass)
+    body = body.set('email', email)
+
+    return this.http.post('http://localhost:8888/db_ta/edit_ortu_pass.php', body)
   }
 
 
@@ -167,6 +176,11 @@ export class OrangTuaService {
     let body = new HttpParams;
     body = body.set('idguru', idguru)
     return this.http.post('http://localhost:8888/db_ta/history_kontrak.php', body)
+  }
+  historyUlasanGuruSerivce(idguru: number): Observable<any> {
+    let body = new HttpParams;
+    body = body.set('idguru', idguru)
+    return this.http.post('http://localhost:8888/db_ta/history_ulasan_guru_privat.php', body)
   }
 
   listAdminService(): Observable<any> {
@@ -349,6 +363,7 @@ export class OrangTuaService {
 
 
   }
+  
 
   // registerService(email: string, password: string, nama_ortu: string,
   //   jenis_kelamin: string, telepon: string,

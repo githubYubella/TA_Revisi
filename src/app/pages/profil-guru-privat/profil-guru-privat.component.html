@@ -21,73 +21,99 @@
       </ion-toolbar>
     </ion-header>
     <ion-content>
-      <ion-card>
-        <ion-item class="ion-padding" >
-          <img style="height:100px ;" src="http://localhost:8888/db_ta/{{gambar}}" alt="">
-        </ion-item>
-        <ion-item >
-          <h1>Saldo: {{saldo}}</h1>
-        </ion-item>
-        <ion-item class="ion-padding">
-          <ion-label >Email: {{email}}</ion-label>
-          <!-- <ion-input required [(ngModel)]="email"></ion-input> -->
-        </ion-item>
-        <!-- <ion-item class="ion-padding">
-          <ion-label >Password</ion-label>
-          <ion-input required type="password" [(ngModel)]="password"></ion-input>
-        </ion-item> -->
-        <ion-item class="ion-padding">
-          <ion-label >Nama Guru Privat : {{nama}}</ion-label>
-          <!-- <ion-input required [(ngModel)]="nama"></ion-input> -->
-        </ion-item>
-        <ion-item class="ion-padding">
-          <ion-label>Jenis Kelamin: {{jenis_kelamin}}</ion-label> <br>
-          <!-- <select required [(ngModel)]="jenisKelamin_dipilih">
-            <option value="Pria">Pria</option>
-            <option value="Wanita">Wanita</option>
-          </select> -->
-        </ion-item>
-        <ion-item class="ion-padding">
-          <ion-label >No. Telepon : {{telepon}}</ion-label>
-          <!-- <ion-input type="tel" placeholder="888-888-8888" required [(ngModel)]="telepon"></ion-input> -->
-        </ion-item>
-        <ion-item >
-          <ion-label>Bidang keahlian: 
-            <ion-label *ngFor="let item of keahlian; let i=index "> {{item.nama}}</ion-label>
-          </ion-label>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="8">
+            <ion-card>
+              <ion-item  class="ion-padding" >
+                
+                  <img  class="foto-profil" src="http://localhost:8888/db_ta/{{gambar}}" alt="">
+                
+              </ion-item>
+              <ion-item class="ion-padding">
+                <h1>Saldo: {{saldo}}</h1>
+              </ion-item>
+              <ion-item class="ion-padding">
+                <ion-label >Email: {{email}}</ion-label>
+                <!-- <ion-input required [(ngModel)]="email"></ion-input> -->
+              </ion-item>
+              <!-- <ion-item class="ion-padding">
+                <ion-label >Password</ion-label>
+                <ion-input required type="password" [(ngModel)]="password"></ion-input>
+              </ion-item> -->
+              <ion-item class="ion-padding">
+                <ion-label >Nama Guru Privat : {{nama}}</ion-label>
+                <!-- <ion-input required [(ngModel)]="nama"></ion-input> -->
+              </ion-item>
+              <ion-item class="ion-padding">
+                <ion-label>Jenis Kelamin: {{jenis_kelamin}}</ion-label> <br>
+                <!-- <select required [(ngModel)]="jenisKelamin_dipilih">
+                  <option value="Pria">Pria</option>
+                  <option value="Wanita">Wanita</option>
+                </select> -->
+              </ion-item>
+              <ion-item class="ion-padding">
+                <ion-label >No. Telepon : {{telepon}}</ion-label>
+                <!-- <ion-input type="tel" placeholder="888-888-8888" required [(ngModel)]="telepon"></ion-input> -->
+              </ion-item>
+              <ion-item class="ion-padding">
+                <ion-label>Bidang keahlian: 
+                  <ion-label *ngFor="let item of keahlian; let i=index "> {{item.nama}}</ion-label>
+                </ion-label>
+      
+             
+              </ion-item>
+              <ion-item class="ion-padding">
+                <ion-label>Jenjang Terakhir: {{jenjang}}</ion-label> <br>
+                
+              </ion-item>
+              <ion-item class="ion-padding">
+                <ion-label>Tempat Jenjang Terakhir:{{tempat_pendidikan}}</ion-label> <br>
+                
+              </ion-item>
+              <ion-item class="ion-padding">
+                <ion-label>Tanggal Lahir: {{tgl_lahir}} </ion-label>
+              </ion-item>
+              <ion-item class="ion-padding">
+                <ion-label text-wrap >Alamat: {{alamat}}, Kecamatan {{kecamatan}}, Kelurahan {{kelurahan}} </ion-label>
+              </ion-item>
+              
+              <ion-item class="ion-padding">
+                <capacitor-google-maps #maps>Loading Google Maps</capacitor-google-maps>
+              </ion-item>
+      
+              <ion-item class="ion-padding">
+                <ion-label text-wrap>Pengalaman Anda: {{pengalaman}}</ion-label>
+              </ion-item>
+              <ion-item class="ion-padding" >
+                <ion-button  routerLink="/pengaturan-guru-privat">Edit Profil</ion-button>
+              </ion-item>
+            </ion-card>
+          </ion-col>
 
-       
-        </ion-item>
-        <ion-item class="ion-padding">
-          <ion-label>Jenjang Terakhir: {{jenjang}}</ion-label> <br>
-          
-        </ion-item>
-        <ion-item class="ion-padding">
-          <ion-label>Tempat Jenjang Terakhir:{{tempat_pendidikan}}</ion-label> <br>
-          
-        </ion-item>
-        <ion-item class="ion-padding">
-          <ion-label>Tanggal Lahir: {{tgl_lahir}} </ion-label>
-        </ion-item>
-        <ion-item class="ion-padding">
-          <ion-label >Alamat: {{alamat}}, Kecamatan {{kecamatan}}, Kelurahan {{kelurahan}} </ion-label>
-         
-        </ion-item>
-        
-        <ion-item class="ion-padding">
-          <capacitor-google-maps #maps>sss</capacitor-google-maps>
+          <ion-col class="ion-text-center">
+            <ion-card>
+              <ion-title>Ulasan</ion-title>
+              <ionic-rating-component class="ion-padding-start" [(ngModel)]="valRate"
+                readonly="true"></ionic-rating-component>
+              <ion-scroll scrollY="true">
+                <ion-list *ngFor="let item_komen of komentars; let i=index">
+                  <!-- <ion-card> -->
+                  <ion-item>
+                    <ion-text>{{item_komen.komentar}}</ion-text>
+                  </ion-item>
+                  <!-- </ion-card> -->
+                </ion-list>
+              </ion-scroll>
+            </ion-card>
+
+
+          </ion-col>
 
           
-        </ion-item>
-
-        <ion-item class="ion-padding">
-          <ion-label>Pengalaman Anda: {{pengalaman}} </ion-label>
-        </ion-item>
-        <ion-item class="ion-padding" >
-          
-          <ion-button  routerLink="/pengaturan-guru-privat" >Edit Profil</ion-button>
-        </ion-item>
-      </ion-card>
+        </ion-row>
+      </ion-grid>
+     
     </ion-content>
 
   </ion-router-outlet>

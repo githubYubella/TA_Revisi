@@ -10,6 +10,14 @@ export class TempatKursusService {
 
   constructor(private http: HttpClient) { }
 
+  editPassTempatKursusService(pass: string,email:string): Observable<any> {
+    let body = new HttpParams;
+    body = body.set('pass', pass)
+    body = body.set('email', email)
+
+    return this.http.post('http://localhost:8888/db_ta/edit_tempat_kursus_pass.php', body)
+  }
+
   updateStatusPesanOrtuService(idortu:number): Observable<any> {
     let body = new HttpParams;
     body = body.set('idortu', idortu)

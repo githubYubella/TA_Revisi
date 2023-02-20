@@ -33,6 +33,8 @@ export class BayarOrangTuaComponent implements OnInit {
   }
   async setTanggalBayar(event) {
     this.tgl_bayar = format(new Date(event.target.value), "yyyy-MM-dd")
+    console.log(this.tgl_bayar)
+
   }
 
   getDetailBayar() {
@@ -134,6 +136,8 @@ export class BayarOrangTuaComponent implements OnInit {
     uploadData.append('tgl_bayar', this.tgl_bayar);
     uploadData.append('bayar_bersih', this.bayar_bersih.toString());
     uploadData.append('kode_bayar', this.kode_bayar);
+    uploadData.append('idtransaksi', this.idtransaksi.toString());
+
     // uploadData.append('idadmin', this.bank_dipilih.toString());
     // uploadData.append('idOrtu', idOrtu.toString());
     // uploadData.append('idGuru', idGuru.toString());

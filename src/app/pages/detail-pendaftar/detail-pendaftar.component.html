@@ -19,98 +19,117 @@
       </ion-toolbar>
     </ion-header>
     <ion-content class="ion-padding">
-      <ion-card>
-        <ion-item>
-          <ion-grid>
-            <ion-row>
-
-              <img style="width: 150px" src="http://localhost:8888/db_ta/{{gambar}}" alt="">
-
-
-
-            </ion-row>
-            <ion-row><b>{{nama}}</b></ion-row>
-            <ion-row>{{usia}} Tahun ({{jenis_kelamin}} )</ion-row>
-            <ion-row>{{pendidikan}} - {{tempat_pendidikan}}</ion-row>
-            <ion-row>Berkas Profil Guru: 
-              <a href="http://localhost:8888/db_ta/{{berkas_profil_guru}}">Download</a>
-             </ion-row>
-
-
-
-          </ion-grid>
-        </ion-item>
-      </ion-card>
-      <ion-card>
-        <ion-item>
-          <ion-grid>
-            <ion-row>
-              <ion-title>
-                <ion-label><b>Pengalaman</b></ion-label>
-              </ion-title>
-            </ion-row>
-            <ion-row>
-              <ion-label class="ion-text-wrap">{{pengalaman}}</ion-label>
-            </ion-row>
-          </ion-grid>
-        </ion-item>
-      </ion-card>
-      <ion-card>
-        <ion-item>
-          <ion-grid>
-            <ion-row>
-              <ion-title>
-                <ion-label><b>Data Lamaran</b></ion-label>
-              </ion-title>
-            </ion-row>
-            <ion-row>
-              <ion-label>
-                Berkas:
-
-                <!-- <a href="https://list-coba.000webhostapp.com/file/{{berkas_cv}}">Download</a> -->
-                <a href="http://localhost:8888/db_ta/{{berkas_pendaftar}}">Download</a>
-              </ion-label>
-            </ion-row>
-            <ion-row>
-              <ion-label>Note / Deskripsi diri:</ion-label>
-            </ion-row>
-            <ion-row>
-              <ion-text>{{note}}</ion-text>
-            </ion-row>
-            <ion-row>
-              <ion-label>Biaya tawar / nego:</ion-label>
-
-              <ion-text> <b>  Rp. {{biaya_tawar}} </b></ion-text>
-            </ion-row>
-
-          </ion-grid>
-        </ion-item>
-      </ion-card>
-      <ion-card>
+      <ion-grid>
         <ion-row>
-          <ion-item>
-            <ion-label>
-              <b>History Kontrak Guru Privat</b>
-            </ion-label>
-          </ion-item>
-        </ion-row>
-        <ion-row *ngFor="let item of list_history_kontrak; let i=index">
-          <ion-item>
-            <ion-label>{{item.judul}} - {{item.tanggal}}</ion-label>
-          </ion-item>
-        </ion-row>
-      
-        <ion-row>
-          <!-- <ion-button (click)="terima()">Terima</ion-button> -->
-          <ion-row>
-            <!-- <ion-button (click)="terima()">Terima</ion-button> -->
-            <ion-button routerLink="/detail-pesan-ortu-guru/{{idPendaftar}}">Kirim Pesan</ion-button>
-  
-          </ion-row>
-          <ion-button (click)="terima()">Terima</ion-button>
+          <ion-col size="8">
+            <ion-card>
+              <ion-item>
+                <ion-grid>
+                  <ion-row>
 
+                    <img style="width: 150px" src="http://localhost:8888/db_ta/{{gambar}}" alt="">
+
+
+
+                  </ion-row>
+                  <ion-row><b>{{nama}}</b></ion-row>
+                  <ion-row>{{usia}} Tahun ({{jenis_kelamin}} )</ion-row>
+                  <ion-row>{{pendidikan}} - {{tempat_pendidikan}}</ion-row>
+                  <ion-row>Berkas Profil Guru:
+                    <a href="http://localhost:8888/db_ta/{{berkas_profil_guru}}">Download</a>
+                  </ion-row>
+
+
+
+                </ion-grid>
+              </ion-item>
+            </ion-card>
+            <ion-card>
+              <ion-item>
+                <ion-grid>
+                  <ion-row>
+                    <ion-title>
+                      <ion-label><b>Pengalaman</b></ion-label>
+                    </ion-title>
+                  </ion-row>
+                  <ion-row>
+                    <ion-label class="ion-text-wrap">{{pengalaman}}</ion-label>
+                  </ion-row>
+                </ion-grid>
+              </ion-item>
+            </ion-card>
+            <ion-card>
+              <ion-item>
+                <ion-grid>
+                  <ion-row>
+                    <ion-title>
+                      <ion-label><b>Data Lamaran</b></ion-label>
+                    </ion-title>
+                  </ion-row>
+                  <ion-row>
+                    <ion-label>
+                      Berkas:
+
+                      <!-- <a href="https://list-coba.000webhostapp.com/file/{{berkas_cv}}">Download</a> -->
+                      <a href="http://localhost:8888/db_ta/{{berkas_pendaftar}}">Download</a>
+                    </ion-label>
+                  </ion-row>
+                  <ion-row>
+                    <ion-label>Note / Deskripsi diri:</ion-label>
+                  </ion-row>
+                  <ion-row>
+                    <ion-text>{{note}}</ion-text>
+                  </ion-row>
+                  <ion-row>
+                    <ion-label>Biaya tawar / nego:</ion-label>
+
+                    <ion-text> <b> Rp. {{biaya_tawar}} </b></ion-text>
+                  </ion-row>
+
+                </ion-grid>
+              </ion-item>
+            </ion-card>
+            <ion-card>
+              <ion-row>
+                <ion-item>
+                  <ion-label>
+                    <b>History Kontrak Guru Privat</b>
+                  </ion-label>
+                </ion-item>
+              </ion-row>
+              <ion-row *ngFor="let item of list_history_kontrak; let i=index">
+                <ion-item>
+                  <ion-label>{{item.judul}} - {{item.tanggal}}</ion-label>
+                </ion-item>
+              </ion-row>
+
+              <ion-row>
+                <ion-button routerLink="/detail-pesan-ortu-guru/{{idPendaftar}}">Kirim Pesan</ion-button>
+                <ion-button (click)="terima()">Terima</ion-button>
+              </ion-row>
+            </ion-card>
+          </ion-col>
+
+          <ion-col class="ion-text-center">
+            <ion-card>
+              <ion-title>Ulasan</ion-title>
+              <ionic-rating-component class="ion-padding-start" [(ngModel)]="valRate"
+                readonly="true"></ionic-rating-component>
+              <ion-scroll scrollY="true">
+                <ion-list *ngFor="let item_komen of komentars; let i=index">
+                  <!-- <ion-card> -->
+                  <ion-item>
+                    <ion-text>{{item_komen.komentar}}</ion-text>
+                  </ion-item>
+                  <!-- </ion-card> -->
+                </ion-list>
+              </ion-scroll>
+            </ion-card>
+
+
+          </ion-col>
         </ion-row>
-      </ion-card>
+      </ion-grid>
 
     </ion-content>
 

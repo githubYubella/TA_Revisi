@@ -13,20 +13,18 @@
     </ion-header>
     <ion-content>
       <ion-menu-toggle>
-        <ion-item>
-          <ion-icon name="mail-outline" slot="start"></ion-icon>
+        <ion-item class="item-toggle">
+          <ion-icon name="home-outline" slot="start"></ion-icon>
           <ion-label routerLink='/'>Beranda</ion-label>
         </ion-item>
-        <ion-item>
-          <ion-icon name="send-outline" slot="start"></ion-icon>
-          <ion-label routerLink='/list-pesan-tempat-kursus/{{id}}'>Pesan Anda </ion-label>
+        <ion-item class="item-toggle">
+          <ion-icon name="mail-outline" slot="start"></ion-icon>
+          <ion-label routerLink='/list-pesan-tempat-kursus/{{id}}'>Pesan Saya </ion-label>
         </ion-item>
-
-        <ion-item>
-          <ion-icon name="send-outline" slot="start"></ion-icon>
+        <ion-item class="item-toggle">
+          <ion-icon name="settings-outline" slot="start"></ion-icon>
           <ion-label routerLink='/pengaturan-tempat-kursus'>Pengaturan Profil </ion-label>
         </ion-item>
-
       </ion-menu-toggle>
     </ion-content>
     <ion-item color="dark">
@@ -39,6 +37,7 @@
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
+      <img class="img-header" src="assets/Logo2.png" alt="">
     </ion-toolbar>
   </ion-header>
   <ion-router-outlet id="main-content">
@@ -53,7 +52,8 @@
       <ion-grid>
         <ion-row>
           <ion-col size="8">
-            <h1 class="ion-text-center">Profil Tempat Kursus, Halaman Home </h1>
+
+            <h1 class="ion-text-center">Profil Tempat Kursus</h1>
             <img src="http://localhost:8888/db_ta/{{gambar}}" alt="">
             <h3>Email:</h3>
             <ion-textarea [readonly]="true">{{email_profil}}</ion-textarea>
@@ -66,7 +66,7 @@
               <ion-row *ngFor="let item of detail_keahlian">
                 {{item.nama}}
               </ion-row>
-  
+
             </ion-grid>
             <h3>Dokumen Tambahan:</h3>
             <a href="http://localhost:8888/db_ta/{{dokumen_tambahan}}">Lihat Dokumen</a>
@@ -77,25 +77,29 @@
             <ion-item class="ion-padding">
               <capacitor-google-maps #maps>sss</capacitor-google-maps>
             </ion-item>
+
           </ion-col>
 
           <ion-col class="ion-text-center">
-            <ion-title>Ulasan</ion-title>
-            <ionic-rating-component class="ion-padding-start" [(ngModel)]="valRate"
-              readonly="true"></ionic-rating-component>
-            <ion-scroll scrollY="true">
-            <ion-list *ngFor="let item of komentars; let i=index">
-                <!-- <ion-card> -->
+            <ion-card class="item-content">
+              <ion-title>Ulasan</ion-title>
+              <ionic-rating-component class="ion-padding-start" [(ngModel)]="valRate"
+                readonly="true"></ionic-rating-component>
+              <ion-scroll scrollY="true">
+                <ion-list *ngFor="let item of komentars; let i=index">
+                  <!-- <ion-card> -->
                   <ion-item>
                     <ion-text>{{item.komentar}}</ion-text>
                   </ion-item>
-                <!-- </ion-card> -->
-            </ion-list>
-          </ion-scroll>
-  
+                  <!-- </ion-card> -->
+                </ion-list>
+              </ion-scroll>
+            </ion-card>
+
+
           </ion-col>
         </ion-row>
-        
+
       </ion-grid>
 
     </ion-content>

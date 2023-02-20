@@ -21,20 +21,24 @@
         </ion-buttons>
       </ion-toolbar>
     </ion-header>
-    <ion-content class="ion-padding">
+    <ion-content >
+      <ion-card>
+        <ion-item class="ion-padding">
+          <ion-label>Tanggal mulai: </ion-label>
+          <ion-datetime [value]="tanggal_buka"  (ionChange)="setTanggalBukaAbsen($event)" presentation="date"></ion-datetime>
+        </ion-item>
+        <ion-item class="ion-padding">
+          <ion-label position="floating">Materi kursus privat:</ion-label>
+          <ion-input [value]="materi"  [(ngModel)]="materi"></ion-input>
+        </ion-item>
+        <ion-item class="ion-padding">
+          <ion-button (click)="editAbsen()">Simpan</ion-button>
+          <ion-button (click)="hapusAbsen()" color="danger">Hapus</ion-button>
+  
+        </ion-item>
+      </ion-card>
+      
       <ion-item class="ion-padding">
-        <ion-label>Tanggal mulai: </ion-label>
-        <ion-datetime [value]="tanggal_buka"  (ionChange)="setTanggalBukaAbsen($event)" presentation="date"></ion-datetime>
-      </ion-item>
-      <ion-item class="ion-padding">
-        <ion-label position="floating">Materi kursus privat:</ion-label>
-        <ion-input [value]="materi"  [(ngModel)]="materi"></ion-input>
-      </ion-item>
-      <ion-item class="ion-padding">
-        <ion-button (click)="editAbsen()">Simpan</ion-button>
-      </ion-item>
-      <ion-item class="ion-padding">
-        <ion-button (click)="hapusAbsen()">Hapus</ion-button>
       </ion-item>
 
      

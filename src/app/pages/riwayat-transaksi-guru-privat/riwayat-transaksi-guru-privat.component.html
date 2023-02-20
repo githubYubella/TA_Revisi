@@ -35,7 +35,7 @@
       <ion-list *ngFor="let itm of list_penarikan_dana; let i=index">
         <ion-card >
           <ion-item>
-            <ion-label>Penarikan dana sebesar Rp.{{itm.nominal}} Tanggal {{itm.tgl}}</ion-label>
+            <ion-label>Penarikan dana sebesar <b>Rp.{{itm.nominal}}</b> ke rekening <b>{{itm.no_rek_tujuan}}</b> Tanggal {{itm.tgl}}</ion-label>
           </ion-item>
         </ion-card>
       </ion-list>

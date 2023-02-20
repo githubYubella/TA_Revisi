@@ -54,10 +54,15 @@ export class HomeOrangTuaComponent implements OnInit {
 
 
   listKursus() {
+    var kosong=''
     this.tk.listTempatKursusService(this.search).subscribe(
       (data) => {
         if (data['result'] == 'success') {
           this.kursus = data['data']
+        }else{
+          kosong="tidak ada data"
+          this.kursus = data['data']
+          console.log('er '+data['result'])
         }
       }
     )

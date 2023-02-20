@@ -25,7 +25,7 @@
       </ion-refresher>
 
       <ion-list *ngFor="let item of listChat; let i=index">
-        <ion-card *ngIf="item.status== 'Sudah dibaca'" color="white"  routerLink="/detail-pesan-guru-privat/{{item.idorang_tua}}">
+        <ion-card class="pesan-terbaca" *ngIf="item.status== 'Sudah dibaca'"  routerLink="/detail-pesan-guru-privat/{{item.idorang_tua}}">
 
           <ion-grid>
             <ion-row>
@@ -41,7 +41,7 @@
           </ion-grid>
         </ion-card>
 
-        <ion-card *ngIf="item.status== 'Belum dibaca'"  color="tertiary" routerLink="/detail-pesan-guru-privat/{{item.idorang_tua}}">
+        <ion-card class="pesan-belum-terbaca" *ngIf="item.status== 'Belum dibaca'"  routerLink="/detail-pesan-guru-privat/{{item.idorang_tua}}">
 
           <ion-grid>
             <ion-row>

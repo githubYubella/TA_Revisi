@@ -48,7 +48,7 @@ export class DetailLowonganComponent implements OnInit {
       apiKey: environment.key,
       config:
       {
-        // lokasi tempat kursus
+        // lokasi lowongan
         center: {
           lat: this.lokasi.lat,
           lng: this.lokasi.lng,
@@ -72,7 +72,6 @@ export class DetailLowonganComponent implements OnInit {
           lat: parseFloat(data['data'][0].lokasi_lat),
           lng: parseFloat(data['data'][0].lokasi_long)
         }
-
         const marker = this.newMap.addMarker({
           coordinate: {
             lat: this.lokasiGP.lat,

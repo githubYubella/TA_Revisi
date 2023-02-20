@@ -41,7 +41,12 @@ export class PengaturanGuruPrivatComponent implements OnInit {
   jenisKelamin_dipilih = ''
   keahlian_list = []
   keahlian_guru_privat: []
-image:any
+  image: any
+  berkas_cv: any
+
+  provinsi_show=''
+  pass_baru=''
+
   constructor(private gp: GuruPrivatService, private authService: AuthService) {
     this.email = authService.email
   }
@@ -157,10 +162,15 @@ image:any
           this.alamat = data['data'][0].alamat
           this.kecamatan = data['data'][0].kecamatan
           this.kelurahan = data['data'][0].kelurahan
+          this.provinsi = data['data'][0].provinsi
+          this.kota = data['data'][0].kota
           this.pengalaman = data['data'][0].pengalaman
           this.gambar = data['data'][0].gambar
           this.idguru = data['data'][0].idguru_privat
           this.tgl_lahir = data['data'][0].tgl_lahir
+          this.berkas_cv = data['data'][0].berkas_cv
+
+          this.provinsi_show=data['data'][0].provinsi
 
 
 
@@ -185,14 +195,14 @@ image:any
 
   async editProfil() {
 
-    const splitProv = this.provinsi.split('_')
-    const splitKota = this.kota.split('_')
-    const splitKec = this.kecamatan.split('_')
-    const splitKel = this.kelurahan.split('_')
-    this.provinsi = splitProv[1]
-    this.kota = splitKota[1]
-    this.kecamatan = splitKec[1]
-    this.kelurahan = splitKel[1]
+    // const splitProv = this.provinsi.split('_')
+    // const splitKota = this.kota.split('_')
+    // const splitKec = this.kecamatan.split('_')
+    // const splitKel = this.kelurahan.split('_')
+    // this.provinsi = splitProv[1]
+    // this.kota = splitKota[1]
+    // this.kecamatan = splitKec[1]
+    // this.kelurahan = splitKel[1]
     this.alamat_lengkap = this.alamat + ", " + this.kota + ", " + this.kecamatan + ", " + this.kelurahan + ", " + this.provinsi
 
 
@@ -217,7 +227,7 @@ image:any
 
         this.gp.editProfilService(this.jenisKelamin_dipilih, this.tempat_pendidikan, this.jenjang_dipilih,
           this.location.lat.toString(), this.location.lng.toString(), this.telepon, this.nama, this.tgl_lahir, this.pengalaman, this.alamat,
-          this.kecamatan, this.kelurahan, this.kota,this.provinsi,this.email).subscribe(
+          this.kecamatan, this.kelurahan, this.kota, this.provinsi, this.email).subscribe(
             (data) => {
               if (data['result'] == 'success') {
                 alert("Data Profil Berhasil di Edit")
@@ -243,7 +253,34 @@ image:any
     // this.conString=this.selected.readAsText(this.selected,'s')
     console.log(this.image)
   }
+  onFileSelected2(event) {
+    // console.log(event)
+    this.berkas_cv = event.target.files[0]
+    console.log(this.berkas_cv)
+  }
 
+  
+
+  editDokumen() {
+    const uploadData = new FormData();
+    uploadData.append('berkas_cv', this.berkas_cv, this.berkas_cv.name);
+    uploadData.append('email', this.email);
+    this.gp.editDokumenService(uploadData).subscribe((resp) => {
+
+      const parse = JSON.parse(JSON.stringify(resp))
+
+      console.log('resp: ' + parse.result);
+      if (resp['result'] == 'sukses') {
+        alert("Dokumen CV berhasl di ubah")
+        // this.router.navigate(['/home'])
+        window.location.reload()
+      }
+      else {
+        alert("Update Error : " + resp)
+      }
+    })
+
+  }
 
 
   editFoto() {
@@ -252,7 +289,7 @@ image:any
     uploadData.append('email', this.email);
     this.gp.editFotoService(uploadData).subscribe((resp) => {
 
-      const parse =  JSON.parse(JSON.stringify(resp))
+      const parse = JSON.parse(JSON.stringify(resp))
 
       console.log('resp: ' + parse.result);
       if (resp['result'] == 'sukses') {
@@ -294,6 +331,18 @@ image:any
       }
     })
 
+  }
+
+  editPassword(){
+    this.gp.editPassGuruService(this.pass_baru,this.email).subscribe((resp) => {
+      if (resp['result'] == 'success') {
+        alert("Kata Sandi Berhasil Diperbarui")
+        window.location.reload()
+      }
+      else {
+        alert("Update Error : " + resp)
+      }
+    })
   }
 
 

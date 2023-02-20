@@ -1,4 +1,4 @@
-<ion-app >
+<ion-app>
   <ion-header>
     <ion-toolbar color="dark">
       <ion-buttons slot="start" style="z-index: 100;">
@@ -21,28 +21,33 @@
     <ion-content class="ion-padding">
       <ion-card>
         <ion-grid>
-          <ion-row>
-            <ion-grid>
+          <ion-row class="ion-align-items-center">
+            <ion-col size="7" class="ion-justify-content-center">
               <ion-row>
-                <ion-item>Lowongan Privat {{judul}}</ion-item>
+                <ion-item> <b>Lowongan Privat {{judul}}</b> </ion-item>
+              </ion-row>
+            </ion-col>
+            <ion-col>
+
+              <ion-row>
+                <ion-item>Pemilik lowongan: {{nama_ortu}}</ion-item>
               </ion-row>
               <ion-row>
-                <ion-col>
-                  <ion-item>👤 {{nama_ortu}}</ion-item>
-                </ion-col>
-                <ion-col>
-                  <ion-item>
-                    ✍🏻 {{keahlian}}
-                  </ion-item>
-                </ion-col>
-                <ion-col>
-                  <ion-item> Rp. {{biaya}}</ion-item>
-                </ion-col>
-                <ion-col>
-                  <ion-item>Metode: {{metode}}</ion-item>
-                </ion-col>
+                <ion-item>
+                  Bidang pendidikan: {{keahlian}}
+                </ion-item>
               </ion-row>
-            </ion-grid>
+              <ion-row>
+                <ion-item> Biaya per bulan: Rp. {{biaya}}</ion-item>
+              </ion-row>
+              <ion-row>
+                <ion-item>Metode: {{metode}}</ion-item>
+              </ion-row>
+
+            </ion-col>
+
+
+
           </ion-row>
         </ion-grid>
       </ion-card>
@@ -58,36 +63,37 @@
             <ion-grid>
               <ion-row>
                 <ion-item>
+                  Deskripsi:
                   {{deskripsi}}
                 </ion-item>
               </ion-row>
               <ion-row class="ion-padding-top">
                 <ion-item>
-                 Jenjang pendidikan siswa:
+                  Jenjang pendidikan siswa:
                   <ion-label>{{jenjang}}</ion-label>
                 </ion-item>
 
               </ion-row>
               <ion-row class="ion-padding-top">
                 <ion-item>
-                 Banyak Pertemuan: 
+                  Banyak Pertemuan:
                   <ion-label>{{banyak_pertemuan}}</ion-label>
                 </ion-item>
 
               </ion-row>
               <ion-row class="ion-padding-top">
                 <ion-item>
-                 Durasi privat: 
+                  Durasi privat:
                   <ion-label>{{durasi}} Jam</ion-label>
                 </ion-item>
 
               </ion-row>
               <ion-row class="ion-padding-top">
-             
-               <ion-item>  Jadwal privat:
-                <ion-label>{{jadwal}} </ion-label>
 
-               </ion-item>
+                <ion-item> Jadwal privat:
+                  <ion-label>{{jadwal}} </ion-label>
+
+                </ion-item>
                 <!-- <ion-list>
                   <ion-item *ngFor="let item of jadwal; let i=index">
                     <ion-label>{{item.hari}} Pukul {{item.jam_awal}} Sampai {{item.jam_akhir}}</ion-label>
@@ -100,11 +106,11 @@
 
               </ion-row>
               <ion-row>
-                <capacitor-google-maps #maps>sss</capacitor-google-maps>
+                <capacitor-google-maps #maps>Loading google maps</capacitor-google-maps>
 
               </ion-row>
-              <ion-row>
-                <ion-button  routerLink="/lamar-lowongan/{{idlowongan}}"> Lamar Pekerjaan </ion-button>
+              <ion-row class="ion-padding">
+                <ion-button routerLink="/lamar-lowongan/{{idlowongan}}"> Lamar Pekerjaan </ion-button>
 
                 <!-- <ion-button *ngIf="item.status_pendaftar== 'Belum diterima'" routerLink="/lamar-lowongan/{{idlowongan}}"> Lamar Pekerjaan terkirim</ion-button> -->
               </ion-row>

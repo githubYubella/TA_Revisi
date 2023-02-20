@@ -66,13 +66,22 @@
               </select>
             </ion-item>
             <ion-item class="ion-margin-vertical">
-              <ion-label>Durasi kursus privat:</ion-label>
+              <ion-label>Durasi kursus privat (Jam):</ion-label>
               <ion-input type="number" min="1" [(ngModel)]="durasi_lowongan"></ion-input>
-              <ion-label> Jam</ion-label>
+              <!-- <ion-label> Jam</ion-label> -->
             </ion-item>
             <ion-item class="ion-margin-vertical">
               <ion-label>Banyak pertemuan:</ion-label>
-              <ion-input type="number" min="1" max="7" [(ngModel)]="banyak_pertemuan"></ion-input>
+              <!-- <ion-input type="number" min="1" max="7" [(ngModel)]="banyak_pertemuan"></ion-input> -->
+              <select required [(ngModel)]="banyak_pertemuan">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+              </select>
             </ion-item>
             <ion-item class="ion-margin-vertical">
               <ion-label>Jadwal:</ion-label>
@@ -81,9 +90,9 @@
             </ion-item>
             <ion-item class="ion-margin-vertical">
               <ion-label>Biaya Jasa: <br>
-                IDR
+                Rp.
               </ion-label>
-              <ion-input type="number" [(ngModel)]="biaya_jasa"></ion-input>
+              <ion-input  [(ngModel)]="biaya_jasa"></ion-input>
             </ion-item>
 
             <ion-item class="ion-margin-vertical">
@@ -140,7 +149,7 @@
           <!-- edit hari -->
           <ion-col style="border: 2px red solid;" class="ion-text-center">
             <ion-item>
-              <capacitor-google-maps #maps>sss</capacitor-google-maps>
+              <capacitor-google-maps #maps>Loading Google Map</capacitor-google-maps>
             </ion-item>
             
           </ion-col>

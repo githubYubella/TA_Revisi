@@ -70,7 +70,7 @@ export class LamarLowonganComponent implements OnInit {
         const parse = JSON.parse(JSON.stringify(resp))
         console.log(resp);
         if (parse['result'] == 'success') {
-          alert("Register Success")
+          alert("Lamaran berhasil dikirim")
           this.router.navigate(['/'])
 
 

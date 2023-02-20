@@ -2,40 +2,96 @@
   <ion-header>
     <ion-toolbar color="dark">
       <ion-title style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; text-align: center;">
-        Login Tempat Kursus
+        E-Kursus
       </ion-title>
     </ion-toolbar>
   </ion-header>
 </ion-header>
 <ion-content>
-  <ion-card>
-    <ion-title>Login</ion-title>
-    <div class="form-input ion-padding">
-      <ion-item fill="solid">
-        <ion-label position="floating">Email</ion-label>
-        <ion-input type="email" [(ngModel)]="email"></ion-input>
-      </ion-item>
-    </div>
-    <div class="form-input ion-padding">
-      <ion-item fill="solid">
-        <ion-label position="floating">Password</ion-label>
-        <ion-input type="text" [(ngModel)]="password"></ion-input>
-      </ion-item>
-    </div>
-    <div class="button ion-padding">
-      <ion-button class="btnlogin" type="submit" expand="block" (click)='login()'>Login</ion-button>
-      <p>Belum Punya Akun ?</p>
-      <!-- <ion-button expand="block" (click)="registerKursus='terpilih'">Register method</ion-button> -->
-      <ion-button class="ion-padding" routerLink="/register-orang-tua">Daftar sebagai Orang Tua</ion-button>
-      <br>
-      <ion-button class="ion-padding" routerLink="/register-guru-privat">Daftar sebagai Guru Privat</ion-button>
-      <br>
-      <!-- <ion-button class="ion-padding" (click)="page_login='terpilih'">Daftar sebagai Kursus Privat</ion-button> -->
+  <ion-grid>
+    <ion-row>
+      <ion-col size="7">
+        <ion-card class="slide">
+          <ion-slides pager="true">
+            <!-- Slide 1 -->
+            <ion-slide>
+              <ion-text color="light">
+                <!-- <img
+                  src="https://cdn0-production-images-kly.akamaized.net/1TjlzDY3rf7_eEWlinCnPdxCxkk=/1200x1200/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/792516/original/067576500_1420786914-gambar-spongebob.jpg"
+                   /> -->
+                <!-- <img
+                  src='https://scontent.fbdo7-1.fna.fbcdn.net/v/t39.30808-6/328987136_848640429550516_136121793912167205_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=730e14&_nc_eui2=AeEQZsrUmeOJ3lJzzLofqZa0JsQkr2BhO9gmxCSvYGE72EFqVua8AoqtgFkgE8VN1pxzonEYNTJamxh37qANraOt&_nc_ohc=9LfDDSnK4wIAX9caNRI&_nc_ht=scontent.fbdo7-1.fna&oh=00_AfDm2QxHD-KN2mcUb0wuA69suhZBWCXEVKGPl11bakrQXg&oe=63EAC2C1'
+                   /> -->
+                <img src="assets/Logo2.png" alt="">
 
-      <ion-button class="ion-padding" routerLink="/register-tempat-kursus">Daftar sebagai Tempat Kursus</ion-button>
-      <ion-button class="ion-padding" routerLink="/register-admin">Daftar sebagai Admin</ion-button>
+                <h1><b> Selamat datang di E-Kursus</b></h1>
+                <p>Platform yang dapat mempertemukan orang tua dengan guru privat dan tempat kursus</p>
+                <ion-button (click)="next()" color="tertiary">Lanjut</ion-button>
+              </ion-text>
+            </ion-slide>
 
-      <ion-chip *ngIf="login_error">{{login_error}}</ion-chip>
-    </div>
-  </ion-card>
+            <!-- Slide 2 -->
+            <ion-slide>
+              <ion-text color="light">
+                <img
+                src="assets/parent.jpg"/>
+                <h1><b>Menemukan guru privat dengan mudah</b></h1>
+                <p>Anda bisa mendapatkan guru privat dengan membuka lowongan posting iklan yang sesuai kriteria Anda.</p>
+                <ion-button (click)="prev()" color="tertiary">Kembali</ion-button>
+                <ion-button (click)="next()" color="tertiary">Lanjut</ion-button>
+              </ion-text>
+            </ion-slide>
+
+            <!-- Slide 3 -->
+            <ion-slide>
+              <ion-text color="light">
+                <img
+                src="assets/teacher.png"/>
+                <h1><b>Memperoleh karir sesuai dengan skill</b></h1>
+                <p>Anda bisa menjadi guru privat sesuai dengan bidang keahlian dengan melamar lowongan pada iklan.</p>
+                <ion-button (click)="prev()" color="tertiary">Kembali</ion-button>
+              </ion-text>
+            </ion-slide>
+          </ion-slides>
+        </ion-card>
+      </ion-col>
+
+      <ion-col>
+        <ion-card class="back-card">
+          <ion-title class="ion-text-center" >Login</ion-title>
+          <div class="form-input ion-padding">
+            <ion-item class="item-content" fill="solid">
+              <ion-label position="floating">Email</ion-label>
+              <ion-input type="email" [(ngModel)]="email"></ion-input>
+            </ion-item>
+          </div>
+          <div class="form-input ion-padding">
+            <ion-item class="item-content" fill="solid">
+              <ion-label position="floating">Password</ion-label>
+              <ion-input type="text" [(ngModel)]="password"></ion-input>
+            </ion-item>
+          </div>
+          <div class="button ion-padding">
+            <ion-button class="btnlogin" type="submit" expand="block" (click)='login()'>Login</ion-button>
+            <p>Belum Punya Akun ?</p>
+            <!-- <ion-button expand="block" (click)="registerKursus='terpilih'">Register method</ion-button> -->
+            <ion-button class="ion-padding" routerLink="/register-orang-tua">Daftar sebagai Orang Tua</ion-button>
+            <br>
+            <ion-button class="ion-padding" routerLink="/register-guru-privat">Daftar sebagai Guru</ion-button>
+            <br>
+            <!-- <ion-button class="ion-padding" (click)="page_login='terpilih'">Daftar sebagai Kursus Privat</ion-button> -->
+
+            <ion-button class="ion-padding" routerLink="/register-tempat-kursus">Daftar sebagai Lembaga
+              Kursus</ion-button>
+            <!-- <ion-button class="ion-padding" routerLink="/register-admin">Daftar sebagai Admin</ion-button> -->
+
+            <ion-chip *ngIf="login_error">{{login_error}}</ion-chip>
+          </div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+
 </ion-content>

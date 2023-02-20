@@ -12,18 +12,18 @@
   </ion-header>
   <ion-content>
     <ion-card>
-      <h1>Register Orang Tua</h1>
+      <!-- <h1>Register Orang Tua</h1> -->
       <ion-item class="ion-padding">
         <ion-label position="floating">Email</ion-label>
-        <ion-input required [(ngModel)]="email"></ion-input>
+        <ion-input required [(ngModel)]="email" placeholder="contoh: cermatindra@cermat.com"></ion-input>
       </ion-item>
       <ion-item class="ion-padding">
-        <ion-label position="floating">Password</ion-label>
-        <ion-input required type="password" [(ngModel)]="password"></ion-input>
+        <ion-label position="floating">Kata Sandi</ion-label>
+        <ion-input required type="password" [(ngModel)]="password" ></ion-input>
       </ion-item>
       <ion-item class="ion-padding">
         <ion-label position="floating">Nama Orang Tua</ion-label>
-        <ion-input required [(ngModel)]="nama"></ion-input>
+        <ion-input required [(ngModel)]="nama" placeholder="contoh: Jessica Vania"></ion-input>
       </ion-item>
       <ion-item class="ion-padding">
         <ion-label>Jenis Kelamin:</ion-label> <br>
@@ -40,11 +40,12 @@
       </ion-item>
       <ion-item class="ion-padding">
         <ion-label position="floating">Nama Siswa</ion-label>
-        <ion-input required [(ngModel)]="nama_siswa"></ion-input>
+        <ion-input required [(ngModel)]="nama_siswa" placeholder="contoh: cermatindra@cermat.com"></ion-input>
       </ion-item>
       <ion-item class="ion-padding">
         <ion-label position="floating">Alamat Orang tua:</ion-label>
-        <ion-input [(ngModel)]="alamat" placeholder="Masukkan alamat anda"></ion-input> <br>
+        <ion-input [(ngModel)]="alamat" placeholder="Masukkan alamat anda" 
+        placeholder="contoh: Jl. Semangka No.22"></ion-input> <br>
       </ion-item>
       <ion-item class="ion-padding">
         <ion-label position="fixed">Provinsi:</ion-label>
@@ -86,7 +87,7 @@
         <ion-input type="file" (change)="onFileSelected($event)" [(ngModel)]="gambar"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-button (click)="register_orang_tua()">Register</ion-button>
+        <ion-button (click)="register_orang_tua()">Registrasi</ion-button>
       </ion-item>
     </ion-card>
   </ion-content>

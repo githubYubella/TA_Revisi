@@ -8,6 +8,20 @@ import { Observable } from 'rxjs';
 export class GuruPrivatService {
   constructor(private http: HttpClient) { }
 
+  editPassGuruService(pass: string,email:string): Observable<any> {
+    let body = new HttpParams;
+    body = body.set('pass', pass)
+    body = body.set('email', email)
+
+    return this.http.post('http://localhost:8888/db_ta/edit_guru_pass.php', body)
+  }
+
+  historyUlasanGuruSerivce(idguru: number): Observable<any> {
+    let body = new HttpParams;
+    body = body.set('idguru', idguru)
+    return this.http.post('http://localhost:8888/db_ta/history_ulasan_guru_privat.php', body)
+  }
+
   cekStatusPembayaranService(idlowongan:number):Observable<any>{
     let body = new HttpParams;
     body = body.set('idlowongan', idlowongan)
@@ -33,6 +47,10 @@ export class GuruPrivatService {
   editFotoService(data: FormData): Observable<any> {
     return this.http.post('http://localhost:8888/db_ta/edit_profil_guru_foto.php', data)
   }
+  editDokumenService(data: FormData): Observable<any> {
+    return this.http.post('http://localhost:8888/db_ta/edit_profil_guru_dokumen.php', data)
+  }
+
 
   editProfilService(jenis_kelamin:string, tempat_jenjang_terakhir:string,
     jenjang_terakhir:string, lat:string,long:string,telepon:string,
@@ -111,8 +129,10 @@ export class GuruPrivatService {
     return this.http.post('http://localhost:8888/db_ta/detail_absen.php', body)
   }
 
-  listRiwayatAbsenService(): Observable<any> {
-    return this.http.get("http://localhost:8888/db_ta/list_riwayat_absen.php");
+  listRiwayatAbsenService(idlowongan:number): Observable<any> {
+    let body = new HttpParams()
+    body = body.set('idlowongan', idlowongan)
+    return this.http.post("http://localhost:8888/db_ta/list_riwayat_absen.php",body);
   }
 
   bukaAbsenService(tanggal_buka: string, materi: string, idlowongan: number,

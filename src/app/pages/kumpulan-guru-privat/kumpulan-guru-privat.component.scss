@@ -5,3 +5,22 @@
 // ion-col{
 //     height: 50%;
 // }
+ion-col,ion-row,img,h1,p,ion-list{
+    background-color: transparent;
+    img,h1,p{
+        background-color: transparent;
+        // color: transparent;
+    }
+    
+    // color: transparent;
+}
+img,h1,p{
+    background-color: transparent;
+    // color: transparent;
+}
+
+ion-list {
+  
+    background: transparent;
+
+  }

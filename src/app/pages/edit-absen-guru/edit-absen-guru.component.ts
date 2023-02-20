@@ -24,9 +24,9 @@ hapusAbsen(){
         // this.router.navigate(['/'])
         window.location.href='/presensi-guru-privat';
         // this.router.navigate(['/presensi-guru-privat'])
-        this.gp.listRiwayatAbsenService().subscribe(
+        // this.gp.listRiwayatAbsenService().subscribe(
 
-        )
+        // )
   
       }
       else {

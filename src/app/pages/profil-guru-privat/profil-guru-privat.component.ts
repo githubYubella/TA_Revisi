@@ -29,6 +29,10 @@ export class ProfilGuruPrivatComponent implements OnInit {
   idguru: number
   newMap: GoogleMap;
   @ViewChild('maps') maps: ElementRef<HTMLElement>;
+  komentars: []
+  valRate = 0
+
+
 
   constructor(private gp: GuruPrivatService, private authService: AuthService) {
     this.email = authService.email
@@ -57,7 +61,9 @@ export class ProfilGuruPrivatComponent implements OnInit {
         lat: this.location.lat,
         lng: this.location.lng
       },
-      draggable: true
+      draggable: false,
+      iconUrl:"http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+
 
 
     })
@@ -96,9 +102,20 @@ export class ProfilGuruPrivatComponent implements OnInit {
             (data) => {
               if (data['result'] == 'success') {
                 this.keahlian=data['data']
+
               }
             }
           )
+
+             // Get ulasan
+             this.gp.historyUlasanGuruSerivce(this.idguru).subscribe(
+              (data2)=>{
+                this.komentars = data2['data']
+                this.valRate = data2.rerata_rating
+              // console.log("rara" + this.valRate)
+              }
+              
+            )
 
 
 

@@ -24,11 +24,13 @@ export class DetailPendaftarComponent implements OnInit {
   tgl_lahir: string = ''
   telepon: string = ''
   usia: number
-jenis_kelamin:string=''
-list_history_kontrak:[]
-biaya_tawar:number
+  jenis_kelamin: string = ''
+  list_history_kontrak: []
+  biaya_tawar: number
+  valRate = 0
+  komentars: []
 
-  constructor(private at: ActivatedRoute, private ot: OrangTuaService,private router:Router,
+  constructor(private at: ActivatedRoute, private ot: OrangTuaService, private router: Router,
     private alertController: AlertController) { }
 
   async terima() {
@@ -45,8 +47,8 @@ biaya_tawar:number
         {
           text: 'Ya',
           role: 'confirm',
-          handler:()=>{
-            this.router.navigateByUrl('/kontrak/'+this.idPendaftar+"/"+this.idLowongan)
+          handler: () => {
+            this.router.navigateByUrl('/kontrak/' + this.idPendaftar + "/" + this.idLowongan)
 
           }
 
@@ -55,7 +57,7 @@ biaya_tawar:number
           //     (data)=>{
           //       if(data['result']='success'){
           //         this.router.navigateByUrl('/')
-        
+
           //       }
           //     }
           //   )
@@ -79,12 +81,12 @@ biaya_tawar:number
           this.pengalaman = data['data'][0].pengalaman//o
           this.berkas_pendaftar = data['data'][0].berkas_pendaftar
           this.berkas_profil_guru = data['data'][0].berkas_guru
-          this.note = data['data'][0].note_pendaftar 
+          this.note = data['data'][0].note_pendaftar
           this.tempat_pendidikan = data['data'][0].tempat_jenjang_terakhir//k
           this.pendidikan = data['data'][0].jenjang_terakhir//k
           this.nama = data['data'][0].nama_guru_privat//ok
           this.gambar = data['data'][0].gambar//k
-          this.jenis_kelamin=data['data'][0].jenis_kelamin//k
+          this.jenis_kelamin = data['data'][0].jenis_kelamin//k
 
           this.tgl_lahir = data['data'][0].tgl_lahir //k
           var tahun_lahir = new Date(this.tgl_lahir).getFullYear()
@@ -93,13 +95,23 @@ biaya_tawar:number
           this.usia = tahunSkg - tahun_lahir//o
 
           this.telepon = data['data'][0].telepon//k
-          this.biaya_tawar=data['data'][0].biaya_tawar//k
+          this.biaya_tawar = data['data'][0].biaya_tawar//k
 
           // get History
           this.ot.historyKontrakGuruSerivce(this.idPendaftar).subscribe(
-            (data)=>{
-              if(data['result']=='success'){
-               this.list_history_kontrak=data['data']
+            (data) => {
+              if (data['result'] == 'success') {
+                this.list_history_kontrak = data['data']
+
+                // Get ulasan
+                this.ot.historyUlasanGuruSerivce(this.idPendaftar).subscribe(
+                  (data2) => {
+                    this.komentars = data2['data']  
+                    this.valRate = data2.rerata_rating
+                    console.log("rara" + this.valRate)
+                  }
+
+                )
               }
             }
           )

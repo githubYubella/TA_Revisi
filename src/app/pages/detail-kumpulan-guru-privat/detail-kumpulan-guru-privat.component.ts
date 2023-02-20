@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { GuruPrivatService } from 'src/app/services/guru-privat/guru-privat.service';
 import { OrangTuaService } from 'src/app/services/orang-tua/orang-tua.service';
 
 @Component({
@@ -24,14 +25,16 @@ export class DetailKumpulanGuruPrivatComponent implements OnInit {
   usia: number
   jenis_kelamin: string = ''
   list_history_kontrak: []
-  alamat=''
-  kecamatan=''
-  kelurahan=''
-  kota=''
-  provinsi=''
+  alamat = ''
+  kecamatan = ''
+  kelurahan = ''
+  kota = ''
+  provinsi = ''
+  valRate = 0
+  komentars: []
 
 
-  constructor(private at: ActivatedRoute, private ot: OrangTuaService) {
+  constructor(private at: ActivatedRoute, private ot: OrangTuaService, private gp:GuruPrivatService) {
 
   }
 
@@ -56,11 +59,11 @@ export class DetailKumpulanGuruPrivatComponent implements OnInit {
           this.usia = tahunSkg - tahun_lahir//o
 
           this.telepon = data['data'][0].no_telepon//k
-          this.alamat=data['data'][0].alamat
-          this.kecamatan=data['data'][0].kecamatan
-          this.kelurahan=data['data'][0].kelurahan
-          this.kota=data['data'][0].kota
-          this.provinsi=data['data'][0].provinsi
+          this.alamat = data['data'][0].alamat
+          this.kecamatan = data['data'][0].kecamatan
+          this.kelurahan = data['data'][0].kelurahan
+          this.kota = data['data'][0].kota
+          this.provinsi = data['data'][0].provinsi
 
 
 
@@ -70,6 +73,17 @@ export class DetailKumpulanGuruPrivatComponent implements OnInit {
             (data) => {
               if (data['result'] == 'success') {
                 this.list_history_kontrak = data['data']
+
+                // Get ulasan
+                this.ot.historyUlasanGuruSerivce(this.idguru).subscribe(
+                  (data2)=>{
+                    this.komentars = data2['data']
+                    this.valRate = data2.rerata_rating
+                  // console.log("rara" + this.valRate)
+                  }
+                  
+                )
+
               }
             }
           )

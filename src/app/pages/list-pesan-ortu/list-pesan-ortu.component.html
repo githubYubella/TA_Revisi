@@ -26,13 +26,13 @@
       <!-- chat kpd tempat kursus  -->
       <ion-list>
         <div *ngFor="let item of listChat; let i=index">
-          <ion-card *ngIf="item.status== 'Sudah dibaca'" color="white"
+          <ion-card class="pesan-terbaca" *ngIf="item.status== 'Sudah dibaca'"
             routerLink="/detail-pesan-ortu/{{item.idtempat_kursus}}">
 
             <ion-grid>
               <ion-row>
                 <ion-col size="auto">
-                  <img style="width: 150px" src="http://localhost:8888/db_ta/gambar/{{item.gambar}}" alt="">
+                  <img style="width: 150px" src="http://localhost:8888/db_ta/{{item.gambar}}" alt="">
                 </ion-col>
                 <ion-col>
                   <h1>{{item.nama}}</h1>
@@ -43,13 +43,13 @@
             </ion-grid>
           </ion-card>
 
-          <ion-card *ngIf="item.status== 'Belum dibaca'" color="tertiary"
+          <ion-card class="pesan-belum-terbaca" *ngIf="item.status== 'Belum dibaca'" color="tertiary"
             routerLink="/detail-pesan-ortu/{{item.idtempat_kursus}}">
 
             <ion-grid>
               <ion-row>
                 <ion-col size="auto">
-                  <img style="width: 150px" src="http://localhost:8888/db_ta/gambar/{{item.gambar}}" alt="">
+                  <img style="width: 150px" src="http://localhost:8888/db_ta/{{item.gambar}}" alt="">
                 </ion-col>
                 <ion-col>
                   <h1>{{item.nama}}</h1>
@@ -67,7 +67,7 @@
 
 
           <div *ngFor="let item of listChatGuru; let i=index">
-            <ion-card *ngIf="item.status== 'Sudah dibaca'" color="white"
+            <ion-card  class="pesan-terbaca" *ngIf="item.status== 'Sudah dibaca'" 
               routerLink="/detail-pesan-ortu-guru/{{item.idguru_privat}}">
   
               <ion-grid>
@@ -84,7 +84,7 @@
               </ion-grid>
             </ion-card>
   
-            <ion-card *ngIf="item.status== 'Belum dibaca'" color="tertiary"
+            <ion-card class="pesan-belum-terbaca" *ngIf="item.status== 'Belum dibaca'"
               routerLink="/detail-pesan-ortu-guru/{{item.idguru_privat}}">
   
               <ion-grid>

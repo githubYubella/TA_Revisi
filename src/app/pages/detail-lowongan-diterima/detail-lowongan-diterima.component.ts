@@ -68,7 +68,7 @@ export class DetailLowonganDiterimaComponent implements OnInit {
         lat: this.lokasi.lat,
         lng: this.lokasi.lng
       },
-      draggable: true
+      draggable: false
     })
 
     // lokasi guru privat
@@ -84,7 +84,8 @@ export class DetailLowonganDiterimaComponent implements OnInit {
             lat: this.lokasiGP.lat,
             lng: this.lokasiGP.lng,
           },
-          draggable: true
+          draggable: false,
+          iconUrl:"http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
         })
       }
     )
@@ -94,7 +95,6 @@ export class DetailLowonganDiterimaComponent implements OnInit {
       coordinate: {
         lat: this.lokasi.lat,
         lng: this.lokasi.lng
-
       },
       zoom: 8,
     })
@@ -121,7 +121,8 @@ export class DetailLowonganDiterimaComponent implements OnInit {
           this.jenjang = data['data'][0].jenjang//k
           this.deskripsi = data['data'][0].deskripsi//k
           this.banyak_pertemuan = data['data'][0].banyak_pertemuan//k
-          this.jadwal = data['data']
+          this.jadwal = data['data'][0].jadwal
+          // this.jadwal = data['data']
           //  .forEach((val) => {
           //     this.hari=val.hari
           //     this.jam_awal=val.jam_awal

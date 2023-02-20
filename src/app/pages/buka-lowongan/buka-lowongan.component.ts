@@ -21,23 +21,23 @@ export class BukaLowonganComponent implements OnInit {
   email = ''
 
   keahlian_list = []
-  jadwal = [
-    { hari: 'Senin', checked: false, disabled: false, pukul: null, sampai: null },
-    { hari: 'Selasa', checked: false, disabled: false, pukul: null, sampai: null },
-    { hari: 'Rabu', checked: false, disabled: false, pukul: null, sampai: null },
-    { hari: 'Kamis', checked: false, disabled: false, pukul: null, sampai: null },
-    { hari: 'Jumat', checked: false, disabled: false, pukul: null, sampai: null },
-    { hari: 'Sabtu', checked: false, disabled: false, pukul: null, sampai: null },
-    { hari: 'Minggu', checked: false, disabled: false, pukul: null, sampai: null },
-  ]
+  // jadwal = [
+  //   { hari: 'Senin', checked: false, disabled: false, pukul: null, sampai: null },
+  //   { hari: 'Selasa', checked: false, disabled: false, pukul: null, sampai: null },
+  //   { hari: 'Rabu', checked: false, disabled: false, pukul: null, sampai: null },
+  //   { hari: 'Kamis', checked: false, disabled: false, pukul: null, sampai: null },
+  //   { hari: 'Jumat', checked: false, disabled: false, pukul: null, sampai: null },
+  //   { hari: 'Sabtu', checked: false, disabled: false, pukul: null, sampai: null },
+  //   { hari: 'Minggu', checked: false, disabled: false, pukul: null, sampai: null },
+  // ]
   judul_lowongan = ''
   deskripsi_lowongan = ''
-  jenjang_dipilih = ''
-  kategori_dipilih: number
-  metode_dipilih = ''
+  jenjang_dipilih = 'PAUD'
+  kategori_dipilih: number=1
+  metode_dipilih = 'Online/Daring'
   durasi_lowongan: number
   banyak_pertemuan: number = 1
-  biaya_jasa: number
+  biaya_jasa: number=0
   tanggal_mulai = ''
   alamat = ''
 
@@ -62,18 +62,18 @@ export class BukaLowonganComponent implements OnInit {
     this.email = authService.email
   }
 
-  async setTimePukul(i, event) {
-    let pukul = format(new Date(event.target.value), "HH:mm")
-    console.log('setTimePukul(' + i + '): ' + pukul)
-    this.jadwal[i].pukul = pukul
-  }
+  // async setTimePukul(i, event) {
+  //   let pukul = format(new Date(event.target.value), "HH:mm")
+  //   console.log('setTimePukul(' + i + '): ' + pukul)
+  //   this.jadwal[i].pukul = pukul
+  // }
 
-  async setTimeSampai(i, event) {
-    let sampai = format(new Date(event.target.value), "HH:mm")
-    console.log('setTimeSampai(' + i + '): ' + sampai)
-    this.jadwal[i].sampai = sampai
+  // async setTimeSampai(i, event) {
+  //   let sampai = format(new Date(event.target.value), "HH:mm")
+  //   console.log('setTimeSampai(' + i + '): ' + sampai)
+  //   this.jadwal[i].sampai = sampai
 
-  }
+  // }
   async setTanggalMulai(event) {
     this.tanggal_mulai = format(new Date(event.target.value), "yyyy-MM-dd")
     // console.log('tgl_mulai'+this.tanggal_mulai)
@@ -136,7 +136,7 @@ export class BukaLowonganComponent implements OnInit {
     console.log(this.kategori_dipilih)
     console.log(this.metode_dipilih)
 
-    let chechBoxterpilih = this.jadwal.filter((item) => item.checked)
+    // let chechBoxterpilih = this.jadwal.filter((item) => item.checked)
     // console.log(terpilih)
     // this.tk.simpanJadwal(terpilih).subscribe(
     //   data => {

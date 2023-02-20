@@ -23,121 +23,120 @@
     <ion-content>
       <ion-grid>
         <ion-row style="height: 100%;">
-          <ion-col style="border: 2px black solid; height: 100%;" class=ion-text-center>
-            <ion-item>
-              <ion-label>Nama:</ion-label>
-              <ion-input [(ngModel)]="nama" placeholder="{{nama}}"></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label>Jenis Kelamin: </ion-label> <br>
-              <select selected="{{jenisKelamin_dipilih}}" required [(ngModel)]="jenisKelamin_dipilih">
-                <option value="Pria">Pria</option>
-                <option value="Wanita">Wanita</option>
-              </select>
-            </ion-item>
-            <ion-item class="ion-padding">
-              <ion-label>No. Telepon : </ion-label>
-              <ion-input type="tel" placeholder="888-888-8888" required [(ngModel)]="telepon"></ion-input>
-            </ion-item>
-            <ion-item class="ion-padding">
-              <ion-label>Jenjang Terakhir:</ion-label> <br>
-              <select selected="{{jenjang_dipilih}}" required [(ngModel)]="jenjang_dipilih">
-                <option value="SMA">SMA</option>
-                <option value="S1">S1</option>
-                <option value="S2">S2</option>
-                <option value="S3">S3</option>
-              </select>
-            </ion-item>
-            <ion-item class="ion-padding">
-              <ion-label>Tempat Jenjang Terakhir:</ion-label> <br>
-              <ion-input type="text" placeholder="Masukkan nama tempat pendidikan terakhir" required
-                [(ngModel)]="tempat_pendidikan"></ion-input>
-            </ion-item>
-            <ion-item class="ion-padding">
-              <ion-label>Tanggal Lahir: </ion-label>
-              <ion-datetime [value]="tgl_lahir" (ionChange)="setTanggalLahir($event)" presentation="date">
-              </ion-datetime>
-            </ion-item>
+          <ion-col class=ion-text-center>
+            <ion-card>
+              <ion-item>
+                <ion-label>Nama:</ion-label>
+                <ion-input [(ngModel)]="nama" placeholder="{{nama}}"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label>Jenis Kelamin: </ion-label> <br>
+                <select selected="{{jenisKelamin_dipilih}}" required [(ngModel)]="jenisKelamin_dipilih">
+                  <option value="Pria">Pria</option>
+                  <option value="Wanita">Wanita</option>
+                </select>
+              </ion-item>
+              <ion-item>
+                <ion-label>No. Telepon : </ion-label>
+                <ion-input type="tel" placeholder="{{telepon}}" required [(ngModel)]="telepon"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label>Jenjang Terakhir:</ion-label> <br>
+                <select selected="{{jenjang_dipilih}}" required [(ngModel)]="jenjang_dipilih">
+                  <option value="SMA">SMA</option>
+                  <option value="S1">S1</option>
+                  <option value="S2">S2</option>
+                  <option value="S3">S3</option>
+                </select>
+              </ion-item>
+              <ion-item>
+                <ion-label>Tempat Jenjang Terakhir:</ion-label> <br>
+                <ion-input type="text" placeholder="Masukkan nama tempat pendidikan terakhir" required
+                  [(ngModel)]="tempat_pendidikan"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label>Tanggal Lahir: </ion-label>
+                <ion-datetime [value]="tgl_lahir" (ionChange)="setTanggalLahir($event)" presentation="date">
+                </ion-datetime>
+              </ion-item>
+              <ion-item>
+                <ion-label>Alamat:</ion-label>
+                <ion-input [(ngModel)]="alamat"></ion-input> <br>
+              </ion-item>
+              <ion-item>
+                <ion-label>Provinsi: </ion-label>
+                <ion-input [(ngModel)]="provinsi"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label>Kota: </ion-label>
+                <ion-input [(ngModel)]="kota"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label>Kecamatan: </ion-label>
+                <ion-input [(ngModel)]="kecamatan"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label>Kelurahan: </ion-label>
+                <ion-input [(ngModel)]="kelurahan"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label>Pengalaman Anda: </ion-label> <br>
+                <ion-textarea [(ngModel)]="pengalaman"> </ion-textarea>
+              </ion-item>
 
-            <ion-item class="ion-padding">
-
-              <ion-label position="floating">Alamat Tempat Kursus</ion-label>
-              <ion-input [(ngModel)]="alamat" placeholder="Masukkan alamat anda"></ion-input> <br>
-
-            </ion-item>
-            <ion-item class="ion-padding">
-              <ion-label position="fixed">Provinsi:</ion-label>
-              <select required [(ngModel)]="provinsi" (change)="onShowKotaKab($event)">
-                <option selected="{{provinsi}}" *ngFor="let item of provinsi_list" value="{{item.id}}_{{item.nama}}">
-                  {{item.nama}}</option>
-              </select>
-            </ion-item>
-
-            <ion-item class="ion-padding">
-              <ion-label>Kota: </ion-label>
-              <!-- <ion-input [(ngModel)]="kota"></ion-input> -->
-              <select required [(ngModel)]="kota" (change)="onShowKecamatan($event)">
-                <option *ngFor="let item of kota_list" value="{{item.id}}_{{item.nama}}">{{item.nama}}</option>
-              </select>
-            </ion-item>
-            <ion-item class="ion-padding">
-              <ion-label>Kecamatan: </ion-label>
-              <select required [(ngModel)]="kecamatan" (change)="onShowKelurahan($event)">
-                <option *ngFor="let item of kecamatan_list" value="{{item.id}}_{{item.nama}}">{{item.nama}}</option>
-              </select>
-              <!-- <ion-input [(ngModel)]="kecamatan"  (change)="onSelectKecamatan($event)"></ion-input> -->
-            </ion-item>
-            <ion-item class="ion-padding">
-              <ion-label>Kelurahan: </ion-label>
-              <select required [(ngModel)]="kelurahan">
-                <option *ngFor="let item of kelurahan_list" value="{{item.id}}_{{item.nama}}">{{item.nama}}</option>
-              </select>
-            </ion-item>
-            <!-- <ion-item class="ion-padding">
-              <ion-label position="floating">No. Telepon</ion-label>
-              <ion-input type="tel" placeholder="888-888-8888" required [(ngModel)]="telepon"></ion-input>
-            </ion-item> -->
-            <ion-item class="ion-padding">
-              <ion-label>Pengalaman Anda: </ion-label> <br>
-              <ion-textarea [(ngModel)]="pengalaman"> </ion-textarea>
-            </ion-item>
-            <ion-item class="ion-padding">
               <ion-button (click)="editProfil()">Simpan</ion-button>
-            </ion-item>
-          </ion-col>
 
-          <ion-col style="border: 2px red solid;" class="ion-text-center">
-            <img src="http://localhost:8888/db_ta/{{gambar}}" alt="">
-            <ion-input type="file" (change)="onFileSelected($event)" name="gambar">Unggah Foto Baru
-            </ion-input>
-            <ion-button (click)="editFoto()">Simpan Foto</ion-button>
-
+            </ion-card>
           </ion-col>
-          <ion-col>
-            <ion-item>
-              <h2>Bidang Keahlian</h2>
-              <ion-grid>
-                <ion-row>
-                  <ion-col>
+          <ion-col class="ion-text-center">
+            <ion-card>
+              <img class="foto-profil" src="http://localhost:8888/db_ta/{{gambar}}" alt="">
+              <ion-input type="file" (change)="onFileSelected($event)">Unggah Foto Baru
+              </ion-input>
+              <ion-button (click)="editFoto()">Simpan Foto</ion-button>
+            </ion-card>
+            <br> <br>
+            <ion-card>
+              <a href="http://localhost:8888/db_ta/{{berkas_cv}}">Lihat Dokumen</a>
+              <ion-input text-wrap type="file" (change)="onFileSelected2($event)">Unggah CV Baru
+              </ion-input>
+              <ion-button (click)="editDokumen()">Simpan Dokumen</ion-button>
+            </ion-card>
+          </ion-col>
+          <ion-col class="ion-text-center">
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <ion-card>
+                    <h2>Bidang Keahlian</h2>
                     <ion-list>
                       <ion-item *ngFor="let item of keahlian_list; let i = index" value="{{item.idkeahlian}}">
                         <ion-checkbox [(ngModel)]="keahlianDipilih[i]"></ion-checkbox>
-                        <ion-label>{{item.nama}}</ion-label>
+                        <ion-label text-wrap>{{item.nama}}</ion-label>
                       </ion-item>
                     </ion-list>
-                  </ion-col>
+                    <ion-item class="ion-padding">
+                      <ion-button (click)="editKeahlian()">Edit Keahlian</ion-button>
+                    </ion-item>
+                  </ion-card>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-col>
+          <ion-col class="ion-text-center">
+            <ion-card >
+              <ion-title>Ganti Kata Sandi</ion-title>
+              <ion-item >
+                <ion-label position="floating">Kata Sandi Baru: <br></ion-label>
+                <ion-input placeholder="Masukkan kata sandi"  [(ngModel)]="pass_baru"></ion-input>
+              </ion-item>
+              <ion-button (click)="editPassword()">Update</ion-button>
 
-                </ion-row>
-              </ion-grid>
-            </ion-item>
-            <ion-item >
-              <ion-button (click)="editKeahlian()">Edit Keahlian</ion-button>
-            </ion-item>
+            </ion-card>
+          
           </ion-col>
         </ion-row>
       </ion-grid>
-
     </ion-content>
-
   </ion-router-outlet>
 </ion-app>

@@ -13,6 +13,7 @@ email=''
 idguru:number
 list_lamaran_diterima:[]
 list_riwayat_absen:[]
+idlowongan:number=0
 
   constructor(private gp:GuruPrivatService,private authService: AuthService,
     private alertController: AlertController) { 
@@ -23,11 +24,12 @@ list_riwayat_absen:[]
   @ViewChild('popover') popover;
 
   isOpen = false;
+  pesan=''
 
-  presentPopover(e: Event) {
-    this.popover.event = e;
-    this.isOpen = true;
-  }
+  // presentPopover(e: Event) {
+  //   this.popover.event = e;
+  //   this.isOpen = true;
+  // }
 
   listRiwayatAbsen(){
     // this.gp.listRiwayatAbsenService().subscribe(
@@ -54,19 +56,19 @@ list_riwayat_absen:[]
             (data) => {
               if (data['result'] == 'success') {
                 this.list_lamaran_diterima = data['data']
+                // this.idlowongan=data['data']
               }
             }
           )
+        }
+        else{
+          this.list_lamaran_diterima = data['data']
+          console.log('er '+data['result'])
+          // this.list_lamaran_diterima = data['result']['data']
 
-          // Get List Riwayat Absen
-          this.gp.listRiwayatAbsenService().subscribe(
-            (data)=>{
-              if (data['result'] == 'success') {
-                this.list_riwayat_absen = data['data']
-              }
-      
-            }
-          )
+          // this.pesan="Riwayat tidak ditemukan"
+          // console.log("tressd: "+ data['result'])
+
         }
       }
     )

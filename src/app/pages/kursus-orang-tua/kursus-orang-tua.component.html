@@ -73,9 +73,13 @@
               <ion-col>
                 <ion-item>
                   <!-- routerLink='/buka-absen/{{item.idbuka_lowongan}}' -->
-                  <ion-label>
-                    <a href="bayar-orang-tua/{{item.idbuka_lowongan}}/{{item.idguru_privat}}/{{item.idorang_tua}}">Bayar</a>
+                  <ion-label  *ngIf="item.status_privat == 'Berlangsung'">
+                    <a  href="bayar-orang-tua/{{item.idbuka_lowongan}}/{{item.idguru_privat}}/{{item.idorang_tua}}">Bayar</a>
                   </ion-label>
+                  <ion-label  *ngIf="item.status_privat == 'Selesai'">
+                    Bayar
+                  </ion-label>
+
 
                 </ion-item>
               </ion-col>

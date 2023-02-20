@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { IonSlides } from '@ionic/angular';
 import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
@@ -8,6 +9,7 @@ import { AuthService } from '../../services/auth/auth.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
+  @ViewChild(IonSlides) slides: IonSlides;
 
   email: string
   password: string
@@ -27,6 +29,13 @@ export class LoginComponent {
     } else {
       alert('Email atau password salah')
     }
+  }
+
+  next(){
+    this.slides.slideNext();
+  }
+  prev(){
+    this.slides.slidePrev();
   }
 
 }
