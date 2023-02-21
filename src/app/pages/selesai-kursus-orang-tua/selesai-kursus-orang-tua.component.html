@@ -18,38 +18,37 @@
       </ion-toolbar>
     </ion-header>
     <ion-content class="ion-padding">
-      <ion-item >
-        <ion-grid>
-          <ion-col>
-            <ion-row>
-              <ion-label class="ion-padding">Penilaian kepada guru privat: </ion-label>
-
-            </ion-row>
-            <ion-row>
-              <ionic-rating-component class="ion-padding-start" [(ngModel)]="valRate"></ionic-rating-component>
-              <ion-label *ngIf="valRate== null" class="ion-padding-start"></ion-label>
-              <ion-label *ngIf="valRate== 1" class="ion-padding-start">Sangat Buruk</ion-label>
-              <ion-label *ngIf="valRate== 2" class="ion-padding-start">Buruk</ion-label>
-              <ion-label *ngIf="valRate== 3" class="ion-padding-start">Biasa</ion-label>
-              <ion-label *ngIf="valRate== 4" class="ion-padding-start">Baik</ion-label>
-              <ion-label *ngIf="valRate== 5" class="ion-padding-start">Sangat Baik</ion-label>
-
-
-            </ion-row>
-
-          </ion-col>
-        </ion-grid>
-        <!-- <ion-label>Rate: {{valRate}}</ion-label>  -->
-      </ion-item>
-      <ion-item class="ion-padding">
-        <ion-label>Ulasan: </ion-label>
-        <ion-input [(ngModel)]="ulasan" placeholder="Berikan ulasan/komentar Anda."></ion-input>
-      </ion-item>
-      <ion-item class="ion-padding">
-        <ion-button (click)="kirimUlasan()">
-          Akhiri Kursus
-        </ion-button>
-      </ion-item>
+      <ion-card>
+        <ion-item >
+          <ion-grid>
+            <ion-col>
+              <ion-row>
+                <ion-label class="ion-padding">Penilaian kepada guru privat: </ion-label>
+              </ion-row>
+              <ion-row>
+                <ionic-rating-component class="ion-padding-start" [(ngModel)]="valRate"></ionic-rating-component>
+                <ion-label *ngIf="valRate== null" class="ion-padding-start"></ion-label>
+                <ion-label *ngIf="valRate== 1" class="ion-padding-start">Sangat Buruk</ion-label>
+                <ion-label *ngIf="valRate== 2" class="ion-padding-start">Buruk</ion-label>
+                <ion-label *ngIf="valRate== 3" class="ion-padding-start">Biasa</ion-label>
+                <ion-label *ngIf="valRate== 4" class="ion-padding-start">Baik</ion-label>
+                <ion-label *ngIf="valRate== 5" class="ion-padding-start">Sangat Baik</ion-label>
+              </ion-row>
+            </ion-col>
+          </ion-grid>
+          <!-- <ion-label>Rate: {{valRate}}</ion-label>  -->
+        </ion-item>
+        <ion-item class="ion-padding">
+          <ion-label>Ulasan: </ion-label>
+          <ion-input [(ngModel)]="ulasan" placeholder="Berikan ulasan/komentar Anda."></ion-input>
+        </ion-item>
+        <ion-item class="ion-padding">
+          <ion-button (click)="kirimUlasan()">
+            Akhiri Kursus
+          </ion-button>
+        </ion-item>
+      </ion-card>
+      
     </ion-content>
   </ion-router-outlet>
 </ion-app>

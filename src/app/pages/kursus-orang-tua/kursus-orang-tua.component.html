@@ -25,15 +25,12 @@
         <ion-row>
 
           <ion-col><b>Nama Kursus Privat</b></ion-col>
-          <ion-col><b></b></ion-col>
-          <ion-col><b></b></ion-col>
-          <ion-col><b></b></ion-col>
-          <ion-col><b></b></ion-col>
-          <ion-col><b></b></ion-col>
-          <ion-col><b></b></ion-col>
-
-
-
+          <ion-col><b>Kontrak</b></ion-col>
+          <ion-col><b>Absen</b></ion-col>
+          <ion-col><b>Unggah Pembayaran</b></ion-col>
+          <ion-col><b>Akhiri kontrak</b></ion-col>
+          <!-- <ion-col><b></b></ion-col>
+          <ion-col><b></b></ion-col> -->
 
         </ion-row>
       </ion-grid>
@@ -45,7 +42,7 @@
 
               <ion-col>
                 <ion-item>
-                  <ion-label> {{item.judul_lowongan}}
+                  <ion-label text-wrap> {{item.judul_lowongan}}
                   </ion-label>
                 </ion-item>
               </ion-col>
@@ -64,9 +61,6 @@
                   <ion-label>
                     <a href="absen-orang-tua/{{item.idbuka_lowongan}}">Absen</a>
                   </ion-label>
-
-
-
                 </ion-item>
               </ion-col>
 

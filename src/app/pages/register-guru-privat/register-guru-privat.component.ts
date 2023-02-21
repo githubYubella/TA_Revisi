@@ -91,17 +91,14 @@ export class RegisterGuruPrivatComponent implements OnInit {
     this.tgl_lahir = format(new Date(event.target.value), "yyyy-MM-dd")
     console.log('tgl_mulai' + this.tgl_lahir)
   }
-  checked
+  
   category() {
 
     this.tk.listKeahlianService().subscribe(
       (data) => {
         if (data['result'] == 'success') {
           this.keahlian_list = data['data']
-          this.checked = false
-
         }
-
       }
     )
   }
@@ -168,7 +165,6 @@ export class RegisterGuruPrivatComponent implements OnInit {
     })
     if (this.file == null || this.image==null) {
       alert("Harap upload file ")
-      // this.file = ""
     }
     else {
       uploadData.append('email', this.email);
@@ -202,7 +198,7 @@ export class RegisterGuruPrivatComponent implements OnInit {
   
         }
         else {
-          alert("Register Error : " + resp['message'])
+          alert("Register Error : Proses gagal. Masukkan email yang lain." )
         }
       })
     }

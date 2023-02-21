@@ -146,7 +146,7 @@ export class DetailLowonganComponent implements OnInit {
 
   async ngOnInit() {
     this.detailLowongan()
-  console.log(this.at.snapshot.params['id']+ 'ID LOWONGAN')
+  // console.log(this.at.snapshot.params['id']+ 'ID LOWONGAN')
    
   }
 

@@ -147,14 +147,6 @@ export class RegisterTempatKursusComponent {
       }
     )
 
-    // console.log( this.location.lat+ ", pp" + this.location.lng)
-    // console.log( this.input_x + ", pp" 00+ this.input_y)
-
-
-    // console.log(this.checkBoxterpilih)
-
-
-    // console.log( this.input_x+"," +   this.input_y )
     if (this.file == null || this.image == null) {
       alert("Harap upload file ")
       // this.file = ""
@@ -194,7 +186,8 @@ export class RegisterTempatKursusComponent {
 
         }
         else {
-          alert("Register Error : " + resp['message'])
+          alert("Register Error : Proses gagal. Masukkan email yang lain." )
+
         }
 
       })

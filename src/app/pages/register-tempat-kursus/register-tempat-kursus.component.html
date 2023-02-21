@@ -14,8 +14,8 @@
     <ion-card>
       <!-- <h1>Register Tempat Kursus</h1> -->
       <ion-item class="ion-padding">
-        <ion-label position="floating">Email</ion-label>
-        <ion-input required [(ngModel)]="email" placeholder="contoh@gmail.com"></ion-input>
+        <ion-label position="floating">Email/username</ion-label>
+        <ion-input required [(ngModel)]="email" placeholder="contoh@gmail.com/contoh123"></ion-input>
       </ion-item>
       <ion-item class="ion-padding">
         <ion-label position="floating">Kata Sandi</ion-label>
@@ -61,10 +61,7 @@
         </select>
         <!-- <ion-input [(ngModel)]="kelurahan"  (change)="onSelectKelurahan($event)"></ion-input> -->
       </ion-item>
-      <ion-item class="ion-padding">
-        <ion-label position="floating">No. Telepon</ion-label>
-        <ion-input type="tel" placeholder="888-888-8888" required [(ngModel)]="telepon"></ion-input>
-      </ion-item>
+    
       <ion-item class="ion-padding">
         <!-- <ion-label>Bidang Keahlian</ion-label> -->
         <ion-grid>

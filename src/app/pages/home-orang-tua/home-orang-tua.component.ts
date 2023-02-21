@@ -151,6 +151,8 @@ export class HomeOrangTuaComponent implements OnInit {
   async logout() {
     await this.authService.logout()
     this.router.navigateByUrl('login')
+    window.location.reload()
+
   }
 
 }

@@ -165,7 +165,7 @@ export class RegisterOrangTuaComponent implements OnInit {
 
         }
         else {
-          alert("Register Error : " + resp['message'])
+          alert("Register Error : Proses gagal. Masukkan email yang lain." )
         }
       })
       ///

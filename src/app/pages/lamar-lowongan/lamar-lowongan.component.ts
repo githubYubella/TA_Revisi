@@ -76,7 +76,7 @@ export class LamarLowonganComponent implements OnInit {
 
         }
         else {
-          alert("Register Error : " + resp['message'])
+          alert(resp['message'])
         }
       })
     }

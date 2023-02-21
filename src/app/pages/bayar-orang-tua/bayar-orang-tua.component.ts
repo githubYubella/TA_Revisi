@@ -81,9 +81,6 @@ export class BayarOrangTuaComponent implements OnInit {
           //       this.idtransaksi = data['idtransaksi']
           //       // console.log('idtransaksi'+this.idtransaksi)
           //       // console.log('bersih '+this.bayar_bersih+". kode"+this.kode_bayar+". totalBYR= "+this.total_bayar)
-
-
-
           //     }
           //   }
           // )
@@ -98,31 +95,12 @@ export class BayarOrangTuaComponent implements OnInit {
                 this.tgl_tagihan = data['tgl_tagihan']
                 this.idtransaksi = data['idtransaksi']
                 this.idadmin = data['idadmin']
-                
-
-                // console.log('idadm'+this.idadmin)
-                // console.log('bersih '+this.bayar_bersih+". kode"+this.kode_bayar+". totalBYR= "+this.total_bayar)
-
-
 
               }
             }
           )
       }
     )
-
-    // get Data Admin
-    // this.ot.listAdminService().subscribe(
-    //   (data)=>{
-    //     if (data['result'] == 'success') {
-    //       this.list_admin=data['data']
-    //     }
-    //   }
-    // )
-
-
-
-
 
   }
 
@@ -154,8 +132,6 @@ export class BayarOrangTuaComponent implements OnInit {
         if (data['result'] == 'success') {
           alert("Bukti Pembayaran telah dikirim.")
           this.router.navigate(['/'])
-
-
         }
         else {
           alert("Register Error : " + ['message'])
@@ -191,17 +167,14 @@ export class BayarOrangTuaComponent implements OnInit {
     uploadData.append('idadmin', this.idadmin.toString());
     uploadData.append('idOrtu', this.idOrtu.toString());
     uploadData.append('idGuru', this.idGuru.toString());
-    // uploadData.append('rating', this.valRate.toString());
-    // uploadData.append('komentar',this.ulasan);
     uploadData.append('tgl_tagihan',this.tgl_tagihan);
     uploadData.append('idLowongan', idLowongan.toString());
-    // console.log('kirim'+this.kode_bayar)
+
     this.ot.kirimBuktiBerikutnyaService(uploadData).subscribe(
       (data) => {
         if (data['result'] == 'success') {
           alert("Bukti Pembayaran telah dikirim.")
           this.router.navigate(['/'])
-
         }
         else {
           alert("Register Error : " + ['message'])
@@ -217,10 +190,8 @@ export class BayarOrangTuaComponent implements OnInit {
 
   async ngOnInit() {
     this.getDetailBayar()
-
     var today = new Date();
     var nextdate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 10);
-
     console.log("tgl bayar" + format(nextdate, "yyyy-MM-dd"))
 
   }

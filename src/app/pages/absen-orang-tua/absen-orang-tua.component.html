@@ -47,45 +47,25 @@
               </ion-col>
               <ion-col>
                 <ion-item>
-                  <!-- routerLink='/buka-absen/{{item.idbuka_lowongan}}' -->
-                  <ion-label>
+                  <ion-label text-wrap>
                     {{item.materi}}
-                    <!-- <a href="absen-orang-tua/{{item.idbuka_lowongan}}">Absen</a> -->
                   </ion-label>
-                
-                  
-
                 </ion-item>
               </ion-col>
-
               <ion-col>
                 <ion-item>
-                  <!-- routerLink='/buka-absen/{{item.idbuka_lowongan}}' -->
-                  <!-- <ion-label>
-                    <a href="buka-absen-guru/{{item.idbuka_lowongan}}">Bayar</a>
-                  </ion-label> -->
-
                   <div *ngIf="item.status=='buka'" >
                   <ion-button (click)="masuk()">Masuk</ion-button>
-
                   </div>
                   <div  *ngIf="item.status=='tutup'">
                     <ion-button disabled="true" >Masuk</ion-button>
-
                   </div>
-
-
-
                 </ion-item>
               </ion-col>
             </ion-row>
           </ion-grid>
         </ion-card>
-
-
       </ion-list>
-
-
     </ion-content>
 
   </ion-router-outlet>

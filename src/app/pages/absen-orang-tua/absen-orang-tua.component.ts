@@ -34,7 +34,9 @@ export class AbsenOrangTuaComponent implements OnInit {
             (data) => {
               if (data['result'] == 'success') {
                 alert('Absen Berhasil')
-                this.router.navigate(['/'])
+                // this.router.navigate(['/'])
+                window.location.reload()
+
 
               } else {
                 alert('Absen gagal')

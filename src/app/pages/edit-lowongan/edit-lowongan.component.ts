@@ -137,7 +137,7 @@ export class EditLowonganComponent implements OnInit {
           lng: this.location.lng,
         },
 
-        zoom: 17,
+        zoom: 8,
       },
     })
 
