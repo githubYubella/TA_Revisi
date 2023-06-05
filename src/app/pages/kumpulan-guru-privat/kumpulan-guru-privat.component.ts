@@ -22,7 +22,6 @@ export class KumpulanGuruPrivatComponent implements OnInit {
     this.search_bidang = search_value
     // console.log(this.search_bidang)
     this.listGuru()
-
     // this.listKursus()
   }
 

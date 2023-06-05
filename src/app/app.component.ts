@@ -130,67 +130,13 @@ export class AppComponent {
   }
 
   async posisiSekarang() {
-    this.geo.getCurrentPosition().then(async (resp) => {
-      console.log(resp.coords.latitude, ',', resp.coords.longitude)
-      this.loc_x = resp.coords.latitude
-      this.loc_y = resp.coords.longitude
-      // this.loc_x = -7.8272244,
-      //   this.loc_y = 112.030143
-    }
-    )
+    // this.geo.getCurrentPosition().then(async (resp) => {
+    //   console.log(resp.coords.latitude, ',', resp.coords.longitude)
+    //   this.loc_x = resp.coords.latitude
+    //   this.loc_y = resp.coords.longitude
+    //   // this.loc_x = -7.8272244,
+    //   //   this.loc_y = 112.030143
+    // }
+    // )
   }
-
-  // @ViewChild('map') map: ElementRef<HTMLElement>;
-  // async now() {
-  //   this.geo.getCurrentPosition().then(async (resp) => {
-  //     console.log(resp.coords.latitude, ',', resp.coords.longitude)
-  //     this.loc_x=resp.coords.latitude
-  //     this.loc_y= resp.coords.longitude
-
-  //     this.newMapw = await GoogleMap.create({
-  //       id: 'capacitor-google-maps',
-  //       element: this.map.nativeElement ,
-  //       apiKey: environment.key,
-  //       config: {
-  //         center: {
-  //           lat: resp.coords.latitude,
-  //           lng: resp.coords.longitude,
-  //         },
-
-  //         zoom: 17,
-  //       },
-
-  //     });
-
-  //     // this.addMarker(resp.coords.latitude,resp.coords.longitude)
-  //     const marker = this.newMapw.addMarker({
-  //       coordinate: {
-  //         lat: resp.coords.latitude,
-  //         lng: resp.coords.longitude
-  //       },
-  //       draggable: true
-
-
-  //     })
-  //     // !JIKA ZOOM DI SET CAMARA ADA VALUENYA, MAKA FOKUS ZOOM HANYA DISINI!
-  //     await this.newMapw.setCamera({
-  //       coordinate: {
-  //         lat: resp.coords.latitude,
-  //         lng: resp.coords.longitude
-
-  //       },
-  //       zoom: 14,
-  //     })
-  //   })
-
-  // }
-
-  // ngAfterViewInit() {
-  //   // this.createMap()
-  //   // console.log("tes "+this.map)
-  //   "tes "+this.now()
-  //   // this.category()
-  //   // this.tujuan()
-  // }
-
 }

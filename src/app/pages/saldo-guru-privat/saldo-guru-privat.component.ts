@@ -20,15 +20,6 @@ idguru:number
         if (data['result'] == 'success') {
           this.saldo = data['data'][0].dompet
           this.idguru = data['data'][0].idguru_privat
-
-          
-
-
-
-
-
-
-
         }
       }
     )

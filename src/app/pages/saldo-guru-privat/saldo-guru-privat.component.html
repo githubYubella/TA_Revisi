@@ -10,8 +10,6 @@
     </ion-toolbar>
   </ion-header>
 
-
-
   <ion-router-outlet id="main-content">
     <ion-header>
       <ion-toolbar>
@@ -22,16 +20,13 @@
     </ion-header>
     <ion-content>
       <ion-card>
-        
         <ion-item >
           <h1>Saldo: {{saldo}}</h1>
         </ion-item>
-
         <ion-item>
           <ion-button routerLink="/penarikan-dana-guru/{{idguru}}">Penarikan Dana</ion-button>
         </ion-item>
       </ion-card>
     </ion-content>
-
   </ion-router-outlet>
 </ion-app>

@@ -8,6 +8,7 @@ import { TempatKursusService } from 'src/app/services/tempat-kursus/tempat-kursu
 import { environment } from 'src/environments/environment';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { Storage } from '@ionic/storage-angular';
+import { AlertController, NavController } from '@ionic/angular';
 @Component({
   selector: 'app-home-orang-tua',
   templateUrl: './home-orang-tua.component.html',
@@ -38,11 +39,17 @@ export class HomeOrangTuaComponent implements OnInit {
     private tk: TempatKursusService,
     private authService: AuthService,
     private router: Router,
-    private ot: OrangTuaService
+    private ot: OrangTuaService,
+    private alertController: AlertController,
+    private navController: NavController
   ) {
     this.email = authService.email
     this.role = authService.role
     this.email_profil = authService.email
+  }
+
+  Beranda() {
+    window.location.reload()
   }
 
   searchbar(ev: any) {
@@ -66,8 +73,6 @@ export class HomeOrangTuaComponent implements OnInit {
         }
       }
     )
-
-
   }
 
   async lokasi() {
@@ -139,6 +144,7 @@ export class HomeOrangTuaComponent implements OnInit {
       }
     )
   }
+
 
   async ngOnInit() {
     // this.email = await this.storage.get('email_save')

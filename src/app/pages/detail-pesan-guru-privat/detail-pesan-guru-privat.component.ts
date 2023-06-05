@@ -30,28 +30,25 @@ export class DetailPesanGuruPrivatComponent implements OnInit {
   }
 
   kirim() {
-    // // this.sc.emit('kirim',{text:this.pesan})
-    // // this.pesan=''
+ 
     this.tglKirim = format(new Date(), "yyyy-MM-dd")
-    // this.pesans.push(this.nama_saya+": " + this.pesan)
-    // // + " " +
-    // //   new Date().toTimeString().split("GMT")[0].trim()
-    // // )
-    // this.pesan = ''
-
-
-    this.ot.chatKeGuruService(this.nama_saya + ": " + this.pesan, this.tglKirim, this.idKepada
-      , this.idguru).subscribe(
-        (data) => {
-          if (data['result'] == 'success') {
-            // alert("Pesan Terkirim")
-            this.pesans.push(this.nama_saya + ": " + this.pesan)
-            this.pesan = ''
-
-
+   
+    if (this.pesan == "") {
+      alert('Tuliskan pesan Anda')
+    } else {
+      this.ot.chatKeGuruService(this.nama_saya + ": " + this.pesan, this.tglKirim, this.idKepada
+        , this.idguru).subscribe(
+          (data) => {
+            if (data['result'] == 'success') {
+              this.pesans.push(this.nama_saya + ": " + this.pesan)
+              this.pesan = ''
+            }
           }
-        }
-      )
+        )
+    }
+
+
+
   }
 
 

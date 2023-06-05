@@ -194,18 +194,7 @@ export class PengaturanGuruPrivatComponent implements OnInit {
   }
 
   async editProfil() {
-
-    // const splitProv = this.provinsi.split('_')
-    // const splitKota = this.kota.split('_')
-    // const splitKec = this.kecamatan.split('_')
-    // const splitKel = this.kelurahan.split('_')
-    // this.provinsi = splitProv[1]
-    // this.kota = splitKota[1]
-    // this.kecamatan = splitKec[1]
-    // this.kelurahan = splitKel[1]
     this.alamat_lengkap = this.alamat + ", " + this.kota + ", " + this.kecamatan + ", " + this.kelurahan + ", " + this.provinsi
-
-
     const op: ForwardOptions = {
       'addressString': this.alamat_lengkap,
       'apiKey': environment.key,
@@ -288,26 +277,20 @@ export class PengaturanGuruPrivatComponent implements OnInit {
     uploadData.append('image', this.image, this.image.name);
     uploadData.append('email', this.email);
     this.gp.editFotoService(uploadData).subscribe((resp) => {
-
       const parse = JSON.parse(JSON.stringify(resp))
-
       console.log('resp: ' + parse.result);
       if (resp['result'] == 'sukses') {
         alert("Foto berhasl di ubah")
-        // this.router.navigate(['/home'])
         window.location.reload()
       }
       else {
         alert("Update Error : " + resp)
       }
     })
-
   }
 
   editKeahlian() {
-
     const uploadData = new FormData();
-
     uploadData.append('id', this.idguru.toString());
     this.keahlianDipilih.forEach((cb, i) => {
       console.log(this.keahlian_list[i].nama + '(' + this.keahlian_list[i].idkeahlian + '): ' + cb)
@@ -315,22 +298,17 @@ export class PengaturanGuruPrivatComponent implements OnInit {
         uploadData.append('idkeahlian[]', this.keahlian_list[i].idkeahlian);
       }
     })
-    // uploadData.append('idkeahlian[]', this.email);
     this.gp.editKeahlianService(uploadData).subscribe((resp) => {
-
       const parse = JSON.parse(JSON.stringify(resp))
-
       console.log('resp: ' + parse.result);
       if (resp['result'] == 'sukses') {
         alert("kategori berhasl di ubah")
-        // this.router.navigate(['/home'])
         window.location.reload()
       }
       else {
         alert("Update Error : " + resp)
       }
     })
-
   }
 
   editPassword(){

@@ -12,14 +12,14 @@
   </ion-header>
   <ion-content>
     <ion-card>
-      <!-- <h1>Register Orang Tua</h1> -->
       <ion-item class="ion-padding">
         <ion-label position="floating">Email/Username</ion-label>
-        <ion-input required [(ngModel)]="email" placeholder="contoh: cermatindra@cermat.com / cermatindra123"></ion-input>
+        <ion-input required [(ngModel)]="email"
+          placeholder="contoh: cermatindra@cermat.com / cermatindra123"></ion-input>
       </ion-item>
       <ion-item class="ion-padding">
         <ion-label position="floating">Kata Sandi</ion-label>
-        <ion-input required type="password" [(ngModel)]="password" ></ion-input>
+        <ion-input required type="password" [(ngModel)]="password"></ion-input>
       </ion-item>
       <ion-item class="ion-padding">
         <ion-label position="floating">Nama Orang Tua</ion-label>
@@ -27,9 +27,8 @@
       </ion-item>
       <ion-item class="ion-padding">
         <ion-label>Jenis Kelamin:</ion-label> <br>
-        <select  required [(ngModel)]="jenisKelamin_dipilih">
-          <option  hidden >--Pilih jenis kelamin--</option>
-          
+        <select required [(ngModel)]="jenisKelamin_dipilih">
+          <option hidden>--Pilih jenis kelamin--</option>
           <option value="Pria">Pria</option>
           <option value="Wanita">Wanita</option>
         </select>
@@ -40,44 +39,27 @@
       </ion-item>
       <ion-item class="ion-padding">
         <ion-label position="floating">Nama Siswa</ion-label>
-        <ion-input required [(ngModel)]="nama_siswa" placeholder="contoh: cermatindra@cermat.com"></ion-input>
+        <ion-input required [(ngModel)]="nama_siswa" placeholder="contoh: Susanti"></ion-input>
       </ion-item>
       <ion-item class="ion-padding">
         <ion-label position="floating">Alamat Orang tua:</ion-label>
-        <ion-input [(ngModel)]="alamat" placeholder="Masukkan alamat anda" 
-        placeholder="contoh: Jl. Semangka No.22"></ion-input> <br>
+        <ion-input [(ngModel)]="alamat" placeholder="Masukkan alamat anda. contoh: Jl. Semangka No.22"></ion-input> <br>
       </ion-item>
       <ion-item class="ion-padding">
-        <ion-label position="fixed">Provinsi:</ion-label>
-        <select required [(ngModel)]="provinsi" (change)="onShowKotaKab($event)">
-          <option  hidden >--Pilih provinsi--</option>
-          
-          <option *ngFor="let item of provinsi_list" value="{{item.id}}_{{item.nama}}">{{item.nama}}</option>
-        </select>
-      </ion-item>
-
-      <ion-item class="ion-padding">
-        <ion-label>Kota: </ion-label>
-        <!-- <ion-input [(ngModel)]="kota"></ion-input> -->
-        <select required [(ngModel)]="kota" (change)="onShowKecamatan($event)">
-          
-          
-          <option *ngFor="let item of kota_list" value="{{item.id}}_{{item.nama}}">{{item.nama}}</option>
-        </select>
+        <ion-label position="floating">Provinsi:</ion-label>
+        <ion-input [(ngModel)]="provinsi" placeholder="Masukkan Provinsi. contoh: Jawa Barat" ></ion-input>
       </ion-item>
       <ion-item class="ion-padding">
-        <ion-label>Kecamatan: </ion-label>
-        <select required [(ngModel)]="kecamatan" (change)="onShowKelurahan($event)">
-          <option *ngFor="let item of kecamatan_list" value="{{item.id}}_{{item.nama}}">{{item.nama}}</option>
-        </select>
-        <!-- <ion-input [(ngModel)]="kecamatan"  (change)="onSelectKecamatan($event)"></ion-input> -->
+        <ion-label position="floating">Kota: </ion-label>
+        <ion-input [(ngModel)]="kota" placeholder="Masukkan Kota. contoh: Kota Jakarta"></ion-input>
       </ion-item>
       <ion-item class="ion-padding">
-        <ion-label>Kelurahan: </ion-label>
-        <select required [(ngModel)]="kelurahan">
-          <option *ngFor="let item of kelurahan_list" value="{{item.id}}_{{item.nama}}">{{item.nama}}</option>
-        </select>
-        <!-- <ion-input [(ngModel)]="kelurahan"  (change)="onSelectKelurahan($event)"></ion-input> -->
+        <ion-label position="floating">Kecamatan: </ion-label>
+        <ion-input [(ngModel)]="kecamatan" placeholder="Masukkan Kecamatan.contoh: Kecamatan kelapa Gading"></ion-input>
+      </ion-item>
+      <ion-item class="ion-padding">
+        <ion-label position="floating">Kelurahan: </ion-label>
+        <ion-input [(ngModel)]="kelurahan" placeholder="Masukkan kelurahan.contoh: Kelapa Gading Timur"></ion-input>
       </ion-item>
       <div class="ion-padding" *ngIf="image == null">
         <ion-label class="ion-padding" color="danger">Upload berkas foto/gambar Anda</ion-label>

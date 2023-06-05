@@ -21,19 +21,15 @@ export class ListPesanOrtuComponent implements OnInit {
       (data) => {
         if (data['result'] == 'success') {
           this.listChat = data['data']
-
           // list pesan ortu dengan guru privat
           this.ot.listPesanOrtuGuruService(this.idortu).subscribe(
             (data) => {
               this.listChatGuru = data['data']
-
             }
           )
-
         }
       }
     )
-
   }
 
   listGuru() {

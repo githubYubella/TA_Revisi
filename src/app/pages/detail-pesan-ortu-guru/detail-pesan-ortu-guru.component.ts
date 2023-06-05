@@ -27,27 +27,19 @@ export class DetailPesanOrtuGuruComponent implements OnInit {
   }
 
   kirim() {
-    // // this.sc.emit('kirim',{text:this.pesan})
-    // // this.pesan=''
     this.tglKirim = format(new Date(), "yyyy-MM-dd")
-    // this.pesans.push("Saya: " + this.pesan)
-    // // + " " +
-    // //   new Date().toTimeString().split("GMT")[0].trim()
-    // // )
-    // this.pesan = ''
-
-
-    this.ot.chatKeGuruService(this.nama_saya + ": " + this.pesan, this.tglKirim, this.idortu, this.idKepada).subscribe(
-      (data) => {
-        if (data['result'] == 'success') {
-          // alert("Pesan Terkirim")
-          this.pesans.push(this.nama_saya + ": " + this.pesan)
-          this.pesan = ''
-
-
+    if (this.pesan == "") {
+      alert('Tuliskan pesan Anda')
+    } else {
+      this.ot.chatKeGuruService(this.nama_saya + ": " + this.pesan, this.tglKirim, this.idortu, this.idKepada).subscribe(
+        (data) => {
+          if (data['result'] == 'success') {
+            this.pesans.push(this.nama_saya + ": " + this.pesan)
+            this.pesan = ''
+          }
         }
-      }
-    )
+      )
+    }
   }
 
   listPesan() {
@@ -58,7 +50,6 @@ export class DetailPesanOrtuGuruComponent implements OnInit {
         if (data['result'] == 'success') {
           this.idortu = data['data'][0].idorang_tua
           this.nama_saya = data['data'][0].nama_orang_tua
-
           // console.log('id'+this.id)
 
           // Get list kursus privat
@@ -76,7 +67,7 @@ export class DetailPesanOrtuGuruComponent implements OnInit {
             (data) => {
               if (data['result'] == 'success') {
                 console.log(data['result'] + ' status')
-              } 
+              }
             }
           )
 
@@ -85,22 +76,13 @@ export class DetailPesanOrtuGuruComponent implements OnInit {
             (data) => {
               if (data['result'] = 'success') {
                 this.nama_kepada = data['data'][0].nama_guru_privat//o
-                
-      
-      
-      
-      
-      
+
               }
             }
           )
-
-
         }
-        
       }
     )
-
   }
 
   onBackClick() {

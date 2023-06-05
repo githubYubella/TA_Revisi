@@ -27,9 +27,7 @@ export class PendaftarLowonganComponent implements OnInit {
   getPendaftar() {
     this.idLowongan = this.at.snapshot.params['id']
     this.tgl_sekarang =new Date();
-    // format( Date.now(), "yyyy-MM-dd")
-
-
+    
     this.ot.listPendaftarService(this.idLowongan).subscribe(
       (data) => {
         if (data['result'] == 'success') {
@@ -39,18 +37,11 @@ export class PendaftarLowonganComponent implements OnInit {
             this.tgl_lahir = val.tgl_lahir
             this.tahun = new Date(this.tgl_lahir).getFullYear()
             this.tahunSkg = new Date(this.tgl_sekarang).getFullYear()
-
             this.usia = this.tahunSkg - this.tahun
-
             console.log('umur tahun' + this.usia, i)
             data['data'][i].umur = this.usia
-
-
           });
         }
-
-
-
       }
     )
   }

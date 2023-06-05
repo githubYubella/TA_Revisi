@@ -16,7 +16,7 @@ export class LamarLowonganComponent implements OnInit {
   email = ''
   idguru: number
   biaya: number //
-  biaya_tawar=0
+  biaya_tawar = 0
 
   constructor(public at: ActivatedRoute, private gp: GuruPrivatService,
     private authService: AuthService, private router: Router) {
@@ -47,13 +47,8 @@ export class LamarLowonganComponent implements OnInit {
   }
 
   kirimLamaran() {
-
-    // if(this.file == null ){
-    //   alert('upload berkas')
-    // }
     var idLowongan: number = this.at.snapshot.params['id']
     this.tanggal_daftar = format(Date.now(), "yyyy-MM-dd")
-
     const uploadData = new FormData();
     uploadData.append('idlowongan', idLowongan.toString());
     uploadData.append('idguru', this.idguru.toString());
@@ -64,30 +59,27 @@ export class LamarLowonganComponent implements OnInit {
 
     if (this.file == null) {
       alert("Harap upload file ")
-      // this.file = ""
-    } else {
+    } else if (this.note == "") {
+      alert('Harap lengkapi data')
+    }
+    else {
       this.gp.kirimLamaranService(uploadData).subscribe((resp) => {
         const parse = JSON.parse(JSON.stringify(resp))
         console.log(resp);
         if (parse['result'] == 'success') {
           alert("Lamaran berhasil dikirim")
           this.router.navigate(['/'])
-
-
         }
         else {
           alert(resp['message'])
         }
       })
     }
-
-
   }
 
   onFileSelected(event) {
     this.file = event.target.files[0]
     console.log(this.file)
-
   }
 
   async ngOnInit() {
@@ -95,5 +87,4 @@ export class LamarLowonganComponent implements OnInit {
     this.detailLowongan()
     console.log('tgl' + this.idguru)
   }
-
 }

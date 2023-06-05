@@ -94,7 +94,7 @@ export class DetailPendaftarComponent implements OnInit {
           var tahunSkg = new Date(tgl_sekarang).getFullYear()
           this.usia = tahunSkg - tahun_lahir//o
 
-          this.telepon = data['data'][0].telepon//k
+          this.telepon = data['data'][0].no_telepon//k
           this.biaya_tawar = data['data'][0].biaya_tawar//k
 
           // get History
@@ -115,11 +115,6 @@ export class DetailPendaftarComponent implements OnInit {
               }
             }
           )
-
-
-
-
-
         }
       }
     )

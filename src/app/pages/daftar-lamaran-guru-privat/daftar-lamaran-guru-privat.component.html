@@ -20,7 +20,6 @@
       </ion-toolbar>
     </ion-header>
     <ion-content class="ion-padding">
-      <!-- *ngFor="let item of list_postingan" -->
       <ion-grid>
         <ion-row>
 
@@ -43,7 +42,7 @@
               </ion-col>
               <ion-col>
                 <ion-item>
-                  <ion-label>{{item.tanggal_mendaftar}}</ion-label>
+                  <ion-label>{{item.tanggal_mendaftar | date: 'dd/MM/yyyy'}}</ion-label>
                 </ion-item>
               </ion-col>
               <ion-col>
@@ -59,16 +58,14 @@
             <ion-row>
               <ion-col>
                 <ion-item>
-                  <ion-label> 
-                    <!-- <a href="detail-lowongan/{{item.idbuka_lowongan}}">  -->
+                  <ion-label>
                       {{item.judul_lowongan}}
-                    <!-- </a> -->
                   </ion-label>
                 </ion-item>
               </ion-col>
               <ion-col>
                 <ion-item>
-                  <ion-label>{{item.tanggal_mendaftar}}</ion-label>
+                  <ion-label>{{item.tanggal_mendaftar | date: 'dd/MM/yyyy'}}</ion-label>
                 </ion-item>
               </ion-col>
               <ion-col>
@@ -80,21 +77,18 @@
 
 
         <ion-card *ngIf="item.status_pendaftar == 'Belum diterima'" style="background-color: white;">
-
           <ion-grid>
             <ion-row>
               <ion-col>
                 <ion-item>
                   <ion-label> 
-                    <!-- <a href="detail-lowongan/{{item.idbuka_lowongan}}">  -->
                       {{item.judul_lowongan}}
-                    <!-- </a> -->
                    </ion-label>
                 </ion-item>
               </ion-col>
               <ion-col>
                 <ion-item>
-                  <ion-label>{{item.tanggal_mendaftar}}</ion-label>
+                  <ion-label>{{item.tanggal_mendaftar | date: 'dd/MM/yyyy'}}</ion-label>
                 </ion-item>
               </ion-col>
               <ion-col>
@@ -104,10 +98,6 @@
           </ion-grid>
         </ion-card>
       </ion-list>
-
-
     </ion-content>
-
   </ion-router-outlet>
-
 </ion-app>

@@ -9,8 +9,6 @@
       </ion-title>
     </ion-toolbar>
   </ion-header>
-
-
   <ion-router-outlet id="main-content">
     <ion-header>
       <ion-toolbar>
@@ -20,24 +18,21 @@
       </ion-toolbar>
     </ion-header>
     <ion-content class="ion-padding">
-      <!-- *ngFor="let item of list_postingan" -->
       <ion-grid>
         <ion-row>
           <ion-col></ion-col>
           <ion-col><b>Kandidat</b></ion-col>
           <ion-col><b>Pendidikan</b></ion-col>
           <ion-col><b>Usia</b></ion-col>
-
         </ion-row>
       </ion-grid>
       <ion-list *ngFor="let item of list_pendaftar; let i=index">
         <ion-card *ngIf="item.status == 'Diterima'" style="background-color: green;">
-
           <ion-grid>
             <ion-row>
               <ion-col>
                 <ion-item>
-                  <img style="width: 150px" src="http://localhost:8888/db_ta/{{item.gambar}}" alt="">
+                  <img style="width: 150px" src="https://tugas-akhir-bella.my.id/{{item.gambar}}" alt="">
 
                 </ion-item>
               </ion-col>
@@ -59,13 +54,11 @@
           </ion-grid>
         </ion-card>
         <ion-card *ngIf="item.status == 'Ditolak'" style="background-color: wheat;">
-
           <ion-grid>
             <ion-row>
               <ion-col>
                 <ion-item>
-                  <img style="width: 150px" src="http://localhost:8888/db_ta/{{item.gambar}}" alt="">
-
+                  <img style="width: 150px" src="https://tugas-akhir-bella.my.id/{{item.gambar}}" alt="">
                 </ion-item>
               </ion-col>
               <ion-col>
@@ -86,13 +79,11 @@
           </ion-grid>
         </ion-card>
         <ion-card *ngIf="item.status == 'Belum diterima'" style="background-color: white;">
-
           <ion-grid>
             <ion-row>
               <ion-col>
                 <ion-item>
-                  <img style="width: 150px" src="http://localhost:8888/db_ta/{{item.gambar}}" alt="">
-
+                  <img style="width: 150px" src="https://tugas-akhir-bella.my.id/{{item.gambar}}" alt="">
                 </ion-item>
               </ion-col>
               <ion-col>
@@ -113,10 +104,6 @@
           </ion-grid>
         </ion-card>
       </ion-list>
-
-
     </ion-content>
-
   </ion-router-outlet>
-
 </ion-app>

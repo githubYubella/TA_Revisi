@@ -1,4 +1,38 @@
-ion-card{
+ion-card {
     width: 70%;
 }
 
+// ion-textarea::part(placeholder) {
+//     --placeholder-color: green;
+
+//     opacity: 1;
+// }
+
+// ion-textarea::part(input) {
+//     color: green;
+//     opacity: 1;
+// }
+
+// #area-input-pesan{
+//     --placeholder-color: red;
+//     --placeholder-opacity: 1;
+// }
+// host(.ion-color) {
+    
+// }
+#area-input-pesan{
+    --placeholder-color:black;
+    --placeholder-opacity:9;
+  }
+ion-textarea{
+    ng-reflect-model{
+        color: black;
+
+    }
+    --placeholder-color: cornflowerblue;
+}
+
+:host {
+    --placeholder-color: red!important;
+    --placeholder-opacity: 1!important;
+}

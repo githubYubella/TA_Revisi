@@ -55,44 +55,44 @@ export class RegisterTempatKursusComponent {
     console.log(this.file)
   }
 
-  onShowKotaKab(event) {
-    if (this.provinsi != '') {
-      var valProv = this.provinsi.split('_')
-      // console.log(a[0])
-      fetch('https://dev.farizdotid.com/api/daerahindonesia/kota?id_provinsi=' + valProv[0]).then(res => res.json())
-        .then(json => {
-          this.kota_list = json['kota_kabupaten']
-          // console.log(json)
-        });
+  // onShowKotaKab(event) {
+  //   if (this.provinsi != '') {
+  //     var valProv = this.provinsi.split('_')
+  //     // console.log(a[0])
+  //     fetch('https://dev.farizdotid.com/api/daerahindonesia/kota?id_provinsi=' + valProv[0]).then(res => res.json())
+  //       .then(json => {
+  //         this.kota_list = json['kota_kabupaten']
+  //         // console.log(json)
+  //       });
 
-    }
-  }
+  //   }
+  // }
 
-  onShowKecamatan(event) {
-    if (this.kota != '') {
-      var valKota = this.kota.split('_')
-      // console.log(a[0])
-      fetch('https://dev.farizdotid.com/api/daerahindonesia/kecamatan?id_kota=' + valKota[0]).then(res => res.json())
-        .then(json => {
-          this.kecamatan_list = json['kecamatan']
-          // console.log(json)
-        });
+  // onShowKecamatan(event) {
+  //   if (this.kota != '') {
+  //     var valKota = this.kota.split('_')
+  //     // console.log(a[0])
+  //     fetch('https://dev.farizdotid.com/api/daerahindonesia/kecamatan?id_kota=' + valKota[0]).then(res => res.json())
+  //       .then(json => {
+  //         this.kecamatan_list = json['kecamatan']
+  //         // console.log(json)
+  //       });
 
-    }
-  }
+  //   }
+  // }
 
-  onShowKelurahan(event) {
-    if (this.kecamatan != '') {
-      var valKec = this.kecamatan.split('_')
-      // console.log(valKec[0])
-      fetch('https://dev.farizdotid.com/api/daerahindonesia/kelurahan?id_kecamatan=' + valKec[0]).then(res => res.json())
-        .then(json => {
-          this.kelurahan_list = json['kelurahan']
-          // console.log(json)
-        });
+  // onShowKelurahan(event) {
+  //   if (this.kecamatan != '') {
+  //     var valKec = this.kecamatan.split('_')
+  //     // console.log(valKec[0])
+  //     fetch('https://dev.farizdotid.com/api/daerahindonesia/kelurahan?id_kecamatan=' + valKec[0]).then(res => res.json())
+  //       .then(json => {
+  //         this.kelurahan_list = json['kelurahan']
+  //         // console.log(json)
+  //       });
 
-    }
-  }
+  //   }
+  // }
 
 
   category() {
@@ -104,26 +104,21 @@ export class RegisterTempatKursusComponent {
         }
       }
     )
-
-
-
   }
 
 
 
   async register() {
-    // this.titik()
-    // console.log("det "+this.location.lat)
-
-    const splitProv = this.provinsi.split('_')
-    const splitKota = this.kota.split('_')
-    const splitKec = this.kecamatan.split('_')
-    const splitKel = this.kelurahan.split('_')
-    const prov = splitProv[1]
-    const city = splitKota[1]
-    const kec = splitKec[1]
-    const kel = splitKel[1]
-    this.alamat_lengkap = this.alamat + ", " + city + ", " + kec + ", " + kel + ", " + prov
+    // const splitProv = this.provinsi.split('_')
+    // const splitKota = this.kota.split('_')
+    // const splitKec = this.kecamatan.split('_')
+    // const splitKel = this.kelurahan.split('_')
+    // const prov = splitProv[1]
+    // const city = splitKota[1]
+    // const kec = splitKec[1]
+    // const kel = splitKel[1]
+    // this.alamat_lengkap = this.alamat + ", " + city + ", " + kec + ", " + kel + ", " + prov
+    this.alamat_lengkap = this.alamat + ", " + this.kota + ", " + this.kecamatan + ", " + this.kelurahan + ", " + this.provinsi
 
     const uploadData = new FormData();
     const op: ForwardOptions = {
@@ -138,70 +133,60 @@ export class RegisterTempatKursusComponent {
           lat: res.addresses[0].latitude,
           lng: res.addresses[0].longitude
         }
-
         uploadData.append('lat', this.location.lat.toString());
         uploadData.append('long', this.location.lng.toString());
         console.log('lat: ' + this.location.lat)
         console.log('long: ' + this.location.lng)
-
       }
     )
+    ///
+    console.log('keahlian dipilih:')
+    this.keahlianDipilih.forEach((cb, i) => {
+      console.log(this.keahlian_list[i].nama + '(' + this.keahlian_list[i].idkeahlian + '): ' + cb)
+      if (cb === true) {
+        uploadData.append('idkeahlian[]', this.keahlian_list[i].idkeahlian);
+      }
+    })
 
     if (this.file == null || this.image == null) {
       alert("Harap upload file ")
       // this.file = ""
     } else {
+      if (this.email == '' || this.password == '' || this.nama == '' ||
+        this.informasi == '' ||
+        this.alamat == '' || this.kecamatan == '' || this.kelurahan == '' || this.provinsi == '' ||
+        this.kota == '' || this.keahlianDipilih == null) {
+        alert("Harap lengkapi data ")
+      } else {
+        uploadData.append('email', this.email);
+        uploadData.append('password', this.password);
+        uploadData.append('nama', this.nama);
+        uploadData.append('informasi', this.informasi);
+        uploadData.append('alamat', this.alamat);
 
+        uploadData.append('kecamatan', this.kecamatan);
+        uploadData.append('kelurahan', this.kelurahan);
+        uploadData.append('provinsi', this.provinsi);
+        uploadData.append('kota', this.kota);
+        uploadData.append('image', this.image, this.image.name);
+        uploadData.append('berkas_dokumen', this.file, this.file.name);
+        // console.log("alamat lengkap: " + this.alamat_lengkap)
+        // console.log("testi: "+this.alamat_lengkap)
+        //   console.log('lat: ' + this.location.lat)
+        //   console.log('long: ' + this.location.lng)
+        this.tk.registerService(uploadData).subscribe((resp) => {
+          console.log(resp);
+          if (resp['result'] == 'success') {
+            alert("Register Success")
+            this.router.navigate(['/'])
+          }
+          else {
+            alert("Register Error : Proses gagal. Masukkan email yang lain.")
+          }
+        })
+      }
 
-      uploadData.append('email', this.email);
-      uploadData.append('password', this.password);
-      uploadData.append('nama', this.nama);
-      uploadData.append('informasi', this.informasi);
-      uploadData.append('alamat', this.alamat);
-
-      uploadData.append('kecamatan', kec);
-      uploadData.append('kelurahan', kel);
-      uploadData.append('provinsi', prov);
-      uploadData.append('kota', city);
-      uploadData.append('image', this.image, this.image.name);
-      uploadData.append('berkas_dokumen', this.file, this.file.name);
-
-      ///
-      console.log('keahlian dipilih:')
-      this.keahlianDipilih.forEach((cb, i) => {
-        console.log(this.keahlian_list[i].nama + '(' + this.keahlian_list[i].idkeahlian + '): ' + cb)
-        if (cb === true) {
-          uploadData.append('idkeahlian[]', this.keahlian_list[i].idkeahlian);
-        }
-      })
-
-      // console.log("alamat lengkap: " + this.alamat_lengkap)
-
-      this.tk.registerService(uploadData).subscribe((resp) => {
-        console.log(resp);
-        if (resp['result'] == 'success') {
-          alert("Register Success")
-          this.router.navigate(['/'])
-
-
-        }
-        else {
-          alert("Register Error : Proses gagal. Masukkan email yang lain." )
-
-        }
-
-      })
     }
-
-    //--
-    // this.http.post('https://list-coba.000webhostapp.com/upload2.php', uploadData).subscribe(res => {
-    //   console.log(res);
-    //   if (res['result'] == 'sukses') {
-    //     alert('Sukses')
-    //   } else {
-    //     alert('gagal')
-    //   }
-    // });
   }
 
   constructor(private router: Router, public geo: Geolocation, public tk: TempatKursusService) { }
@@ -209,13 +194,12 @@ export class RegisterTempatKursusComponent {
   async ngOnInit() {
     this.category()
     // this.tujuan()
-    fetch('http://dev.farizdotid.com/api/daerahindonesia/provinsi').then(res => res.json())
-      .then(json => {
-        this.provinsi_list = json['provinsi']
-        // console.log(json['provinsi'])
+    // fetch('http://dev.farizdotid.com/api/daerahindonesia/provinsi').then(res => res.json())
+    //   .then(json => {
+    //     this.provinsi_list = json['provinsi']
+    //     // console.log(json['provinsi'])
 
-
-      });
+    //   });
 
   }
 

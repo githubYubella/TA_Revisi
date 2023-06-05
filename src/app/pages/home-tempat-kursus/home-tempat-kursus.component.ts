@@ -8,6 +8,7 @@ import { LatLng } from '@capacitor/google-maps/dist/typings/definitions';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { OrangTuaService } from 'src/app/services/orang-tua/orang-tua.service';
+import { AlertController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home-tempat-kursus',
@@ -52,7 +53,9 @@ export class HomeTempatKursusComponent {
     private tk: TempatKursusService,
     private authService: AuthService,
     private router: Router,
-    private ot: OrangTuaService
+    private ot: OrangTuaService,
+    private alertController: AlertController,
+    private navController: NavController
   ) {
     this.email = authService.email
     this.role = authService.role
@@ -64,7 +67,7 @@ export class HomeTempatKursusComponent {
       (data) => {
         if (data['result'] == 'success') {
           this.nama = data['data'][0].nama
-          this.komentars=data['data']
+          this.komentars=data['komentar']
           this.valRate=data['rerata_rating']
           this.informasi = data['data'][0].informasi
           this.gambar = data['data'][0].gambar
@@ -129,7 +132,10 @@ export class HomeTempatKursusComponent {
   async ngOnInit() {
   }
 
+
+
   async ngAfterViewInit() {
+    
     console.log('ngAfterViewInit')
     await this.storage.create();
     this.email_profil = await this.storage.get('email')

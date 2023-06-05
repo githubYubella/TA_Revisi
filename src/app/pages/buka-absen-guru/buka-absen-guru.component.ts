@@ -47,24 +47,21 @@ export class BukaAbsenGuruComponent implements OnInit {
   }
 
   simpan() {
-
-
-    this.gp.bukaAbsenService(this.tanggal_buka, this.materi, this.idLowongan, this.idguru).subscribe(
-      (data) => {
-        if (data['result'] == 'success') {
-          alert('Absensi Telah Dibuka')
-
-
-          this.tanggal_buka = format(Date.now(), "yyyy-MM-dd")
-
-          this.materi = ''
-          // this.router.navigate(['/presensi-guru-privat'])
-
-
+    if (this.tanggal_buka == '' || this.materi == '') {
+      alert('Harap lengkapi data')
+    } else {
+      this.gp.bukaAbsenService(this.tanggal_buka, this.materi, this.idLowongan, this.idguru).subscribe(
+        (data) => {
+          if (data['result'] == 'success') {
+            alert('Absensi Telah Dibuka')
+            this.router.navigateByUrl('/')
+            this.tanggal_buka = format(Date.now(), "yyyy-MM-dd")
+            this.materi = ''
+            // this.router.navigate(['/presensi-guru-privat'])
+          }
         }
-      }
-    )
-
+      )
+    }
   }
   async ngOnInit() {
     this.getGuru()

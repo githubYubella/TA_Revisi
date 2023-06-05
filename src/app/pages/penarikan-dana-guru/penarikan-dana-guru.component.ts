@@ -9,26 +9,33 @@ import { GuruPrivatService } from 'src/app/services/guru-privat/guru-privat.serv
   styleUrls: ['./penarikan-dana-guru.component.scss'],
 })
 export class PenarikanDanaGuruComponent implements OnInit {
-  nominal: number
-  no_rek: number
+  nominal: number = 0
+  no_rek: string = ''
   tgl_sekarang: string
   constructor(private gp: GuruPrivatService, private at: ActivatedRoute,
     private router: Router) { }
 
   tarikDana() {
-    var idguru: number = this.at.snapshot.params['id']
+    if (this.nominal == 0 || this.no_rek == "") {
+      alert('Harap lengkapi data')
+    }
+    else {
+      var idguru: number = this.at.snapshot.params['id']
 
-    this.tgl_sekarang = format(Date.now(), "yyyy-MM-dd")
-    this.gp.tarikDanaService(idguru, this.nominal, this.no_rek, this.tgl_sekarang).subscribe(
-      (data) => {
-        if (data['result'] == 'success') {
-          alert('Penarikan Dana sedang diproses. Silahkan cek rekening Anda')
-          this.router.navigate(['/'])
+      this.tgl_sekarang = format(Date.now(), "yyyy-MM-dd")
+      this.gp.tarikDanaService(idguru, this.nominal, parseInt(this.no_rek), this.tgl_sekarang).subscribe(
+        (data) => {
+          if (data['result'] == 'success') {
+            alert('Penarikan Dana sedang diproses. Silahkan cek rekening Anda')
+            // this.router.navigate(['/'])
 
+          }else
+          {
+            alert(data['message'])
+          }
         }
-      }
-    )
-
+      )
+    }
 
   }
 

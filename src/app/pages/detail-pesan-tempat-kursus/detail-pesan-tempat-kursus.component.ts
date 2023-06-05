@@ -18,61 +18,54 @@ export class DetailPesanTempatKursusComponent implements OnInit {
   list_pesan = []
   dari = ''
   tglKirim = ""
-  nama_kepada=""
-  idKepada:number
-  nama_saya=""
+  nama_kepada = ""
+  idKepada: number
+  nama_saya = ""
   constructor(private at: ActivatedRoute,
-    private ot:OrangTuaService, 
-     private tk: TempatKursusService, private authService: AuthService) {
-    this.email = authService.email }
+    private ot: OrangTuaService,
+    private tk: TempatKursusService, private authService: AuthService) {
+    this.email = authService.email
+  }
 
 
-    kirim() {
-      // // this.sc.emit('kirim',{text:this.pesan})
-      // // this.pesan=''
-      this.tglKirim = format(new Date(), "yyyy-MM-dd")
-      // this.pesans.push(this.nama_saya+": " + this.pesan)
-      // // + " " +
-      // //   new Date().toTimeString().split("GMT")[0].trim()
-      // // )
-      // this.pesan = ''
-  
-  
-      this.ot.chatKeKursusService(this.nama_saya+": "+this.pesan, this.tglKirim, this.idKepada
-      , this.idkursus).subscribe(
-        (data) => {
-          if (data['result'] == 'success') {
-            // alert("Pesan Terkirim")
-            this.pesans.push(this.nama_saya+": "+ this.pesan)
-            this.pesan = ''
-  
-  
+  kirim() {
+    this.tglKirim = format(new Date(), "yyyy-MM-dd")
+    if (this.pesan == "") {
+      alert('Tuliskan pesan Anda')
+    } else {
+      this.ot.chatKeKursusService(this.nama_saya + ": " + this.pesan, this.tglKirim, this.idKepada
+        , this.idkursus).subscribe(
+          (data) => {
+            if (data['result'] == 'success') {
+              this.pesans.push(this.nama_saya + ": " + this.pesan)
+              this.pesan = ''
+            }
           }
-        }
-      )
+        )
     }
+  }
 
   listPesan() {
+    // get idortu
     this.idKepada = this.at.snapshot.params['idkepada']
-     // get idortu
-     this.tk.profilService(this.email).subscribe(
-       (data) => {
-         if (data['result'] == 'success') {
-           this.idkursus = data['data'][0].idtempat_kursus
-           // console.log('id'+this.id)
-           this.nama_saya= data['data'][0].nama
- 
-           // Get list kursus privat
-           this.ot.detailPesanOrtuKursusService(this.idKepada, this.idkursus).subscribe(
-             (data) => {
-               this.list_pesan = data['data']
-               this.nama_kepada=data['data'][0].nama_orang_tua
-               console.log("kepada: "+this.nama_kepada)
-               // if(data['data'])
-             }
-           )
+    this.tk.profilService(this.email).subscribe(
+      (data) => {
+        if (data['result'] == 'success') {
+          this.idkursus = data['data'][0].idtempat_kursus
+          // console.log('id'+this.id)
+          this.nama_saya = data['data'][0].nama
 
-           // Update status pesan
+          // Get detail pesan
+          this.ot.detailPesanOrtuKursusService(this.idKepada, this.idkursus).subscribe(
+            (data) => {
+              this.list_pesan = data['data']
+              this.nama_kepada = data['data'][0].nama_orang_tua
+              console.log("kepada: " + this.nama_kepada)
+              // if(data['data'])
+            }
+          )
+
+          // Update status pesan
           this.tk.updateStatusPesanOrtuService(this.idKepada).subscribe(
             (data) => {
               if (data['result'] == 'success') {
@@ -80,12 +73,11 @@ export class DetailPesanTempatKursusComponent implements OnInit {
               }
             }
           )
- 
-         }
-       }
-     )
- 
-   }
+        }
+      }
+    )
+
+  }
 
   async ngOnInit() {
     this.listPesan()

@@ -18,6 +18,7 @@ export class DetailKontrakOrangTuaComponent implements OnInit {
   gambar=""
   nama_guru=""
   bank=''
+  no_rek=''
   constructor(private at: ActivatedRoute, private ot: OrangTuaService) { }
 
   getDetailKontrak() {
@@ -34,6 +35,8 @@ export class DetailKontrakOrangTuaComponent implements OnInit {
           this.gambar=data['data'][0].gambar
           this.nama_guru=data['data'][0].nama_guru_privat
           this.bank=data.bank
+          this.no_rek=data.no_rek
+
 
 
 

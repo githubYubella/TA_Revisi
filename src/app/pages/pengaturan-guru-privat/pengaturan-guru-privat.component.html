@@ -9,9 +9,6 @@
       </ion-title>
     </ion-toolbar>
   </ion-header>
-
-
-
   <ion-router-outlet id="main-content">
     <ion-header>
       <ion-toolbar>
@@ -23,6 +20,8 @@
     <ion-content>
       <ion-grid>
         <ion-row style="height: 100%;">
+          <!-- <ion-col size-lg="6" size-sm="12">
+           -->
           <ion-col class=ion-text-center>
             <ion-card>
               <ion-item>
@@ -44,6 +43,7 @@
                 <ion-label>Jenjang Terakhir:</ion-label> <br>
                 <select selected="{{jenjang_dipilih}}" required [(ngModel)]="jenjang_dipilih">
                   <option value="SMA">SMA</option>
+                  <option value="D3">D3</option>
                   <option value="S1">S1</option>
                   <option value="S2">S2</option>
                   <option value="S3">S3</option>
@@ -83,21 +83,23 @@
                 <ion-label>Pengalaman Anda: </ion-label> <br>
                 <ion-textarea [(ngModel)]="pengalaman"> </ion-textarea>
               </ion-item>
+<ion-item class="ion-padding">
+  <ion-button (click)="editProfil()">Simpan</ion-button>
 
-              <ion-button (click)="editProfil()">Simpan</ion-button>
+</ion-item>
 
             </ion-card>
           </ion-col>
           <ion-col class="ion-text-center">
             <ion-card>
-              <img class="foto-profil" src="http://localhost:8888/db_ta/{{gambar}}" alt="">
+              <img class="foto-profil" src="https://tugas-akhir-bella.my.id/{{gambar}}" alt="">
               <ion-input type="file" (change)="onFileSelected($event)">Unggah Foto Baru
               </ion-input>
               <ion-button (click)="editFoto()">Simpan Foto</ion-button>
             </ion-card>
             <br> <br>
             <ion-card>
-              <a href="http://localhost:8888/db_ta/{{berkas_cv}}">Lihat Dokumen</a>
+              <a href="https://tugas-akhir-bella.my.id/{{berkas_cv}}">Lihat Dokumen</a>
               <ion-input text-wrap type="file" (change)="onFileSelected2($event)">Unggah CV Baru
               </ion-input>
               <ion-button (click)="editDokumen()">Simpan Dokumen</ion-button>
@@ -124,16 +126,17 @@
             </ion-grid>
           </ion-col>
           <ion-col class="ion-text-center">
-            <ion-card >
+            <ion-card>
               <ion-title>Ganti Kata Sandi</ion-title>
-              <ion-item >
+              <ion-item>
                 <ion-label position="floating">Kata Sandi Baru: <br></ion-label>
-                <ion-input placeholder="Masukkan kata sandi"  [(ngModel)]="pass_baru"></ion-input>
+                <ion-input placeholder="Masukkan kata sandi" [(ngModel)]="pass_baru"></ion-input>
               </ion-item>
-              <ion-button (click)="editPassword()">Update</ion-button>
+              <ion-item class="ion-padding">
+                <ion-button (click)="editPassword()">Update</ion-button>
 
+              </ion-item>
             </ion-card>
-          
           </ion-col>
         </ion-row>
       </ion-grid>

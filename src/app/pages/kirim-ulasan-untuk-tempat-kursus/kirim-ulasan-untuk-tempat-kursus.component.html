@@ -23,7 +23,6 @@
           <ion-col>
             <ion-row>
               <ion-label class="ion-padding">Penilaian untuk tempat kursus: </ion-label>
-
             </ion-row>
             <ion-row>
               <ionic-rating-component class="ion-padding-start" [(ngModel)]="valRate"></ionic-rating-component>
@@ -33,13 +32,9 @@
               <ion-label *ngIf="valRate== 3" class="ion-padding-start">Biasa</ion-label>
               <ion-label *ngIf="valRate== 4" class="ion-padding-start">Baik</ion-label>
               <ion-label *ngIf="valRate== 5" class="ion-padding-start">Sangat Baik</ion-label>
-
-
             </ion-row>
-
           </ion-col>
         </ion-grid>
-        <!-- <ion-label>Rate: {{valRate}}</ion-label>  -->
       </ion-item>
       <ion-item class="ion-padding">
         <ion-label>Ulasan: </ion-label>

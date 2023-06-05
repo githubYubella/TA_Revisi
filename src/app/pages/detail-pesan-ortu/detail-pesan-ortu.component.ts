@@ -27,27 +27,27 @@ export class DetailPesanOrtuComponent implements OnInit {
   }
 
   kirim() {
-    // // this.sc.emit('kirim',{text:this.pesan})
-    // // this.pesan=''
+  
     this.tglKirim = format(new Date(), "yyyy-MM-dd")
-    // this.pesans.push("Saya: " + this.pesan)
-    // // + " " +
-    // //   new Date().toTimeString().split("GMT")[0].trim()
-    // // )
-    // this.pesan = ''
-
-
-    this.ot.chatKeKursusService(this.nama_saya + ": " + this.pesan, this.tglKirim, this.idortu, this.idKepada).subscribe(
-      (data) => {
-        if (data['result'] == 'success') {
-          // alert("Pesan Terkirim")
-          this.pesans.push(this.nama_saya + ": " + this.pesan)
-          this.pesan = ''
-
-
+   
+    if(this.pesan==""){
+      alert('Tulis pesan anda')
+    }else{
+      this.ot.chatKeKursusService(this.nama_saya + ": " + this.pesan, this.tglKirim, this.idortu, this.idKepada).subscribe(
+        (data) => {
+          if (data['result'] == 'success') {
+            // alert("Pesan Terkirim")
+            this.pesans.push(this.nama_saya + ": " + this.pesan)
+            this.pesan = ''
+  
+  
+          }
         }
-      }
-    )
+      )
+    }
+
+
+    
   }
 
 
@@ -59,9 +59,7 @@ export class DetailPesanOrtuComponent implements OnInit {
         if (data['result'] == 'success') {
           this.idortu = data['data'][0].idorang_tua
           this.nama_saya = data['data'][0].nama_orang_tua
-
           // console.log('id'+this.id)
-
           // Get list kursus privat
           this.ot.detailPesanOrtuKursusService(this.idortu, this.idKepada).subscribe(
             (data) => {
@@ -71,7 +69,6 @@ export class DetailPesanOrtuComponent implements OnInit {
               // if(data['data'])
             }
           )
-
           // Update status pesan
           this.ot.updateStatusPesanKursusService(this.idKepada).subscribe(
             (data) => {
@@ -80,8 +77,6 @@ export class DetailPesanOrtuComponent implements OnInit {
               }
             }
           )
-
-
         }
       }
     )

@@ -9,7 +9,6 @@
       </ion-title>
     </ion-toolbar>
   </ion-header>
-
   <ion-router-outlet id="main-content">
     <ion-header>
       <ion-toolbar>
@@ -22,19 +21,14 @@
       <ion-card>
         <ion-item>
           <ion-label>Nominal </ion-label>
-          <ion-textarea required [(ngModel)]="nominal" placeholder="Tulis nominal biaya yang ingin ditarik. Misal 7000"></ion-textarea>
+          <ion-input required [(ngModel)]="nominal" placeholder="Tulis nominal biaya yang ingin ditarik. Misal 7000"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label>Nomor rekening tujuan</ion-label>
           <ion-input required placeholder="Tulis nomor rekening tujuan." [(ngModel)]="no_rek"></ion-input>
-
         </ion-item>
         <ion-button (click)="tarikDana()">Tarik Dana</ion-button>
       </ion-card>
-
-
     </ion-content>
-
   </ion-router-outlet>
-
 </ion-app>

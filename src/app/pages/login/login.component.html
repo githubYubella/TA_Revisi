@@ -10,7 +10,7 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col size="7">
+      <ion-col size-lg="6" size-sm="12">
         <ion-card class="slide">
           <ion-slides pager="true">
             <!-- Slide 1 -->
@@ -33,10 +33,10 @@
             <!-- Slide 2 -->
             <ion-slide>
               <ion-text color="light">
-                <img
-                src="assets/parent.jpg"/>
+                <img src="assets/parent.jpg" />
                 <h1><b>Menemukan guru privat dengan mudah</b></h1>
-                <p>Anda bisa mendapatkan guru privat dengan membuka lowongan posting iklan yang sesuai kriteria Anda.</p>
+                <p>Anda bisa mendapatkan guru privat dengan membuka lowongan posting iklan yang sesuai kriteria Anda.
+                </p>
                 <ion-button (click)="prev()" color="tertiary">Kembali</ion-button>
                 <ion-button (click)="next()" color="tertiary">Lanjut</ion-button>
               </ion-text>
@@ -45,8 +45,7 @@
             <!-- Slide 3 -->
             <ion-slide>
               <ion-text color="light">
-                <img
-                src="assets/teacher.png"/>
+                <img src="assets/teacher.png" />
                 <h1><b>Memperoleh karir sesuai dengan skill</b></h1>
                 <p>Anda bisa menjadi guru privat sesuai dengan bidang keahlian dengan melamar lowongan pada iklan.</p>
                 <ion-button (click)="prev()" color="tertiary">Kembali</ion-button>
@@ -58,17 +57,17 @@
 
       <ion-col>
         <ion-card class="back-card">
-          <ion-title class="ion-text-center" >Login</ion-title>
+          <ion-title class="ion-text-center">Login</ion-title>
           <div class="form-input ion-padding">
             <ion-item class="item-content" fill="solid">
-              <ion-label position="floating">Email</ion-label>
-              <ion-input type="email" [(ngModel)]="email"></ion-input>
+              <ion-label position="floating">Email / Username</ion-label>
+              <ion-input type="email" placeholder="Masukkan email / username Anda." [(ngModel)]="email"></ion-input>
             </ion-item>
           </div>
           <div class="form-input ion-padding">
             <ion-item class="item-content" fill="solid">
               <ion-label position="floating">Password</ion-label>
-              <ion-input type="text" [(ngModel)]="password"></ion-input>
+              <ion-input type="password" placeholder="Masukkan  password Anda." [(ngModel)]="password"></ion-input>
             </ion-item>
           </div>
           <div class="button ion-padding">

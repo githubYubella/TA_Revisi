@@ -1,10 +1,25 @@
 // Ionic Variables and Theming. For more info, please see:
 // http://ionicframework.com/docs/theming/
+:host {
+  background: none;
+}
+
 
 /** Ionic CSS Variables **/
 :root {
 
   /** primary **/
+  ion-item{
+    --background: none;
+
+  }
+  capacitor-google-maps #maps {
+    display: inline-block;
+    // width: 60%;
+    width: 400px;
+
+    height: 400px;
+  }
   .foto-profil{
     height: 200px;
   
@@ -21,14 +36,12 @@
   .back-card {
     --background: #FDFD96;
     // class: ion-item
-
   }
 
   
   ion-card .item-content {
     --background: #FDFD96;
     // class: ion-item
-
   }
   
 
@@ -45,9 +58,6 @@
     // background: #00b8a9;
     // background: #FDFD96;
     background: orange;
-
-
-    
   }
 
   #area-input-pesan {
@@ -263,7 +273,7 @@
 
     --ion-color-light: #222428;
     --ion-color-light-rgb: 34, 36, 40;
-    --ion-color-light-contrast: #ffffff;
+    --ion-color-light-contrast: #000000;
     --ion-color-light-contrast-rgb: 255, 255, 255;
     --ion-color-light-shade: #1e2023;
     --ion-color-light-tint: #383a3e;
@@ -277,7 +287,7 @@
    */
 
   .ios body {
-    --ion-background-color: #000000;
+    --ion-background-color: #ece1e1;
     --ion-background-color-rgb: 0, 0, 0;
 
     --ion-text-color: #ffffff;
@@ -319,12 +329,20 @@
    * Material Design Dark Theme
    * -------------------------------------------
    */
-
+   ion-col{
+    background-color: #FDFD96;
+   }
+ion-icon{
+  color: black;
+}
+.toolbar-content{
+  background-color: white;
+}
   .md body {
-    --ion-background-color: #121212;
+    --ion-background-color: #ebe3e3; //kontrak, pertanyaan apakah diterima?
     --ion-background-color-rgb: 18, 18, 18;
-
-    --ion-text-color: #ffffff;
+// HITAM
+    --ion-text-color: #000000;
     --ion-text-color-rgb: 255, 255, 255;
 
     --ion-border-color: #222222;
@@ -351,10 +369,10 @@
 
     --ion-item-background: #1e1e1e;
 
-    --ion-toolbar-background: #1f1f1f;
+    --ion-toolbar-background: #f9f4f4;
 
     --ion-tab-bar-background: #1f1f1f;
 
-    --ion-card-background: #1e1e1e;
+    --ion-card-background: #FDFD96;
   }
 }

@@ -1,6 +1,4 @@
 <ion-app>
-
-
   <ion-header>
     <ion-toolbar color="dark">
       <ion-buttons slot="start" style="z-index: 100;">
@@ -23,12 +21,12 @@
     <ion-content class="ion-padding">
       <ion-card>
         <ion-item class="ion-padding">
-          <ion-label position="floating">Judul Lowongan Guru Privat:</ion-label>
+          <ion-label text-wrap position="floating">Judul Lowongan Guru Privat:</ion-label>
           <ion-input [(ngModel)]="judul_lowongan" placeholder="Masukkan judul. Misal: Dicari Guru Matematika"></ion-input>
         </ion-item>
         <ion-item class="ion-padding">
           <ion-label position="floating">Deskripsi lowongan:</ion-label>
-          <ion-input [(ngModel)]="deskripsi_lowongan" placeholder="Masukkan deskripsi terkait lowongan. (Berupa informasi/dokumen tambahan yang diperlukan) "></ion-input>
+          <ion-input [(ngModel)]="deskripsi_lowongan" placeholder="Masukkan informasi. Misal: Minimal S1, Lampirkan sertifikat, dll. "></ion-input>
         </ion-item>
         <ion-item class="ion-padding">
           <ion-label position="fixed">Jenjang <br>Pendidikan <br>Siswa:</ion-label>
@@ -50,7 +48,7 @@
         <ion-item class="ion-padding">
           <ion-label position="fixed">Metode</ion-label>
           <select required [(ngModel)]="metode_dipilih">
-            <option value="Online/Daring">Online/Daring</option>
+          
             <option value="Online/Daring">Online / Daring</option>
             <option value="Offline/Tatap muka">Offline / Tatap muka</option>
           </select>
@@ -61,7 +59,7 @@
           <ion-input placeholder="Contoh: 2" type="number" min="1" [(ngModel)]="durasi_lowongan"></ion-input>
         </ion-item>
         <ion-item class="ion-padding">
-          <ion-label text-wrap position="fixed">Banyak pertemuan:</ion-label>
+          <ion-label text-wrap position="fixed">Banyak pertemuan (Per minggu):</ion-label>
           <!-- <ion-input type="number" min="1" max="7" [(ngModel)]="banyak_pertemuan"></ion-input> -->
           <select required [(ngModel)]="banyak_pertemuan">
             <option value="1">1</option>
@@ -94,32 +92,20 @@
           <ion-input [(ngModel)]="alamat" placeholder="Masukkan alamat anda"></ion-input> <br>
         </ion-item>
         <ion-item class="ion-padding">
-          <ion-label position="fixed">Provinsi:</ion-label>
-          <select required [(ngModel)]="provinsi" (change)="onShowKotaKab($event)">
-            <option *ngFor="let item of provinsi_list" value="{{item.id}}_{{item.nama}}">{{item.nama}}</option>
-          </select>
-        </ion-item>
-
-        <ion-item class="ion-padding">
-          <ion-label position="fixed">Kota: </ion-label>
-          <!-- <ion-input [(ngModel)]="kota"></ion-input> -->
-          <select required [(ngModel)]="kota" (change)="onShowKecamatan($event)">
-            <option *ngFor="let item of kota_list" value="{{item.id}}_{{item.nama}}">{{item.nama}}</option>
-          </select>
+          <ion-label position="floating">Provinsi:</ion-label>
+          <ion-input [(ngModel)]="provinsi" placeholder="Masukkan Provinsi. contoh: Jawa Barat" ></ion-input>
         </ion-item>
         <ion-item class="ion-padding">
-          <ion-label position="fixed">Kecamatan: </ion-label>
-          <select required [(ngModel)]="kecamatan" (change)="onShowKelurahan($event)">
-            <option *ngFor="let item of kecamatan_list" value="{{item.id}}_{{item.nama}}">{{item.nama}}</option>
-          </select>
-          <!-- <ion-input [(ngModel)]="kecamatan"  (change)="onSelectKecamatan($event)"></ion-input> -->
+          <ion-label position="floating">Kota: </ion-label>
+          <ion-input [(ngModel)]="kota" placeholder="Masukkan Kota. contoh: Kota Jakarta"></ion-input>
         </ion-item>
         <ion-item class="ion-padding">
-          <ion-label position="fixed">Kelurahan: </ion-label>
-          <select required [(ngModel)]="kelurahan">
-            <option *ngFor="let item of kelurahan_list" value="{{item.id}}_{{item.nama}}">{{item.nama}}</option>
-          </select>
-          <!-- <ion-input [(ngModel)]="kelurahan"  (change)="onSelectKelurahan($event)"></ion-input> -->
+          <ion-label position="floating">Kecamatan: </ion-label>
+          <ion-input [(ngModel)]="kecamatan" placeholder="Masukkan Kecamatan.contoh: Kecamatan kelapa Gading"></ion-input>
+        </ion-item>
+        <ion-item class="ion-padding">
+          <ion-label position="floating">Kelurahan: </ion-label>
+          <ion-input [(ngModel)]="kelurahan" placeholder="Masukkan kelurahan.contoh: Kelapa Gading Timur"></ion-input>
         </ion-item>
         <ion-item class="ion-padding">
           <ion-button (click)="submit()">Unggah Iklan Lowongan</ion-button>

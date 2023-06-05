@@ -1,9 +1,3 @@
-<!-- <ion-item class="ion-padding">
-  <ion-label>Upload Berkas CV:</ion-label>
-  <ion-input type="file" accept="application/pdf" (change)="onFileSelected($event)" ></ion-input>
-</ion-item> -->
-
-
 <ion-app>
   <ion-header>
     <ion-toolbar color="dark">
@@ -25,24 +19,19 @@
     </ion-header>
     <ion-content class="ion-padding">
       <ion-card>
-
-
         <ion-item>
           <h1>Total Bayar Jasa: {{total_bayar}}</h1>
         </ion-item>
         <ion-item>
-          <h1>Bayar sebelum tanggal: {{tgl_tagihan}}</h1>
+          <h1>Bayar sebelum tanggal: {{tgl_tagihan | date: 'dd/MM/yyyy'}}</h1>
         </ion-item>
         <ion-item class="ion-padding">
           <ion-label>Tanggal bayar: </ion-label>
           <ion-datetime (ionChange)="setTanggalBayar($event)" presentation="date"></ion-datetime>
         </ion-item>
-        <!-- <ion-item class="ion-padding">
-        <ion-label position="fixed">Bank: </ion-label>
-        <select [(ngModel)]="bank_dipilih">
-          <option *ngFor="let n of list_admin" placeholder='pilih' value="{{n.idadmin}}">{{n.bank}}</option>
-        </select>
-      </ion-item> -->
+        <div class="ion-padding" *ngIf="file == null">
+          <ion-label class="ion-padding" color="danger">Upload bukti pembayaran Anda</ion-label>
+        </div>
         <ion-item class="ion-padding">
           <ion-label>Upload Bukti Bayar:</ion-label>
           <ion-input type="file" (change)="onFileSelected($event)"></ion-input>

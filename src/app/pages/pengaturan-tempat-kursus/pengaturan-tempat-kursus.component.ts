@@ -146,9 +146,7 @@ export class PengaturanTempatKursusComponent {
   }
 
   editKeahlian() {
-
     const uploadData = new FormData();
-
     uploadData.append('id', this.id.toString());
     this.keahlianDipilih.forEach((cb, i) => {
       console.log(this.keahlian_list[i].nama + '(' + this.keahlian_list[i].idkeahlian + '): ' + cb)
@@ -193,20 +191,16 @@ export class PengaturanTempatKursusComponent {
     uploadData.append('image', this.image, this.image.name);
     uploadData.append('email', this.email);
     this.tk.editFotoService(uploadData).subscribe((resp) => {
-
       const parse = JSON.parse(JSON.stringify(resp))
-
       console.log('resp: ' + parse.result);
       if (resp['result'] == 'sukses') {
         alert("Foto berhasl di ubah")
-        // this.router.navigate(['/home'])
         window.location.reload()
       }
       else {
         alert("Update Error : " + resp)
       }
     })
-
   }
 
   editDokumen() {
@@ -214,20 +208,16 @@ export class PengaturanTempatKursusComponent {
     uploadData.append('dokumen_tambahan', this.dokumen_tambahan, this.dokumen_tambahan.name);
     uploadData.append('email', this.email);
     this.tk.editDokumenService(uploadData).subscribe((resp) => {
-
       const parse = JSON.parse(JSON.stringify(resp))
-
       console.log('resp: ' + parse.result);
       if (resp['result'] == 'sukses') {
         alert("Dokumen berhasl di ubah")
-        // this.router.navigate(['/home'])
         window.location.reload()
       }
       else {
         alert("Update Error : " + resp)
       }
     })
-
   }
 
 

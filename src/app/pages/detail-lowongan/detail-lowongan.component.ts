@@ -34,6 +34,7 @@ export class DetailLowonganComponent implements OnInit {
   idlowongan: number
   idguru: number
   status: string = ''
+  idorang_tua=''
 
   constructor(public at: ActivatedRoute, private gp: GuruPrivatService,
     private authService: AuthService,
@@ -96,48 +97,30 @@ export class DetailLowonganComponent implements OnInit {
 
   async detailLowongan() {
     var id: number = this.at.snapshot.params['id']
-
     this.gp.detailLowongan(id).subscribe(
       (data) => {
         if (data['result'] = 'success') {
           this.idlowongan = data['data'][0].idbuka_lowongan
-          this.judul = data['data'][0].judul_lowongan//ok
-          this.nama_ortu = data['data'][0].nama_ortu // o
-          this.tanggal_mulai = data['data'][0].tgl_mulai//k
-          this.durasi = data['data'][0].durasi_privat//k
-          this.metode = data['data'][0].metode_privat//ok
+          this.idorang_tua = data['data'][0].idorang_tua
+          this.judul = data['data'][0].judul_lowongan
+          this.nama_ortu = data['data'][0].nama_ortu 
+          this.tanggal_mulai = data['data'][0].tgl_mulai
+          this.durasi = data['data'][0].durasi_privat
+          this.metode = data['data'][0].metode_privat
           this.lokasi = {
             lat: parseFloat(data['data'][0].lowongan_lat),
             lng: parseFloat(data['data'][0].lowongan_long)
           }
-
-          this.biaya = data['data'][0].biaya_jasa//k
-          this.keahlian = data['data'][0].nama_keahlian //k
-          this.jenjang = data['data'][0].jenjang//k
-          this.deskripsi = data['data'][0].deskripsi//k
-          this.banyak_pertemuan = data['data'][0].banyak_pertemuan//k
+          this.biaya = data['data'][0].biaya_jasa
+          this.keahlian = data['data'][0].nama_keahlian 
+          this.jenjang = data['data'][0].jenjang
+          this.deskripsi = data['data'][0].deskripsi
+          this.banyak_pertemuan = data['data'][0].banyak_pertemuan
           this.jadwal = data['data'][0].jadwal
-          //  .forEach((val) => {
-          //     this.hari=val.hari
-          //     this.jam_awal=val.jam_awal
-          //     this.jam_akhir=val.jam_akhir
-          //     // console.log('jad: '+this.jadwal)
-          //   });
-
-
           this.titikLokasi()
-
-
-
-
         }
       }
     )
-
-
-
-
-
   }
 
   

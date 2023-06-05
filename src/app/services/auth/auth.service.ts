@@ -34,7 +34,7 @@ export class AuthService {
     let body = new HttpParams()
     body = body.set('email', email)
     body = body.set('password', password)
-    let data = await this.http.post('http://localhost:8888/db_ta/login.php', body).toPromise()
+    let data = await this.http.post('https://tugas-akhir-bella.my.id/login.php', body).toPromise()
     if (data['result'] == 'success') {
       this.email = email
       await this.storage.set('email', this.email)
@@ -48,7 +48,7 @@ export class AuthService {
   async cekRole() {
     let body = new HttpParams()
     body = body.set('email', this.email)
-    let data: any = await this.http.post('http://localhost:8888/db_ta/cek_role.php', body).toPromise()
+    let data: any = await this.http.post('https://tugas-akhir-bella.my.id/cek_role.php', body).toPromise()
     this.role = data
     await this.storage.set('role', this.role)
   }

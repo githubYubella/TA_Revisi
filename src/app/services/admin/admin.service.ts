@@ -14,27 +14,25 @@ export class AdminService {
     body = body.set('idadmin', idadmin)
     body = body.set('total_bersih', total_bersih)
     body = body.set('idguru', idguru)
-
-
-    return this.http.post("http://localhost:8888/db_ta/edit_pembayaran_lunas.php",body);
+    return this.http.post("https://tugas-akhir-bella.my.id/edit_pembayaran_lunas.php",body);
   }
 
   detailBayarAdminService(idtransaksi:number): Observable<any> {
     let body = new HttpParams;
     body = body.set('idtransaksi', idtransaksi)
-    return this.http.post("http://localhost:8888/db_ta/detail_bayar_admin.php",body);
+    return this.http.post("https://tugas-akhir-bella.my.id/detail_bayar_admin.php",body);
   }
 
   profilService(email: string): Observable<any> {
     let body = new HttpParams;
     body = body.set('email', email)
-    return this.http.post('http://localhost:8888/db_ta/profil_admin.php', body)
+    return this.http.post('https://tugas-akhir-bella.my.id/profil_admin.php', body)
   }
 
   listBayarAdminService(idadmin:number): Observable<any> {
     let body = new HttpParams;
     body = body.set('idadmin', idadmin)
-    return this.http.post("http://localhost:8888/db_ta/list_bayar_admin.php",body);
+    return this.http.post("https://tugas-akhir-bella.my.id/list_bayar_admin.php",body);
   }
 
   registerService(email: string, password: string, no_rek: string,
@@ -46,7 +44,7 @@ export class AdminService {
     body = body.set('no_rek', no_rek)
     body = body.set('bank', bank)
 
-    return this.http.post('http://localhost:8888/db_ta/register_admin.php', body)
+    return this.http.post('https://tugas-akhir-bella.my.id/register_admin.php', body)
 
   }
 

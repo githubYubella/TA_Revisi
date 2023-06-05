@@ -9,26 +9,28 @@ import { OrangTuaService } from 'src/app/services/orang-tua/orang-tua.service';
   styleUrls: ['./selesai-kursus-orang-tua.component.scss'],
 })
 export class SelesaiKursusOrangTuaComponent implements OnInit {
-  valRate: number
-  ulasan: string
+  valRate: number = 0
+  ulasan: string = ""
   tanggal_selesai = format(Date.now(), "yyyy-MM-dd")
   idlowongan: number = this.at.snapshot.params['idlowongan']
 
   constructor(private ot: OrangTuaService, private at: ActivatedRoute,
     private router: Router) { }
 
-    kirimUlasan(){
-      this.ot.akhiriKursusService(this.idlowongan,this.valRate,this.ulasan,this.tanggal_selesai).subscribe(
-        (data)=>{
-          if(data['result']='success'){
+  kirimUlasan() {
+    if (this.valRate == 0 || this.ulasan == "") {
+      alert('Harap lengkapi data')
+    } else {
+      this.ot.akhiriKursusService(this.idlowongan, this.valRate, this.ulasan, this.tanggal_selesai).subscribe(
+        (data) => {
+          if (data['result'] = 'success') {
             alert("Kontrak Kursus Telah Berakhir")
             this.router.navigateByUrl('/')
-
           }
         }
       )
-
     }
+  }
   async ngOnInit() { }
 
 }

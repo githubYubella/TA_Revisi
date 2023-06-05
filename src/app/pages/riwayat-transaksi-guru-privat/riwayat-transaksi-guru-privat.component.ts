@@ -24,7 +24,6 @@ export class RiwayatTransaksiGuruPrivatComponent implements OnInit {
       (data) => {
         if (data['result'] == 'success') {
           this.idguru = data['data'][0].idguru_privat
-
           // get list
           this.gp.riwayatTambahTransaksiService(this.idguru).subscribe(
             (data) => {
@@ -33,7 +32,6 @@ export class RiwayatTransaksiGuruPrivatComponent implements OnInit {
               }
             }
           )
-
           this.gp.riwayatTarikDanaService(this.idguru).subscribe(
             (data) => {
               if (data['result'] = 'success') {

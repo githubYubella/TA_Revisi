@@ -21,6 +21,7 @@ export class DetailKursusComponent implements OnInit {
   x: number
   kecamatan: string = ''
   kelurahan: string = ''
+  provinsi:string=''
   // newMapw: GoogleMap;
   newMap: GoogleMap;
 
@@ -82,13 +83,11 @@ export class DetailKursusComponent implements OnInit {
           lng: parseFloat(data['data'][0].lokasi_long)
 
         }
-
         const marker = this.newMap.addMarker({
           coordinate: {
             lat: this.location_ortu.lat,
             lng: this.location_ortu.lng,
           },
-       
           draggable: false,
           iconUrl:"http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
         })
@@ -96,6 +95,7 @@ export class DetailKursusComponent implements OnInit {
 
       }
     )
+    
 
 
   }
@@ -116,13 +116,12 @@ export class DetailKursusComponent implements OnInit {
             lat: parseFloat(data['data'][0].lokasi_lat),
             lng: parseFloat(data['data'][0].lokasi_long)
           }
-
           this.nama = data['data'][0].nama
           this.gambar = data['data'][0].gambar
           this.alamat = data['data'][0].alamat
           this.kecamatan = data['data'][0].kecamatan
+          this.provinsi = data['data'][0].provinsi
           this.kelurahan = data['data'][0].kelurahan
-
 
           this.lokasi()
           this.tk.keahlianTempatKursusService(this.idkurus).subscribe(
@@ -132,16 +131,9 @@ export class DetailKursusComponent implements OnInit {
               }
             }
           )
-
-
         }
       }
     )
-
-
-
-
-
   }
 
   

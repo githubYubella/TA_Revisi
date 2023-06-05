@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AlertController, NavController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { GuruPrivatService } from 'src/app/services/guru-privat/guru-privat.service';
 
@@ -16,9 +17,14 @@ export class HomeGuruPrivatComponent implements OnInit {
   search = ''
   idguru: number
   constructor(private gp: GuruPrivatService,
-    private authService: AuthService, private router: Router) {
+    private authService: AuthService, private router: Router, 
+    private alertController: AlertController,
+    private navController: NavController) {
     this.email = authService.email
     this.role = authService.role
+  }
+  Beranda() {
+    window.location.reload()
   }
 
 
@@ -31,7 +37,6 @@ export class HomeGuruPrivatComponent implements OnInit {
     await this.authService.logout()
     this.router.navigateByUrl('login')
     window.location.reload()
-
   }
 
   listLowongan() {
@@ -39,7 +44,7 @@ export class HomeGuruPrivatComponent implements OnInit {
       (data) => {
         if (data['result'] == 'success') {
           this.lowongan = data['data']
-        }else{
+        } else {
           this.lowongan = data['data']
         }
       }
@@ -62,7 +67,10 @@ export class HomeGuruPrivatComponent implements OnInit {
     )
   }
 
+
+
   async ngOnInit() {
+   
     this.getNamaGuru()
     // this.listLowongan()
   }

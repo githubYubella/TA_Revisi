@@ -18,7 +18,6 @@ import { TempatKursusService } from './services/tempat-kursus/tempat-kursus.serv
 import { UserService } from './services/user/user.service';
 
 import { BukaLowonganComponent } from './pages/buka-lowongan/buka-lowongan.component';
-import { BukaLowongan2Component } from './pages/buka-lowongan2/buka-lowongan2.component';
 import { DetailKursusComponent } from './pages/detail-kursus/detail-kursus.component';
 import { LoginComponent } from './pages/login/login.component';
 import { LoginTempatKursusComponent } from './pages/login-tempat-kursus/login-tempat-kursus.component';
@@ -70,7 +69,7 @@ import { RiwayatTransaksiOrangTuaComponent } from './pages/riwayat-transaksi-ora
 import { SelesaiKursusOrangTuaComponent } from './pages/selesai-kursus-orang-tua/selesai-kursus-orang-tua.component';
 import { KirimUlasanUntukTempatKursusComponent } from './pages/kirim-ulasan-untuk-tempat-kursus/kirim-ulasan-untuk-tempat-kursus.component';
 import { BantuanOrangTuaComponent } from './pages/bantuan-orang-tua/bantuan-orang-tua.component';
-// import { IntroComponent } from './pages/intro/intro.component';
+import { IntroComponent } from './pages/intro/intro.component';
 import { DetailRiwayatAbsenGuruComponent } from './pages/detail-riwayat-absen-guru/detail-riwayat-absen-guru.component';
 
 import { AuthGuard } from './guards/auth/auth.guard';
@@ -78,11 +77,11 @@ import { GuestGuard } from './guards/guest/guest.guard';
 
 
 const appRoutes: Routes = [
-  // {
-  //   path: 'intro',
-  //   component: IntroComponent,
-  //   canActivate: [GuestGuard]
-  // },
+  {
+    path: 'intro',
+    component: IntroComponent,
+    canActivate: [GuestGuard]
+  },
   {
     path: 'login',
     component: LoginComponent,
@@ -91,12 +90,15 @@ const appRoutes: Routes = [
   {
     path: '',
     redirectTo: 'home',
+    // redirectTo: 'intro',
     pathMatch: 'full'
   },
   {
     path: 'home',
     loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule),
+    // canActivate: [AuthGuard]
     canActivate: [AuthGuard]
+
   },
   {
     path: 'login-tempat-kursus',
@@ -131,11 +133,6 @@ const appRoutes: Routes = [
   {
     path: 'buka-lowongan',
     component: BukaLowonganComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'buka-lowongan2',
-    component: BukaLowongan2Component,
     canActivate: [AuthGuard]
   },
   {
@@ -362,7 +359,7 @@ const appRoutes: Routes = [
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   declarations: [
     AppComponent, LoginTempatKursusComponent, RegisterTempatKursusComponent, HomeTempatKursusComponent,
-    PengaturanTempatKursusComponent, DetailKursusComponent, BukaLowonganComponent, BukaLowongan2Component, LoginComponent,
+    PengaturanTempatKursusComponent, DetailKursusComponent, BukaLowonganComponent, LoginComponent,
     HomeOrangTuaComponent, PostinganLowonganComponent, PendaftarLowonganComponent,
     EditLowonganComponent,RegisterOrangTuaComponent,RegisterGuruPrivatComponent,HomeGuruPrivatComponent,
     DetailLowonganComponent,LamarLowonganComponent,DetailPendaftarComponent,KontrakComponent,

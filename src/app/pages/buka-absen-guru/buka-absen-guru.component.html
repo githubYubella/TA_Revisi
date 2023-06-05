@@ -1,13 +1,11 @@
 <ion-app>
-
-
   <ion-header>
     <ion-toolbar color="dark">
       <ion-buttons slot="start" style="z-index: 100;">
         <ion-back-button defaultHref="/presensi-guru-privat"></ion-back-button>
       </ion-buttons>
       <ion-title style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;text-align: center;">
-        <p>Buka Lowongan</p>
+        <p>Buka Absen</p>
       </ion-title>
     </ion-toolbar>
   </ion-header>
@@ -22,7 +20,6 @@
       </ion-toolbar>
     </ion-header>
     <ion-content class="ion-padding">
-
       <ion-card *ngIf="status_pembayaran == 'Lunas'">
         <ion-item class="ion-padding">
           <ion-label>Tanggal mulai: </ion-label>
@@ -35,16 +32,10 @@
         <ion-item class="ion-padding">
           <ion-button (click)="simpan()">Simpan</ion-button>
         </ion-item>
-
-
       </ion-card>
       <ion-card *ngIf="status_pembayaran == 'Belum lunas'">
         <p>Pembayaran belum lunas. Anda belum bisa membuka Absen.</p>
       </ion-card>
-
-
     </ion-content>
-
   </ion-router-outlet>
-
 </ion-app>

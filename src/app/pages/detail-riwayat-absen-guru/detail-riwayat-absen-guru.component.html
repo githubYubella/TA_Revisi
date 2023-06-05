@@ -18,7 +18,6 @@
       </ion-toolbar>
     </ion-header>
     <ion-content class="ion-padding">
-      <!-- *ngFor="let item of list_postingan" -->
       <ion-grid>
         <ion-row>
           <ion-col><b>Tanggal</b></ion-col>
@@ -32,9 +31,9 @@
             <ion-row>
               <ion-col>
                 <ion-item>
-                  <ion-label> {{item.tanggal_buka}} 
+                  <ion-label> {{item.tanggal_buka | date: 'dd/MM/yyyy'}} 
                   </ion-label>
-                </ion-item>ss
+                </ion-item>
               </ion-col>
               <ion-col>
                 <ion-item>
@@ -57,12 +56,7 @@
             <p>Riwayat tidak ditemukan</p>
           </ion-item>
         </ion-card>
-
       </ion-list>
-
-
     </ion-content>
-
   </ion-router-outlet>
-
 </ion-app>

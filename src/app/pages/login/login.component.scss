@@ -9,7 +9,7 @@
 // 	--background: url('https://i.pinimg.com/736x/9d/c8/cb/9dc8cbc76b5c67e599da6b4af42e45b2.jpg')
 
 
-		
+
 //     0 0/100% 100% no-repeat;
 // }
 .slide {
@@ -20,7 +20,9 @@
 	background: (rgb(124, 108, 108, 0.3));
 
 }
-p,h1{
+
+p,
+h1 {
 	color: #000;
 }
 
@@ -29,6 +31,15 @@ ion-slides {
 	--bullet-background-active: #000;
 	--bullet-background: #000;
 }
-img{
-    height: 300px;
+
+// img{
+//     height: 300px;
+// }
+img {
+	height: 200px;
+	transform: scale(1);
+}
+
+ion-item::part(native) {
+	background-color: #FDFD96;
 }

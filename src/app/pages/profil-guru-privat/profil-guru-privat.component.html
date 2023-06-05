@@ -22,66 +22,50 @@
     </ion-header>
     <ion-content>
       <ion-grid>
-        <ion-row>
-          <ion-col size="8">
+        <ion-row text-wrap>
+          <!-- <ion-col size="8"> -->
+          <ion-col size-lg="6" size-sm="12">
             <ion-card>
               <ion-item  class="ion-padding" >
-                
-                  <img  class="foto-profil" src="http://localhost:8888/db_ta/{{gambar}}" alt="">
-                
+                  <img  class="foto-profil" src="https://tugas-akhir-bella.my.id/{{gambar}}" alt="">
               </ion-item>
               <ion-item class="ion-padding">
                 <h1>Saldo: {{saldo}}</h1>
               </ion-item>
               <ion-item class="ion-padding">
-                <ion-label >Email: {{email}}</ion-label>
-                <!-- <ion-input required [(ngModel)]="email"></ion-input> -->
-              </ion-item>
-              <!-- <ion-item class="ion-padding">
-                <ion-label >Password</ion-label>
-                <ion-input required type="password" [(ngModel)]="password"></ion-input>
-              </ion-item> -->
-              <ion-item class="ion-padding">
-                <ion-label >Nama Guru Privat : {{nama}}</ion-label>
-                <!-- <ion-input required [(ngModel)]="nama"></ion-input> -->
+                <ion-label text-wrap >Email: {{email}}</ion-label>
               </ion-item>
               <ion-item class="ion-padding">
-                <ion-label>Jenis Kelamin: {{jenis_kelamin}}</ion-label> <br>
-                <!-- <select required [(ngModel)]="jenisKelamin_dipilih">
-                  <option value="Pria">Pria</option>
-                  <option value="Wanita">Wanita</option>
-                </select> -->
+                <ion-label text-wrap >Nama Guru Privat : {{nama}}</ion-label>
               </ion-item>
               <ion-item class="ion-padding">
-                <ion-label >No. Telepon : {{telepon}}</ion-label>
-                <!-- <ion-input type="tel" placeholder="888-888-8888" required [(ngModel)]="telepon"></ion-input> -->
+                <ion-label text-wrap>Jenis Kelamin: {{jenis_kelamin}}</ion-label> <br>
+              </ion-item>
+              <ion-item class="ion-padding">
+                <ion-label text-wrap >No. Telepon : {{telepon}}</ion-label>
               </ion-item>
               <ion-item class="ion-padding">
                 <ion-label>Bidang keahlian: 
-                  <ion-label *ngFor="let item of keahlian; let i=index "> {{item.nama}}</ion-label>
+                  <ion-label text-wrap *ngFor="let item of keahlian; let i=index "> {{item.nama}}</ion-label>
                 </ion-label>
-      
-             
               </ion-item>
               <ion-item class="ion-padding">
-                <ion-label>Jenjang Terakhir: {{jenjang}}</ion-label> <br>
-                
+                <ion-label text-wrap>Jenjang Terakhir: {{jenjang}}</ion-label> <br>
               </ion-item>
               <ion-item class="ion-padding">
-                <ion-label>Tempat Jenjang Terakhir:{{tempat_pendidikan}}</ion-label> <br>
-                
+                <ion-label text-wrap>Tempat Jenjang Terakhir:{{tempat_pendidikan}}</ion-label> <br>
               </ion-item>
               <ion-item class="ion-padding">
-                <ion-label>Tanggal Lahir: {{tgl_lahir}} </ion-label>
+                <ion-label text-wrap>Tanggal Lahir: {{tgl_lahir}} </ion-label>
               </ion-item>
               <ion-item class="ion-padding">
                 <ion-label text-wrap >Alamat: {{alamat}}, Kecamatan {{kecamatan}}, Kelurahan {{kelurahan}} </ion-label>
-              </ion-item>
-              
-              <ion-item class="ion-padding">
-                <capacitor-google-maps #maps>Loading Google Maps</capacitor-google-maps>
-              </ion-item>
-      
+              </ion-item >
+           <ion-item class="ion-padding-start">
+            <capacitor-google-maps #maps>Loading Google Maps</capacitor-google-maps>
+
+           </ion-item>
+           
               <ion-item class="ion-padding">
                 <ion-label text-wrap>Pengalaman Anda: {{pengalaman}}</ion-label>
               </ion-item>
@@ -98,23 +82,15 @@
                 readonly="true"></ionic-rating-component>
               <ion-scroll scrollY="true">
                 <ion-list *ngFor="let item_komen of komentars; let i=index">
-                  <!-- <ion-card> -->
                   <ion-item>
                     <ion-text>{{item_komen.komentar}}</ion-text>
                   </ion-item>
-                  <!-- </ion-card> -->
                 </ion-list>
               </ion-scroll>
             </ion-card>
-
-
           </ion-col>
-
-          
         </ion-row>
       </ion-grid>
-     
     </ion-content>
-
   </ion-router-outlet>
 </ion-app>

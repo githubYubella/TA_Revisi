@@ -21,26 +21,23 @@
     <ion-content class="ion-padding">
       <ion-grid>
         <ion-row>
-          <ion-col size="8">
+          <!-- <ion-col size="8"> -->
+          <ion-col size-lg="6" size-sm="12" size-md="12" size-xs="12">
             <ion-card>
               <ion-item>
                 <ion-grid>
                   <ion-row>
-
-                    <img style="width: 150px" src="http://localhost:8888/db_ta/{{gambar}}" alt="">
-
-
-
+                    <img style="width: 150px" src="https://tugas-akhir-bella.my.id/{{gambar}}" alt="">
                   </ion-row>
                   <ion-row><b>{{nama}}</b></ion-row>
                   <ion-row>{{usia}} Tahun ({{jenis_kelamin}} )</ion-row>
                   <ion-row>{{pendidikan}} - {{tempat_pendidikan}}</ion-row>
                   <ion-row>Berkas Profil Guru:
-                    <a href="http://localhost:8888/db_ta/{{berkas_profil_guru}}">Download</a>
+                    <a href="https://tugas-akhir-bella.my.id/{{berkas_profil_guru}}">Download</a>
                   </ion-row>
-
-
-
+                  <ion-row>
+                    No Telepon: {{telepon}}
+                  </ion-row>
                 </ion-grid>
               </ion-item>
             </ion-card>
@@ -49,7 +46,7 @@
                 <ion-grid>
                   <ion-row>
                     <ion-title>
-                      <ion-label><b>Pengalaman</b></ion-label>
+                      <b>Pengalaman</b>
                     </ion-title>
                   </ion-row>
                   <ion-row>
@@ -69,9 +66,7 @@
                   <ion-row>
                     <ion-label>
                       Berkas:
-
-                      <!-- <a href="https://list-coba.000webhostapp.com/file/{{berkas_cv}}">Download</a> -->
-                      <a href="http://localhost:8888/db_ta/{{berkas_pendaftar}}">Download</a>
+                      <a href="https://tugas-akhir-bella.my.id/{{berkas_pendaftar}}">Download</a>
                     </ion-label>
                   </ion-row>
                   <ion-row>
@@ -82,10 +77,8 @@
                   </ion-row>
                   <ion-row>
                     <ion-label>Biaya tawar / nego:</ion-label>
-
                     <ion-text> <b> Rp. {{biaya_tawar}} </b></ion-text>
                   </ion-row>
-
                 </ion-grid>
               </ion-item>
             </ion-card>
@@ -99,17 +92,18 @@
               </ion-row>
               <ion-row *ngFor="let item of list_history_kontrak; let i=index">
                 <ion-item>
-                  <ion-label>{{item.judul}} - {{item.tanggal}}</ion-label>
+                  <ion-label text-wrap>{{item.judul}} - {{item.tanggal | date: 'dd/MM/yyyy'}}</ion-label>
                 </ion-item>
               </ion-row>
-
               <ion-row>
-                <ion-button routerLink="/detail-pesan-ortu-guru/{{idPendaftar}}">Kirim Pesan</ion-button>
-                <ion-button (click)="terima()">Terima</ion-button>
+                <ion-item class="ion-padding">
+                  <ion-button routerLink="/detail-pesan-ortu-guru/{{idPendaftar}}">Kirim Pesan</ion-button>
+                  <ion-button (click)="terima()">Terima</ion-button>
+                </ion-item>
+
               </ion-row>
             </ion-card>
           </ion-col>
-
           <ion-col class="ion-text-center">
             <ion-card>
               <ion-title>Ulasan</ion-title>
@@ -117,22 +111,15 @@
                 readonly="true"></ionic-rating-component>
               <ion-scroll scrollY="true">
                 <ion-list *ngFor="let item_komen of komentars; let i=index">
-                  <!-- <ion-card> -->
                   <ion-item>
-                    <ion-text>{{item_komen.komentar}}</ion-text>
+                    <ion-label class="ion-text-wrap">{{item_komen.komentar}}</ion-label>
                   </ion-item>
-                  <!-- </ion-card> -->
                 </ion-list>
               </ion-scroll>
             </ion-card>
-
-
           </ion-col>
         </ion-row>
       </ion-grid>
-
     </ion-content>
-
   </ion-router-outlet>
-
 </ion-app>

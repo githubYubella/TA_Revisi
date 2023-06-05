@@ -5,7 +5,7 @@
         <ion-back-button defaultHref="/pendaftar-lowongan/{{idLowongan}}"></ion-back-button>
       </ion-buttons>
       <ion-title style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;text-align: center;">
-        <p>Kontak dengan Pendaftar</p>
+        <p>Kontrak dengan Pendaftar</p>
       </ion-title>
     </ion-toolbar>
   </ion-header>
@@ -22,85 +22,33 @@
       <ion-card>
         <ion-item>
           <ion-label>Kesepakatan </ion-label>
-          <ion-textarea required [(ngModel)]="kesepakatan" placeholder="Tulis kesepakatan dengan kandidat guru privat yang Anda pilih"></ion-textarea>
+          <ion-textarea required [(ngModel)]="kesepakatan"
+            placeholder="Tulis kesepakatan dengan kandidat guru privat yang Anda pilih. Misal: kesepakatan hari saat les, pengganti hari les,dll."></ion-textarea>
         </ion-item>
         <ion-item>
-          <ion-label>Biaya jasa</ion-label>
-          <ion-input required placeholder="Tulis nominal biaya jasa yang telah disepakati. Misal: 250000" [(ngModel)]="biaya_jasa"></ion-input>
-
+          <ion-label>Biaya jasa Rp.</ion-label>
+          <ion-input required placeholder="Tulis nominal biaya jasa yang telah disepakati. Misal: 250000"
+            [(ngModel)]="biaya_jasa"></ion-input>
         </ion-item>
-        <!-- <ion-item>
-          <ion-label>Tanggal mulai: </ion-label>
-          <ion-datetime (ionChange)="setTanggalMulai($event)" presentation="date"></ion-datetime>
-        </ion-item> -->
-        <ion-item class="ion-padding">
+        <ion-item class="ion-padding-top">
           <ion-label position="fixed">Bank: </ion-label>
           <select [(ngModel)]="bank_dipilih">
             <option *ngFor="let n of list_admin" placeholder='pilih' value="{{n.idadmin}}">{{n.bank}}</option>
+            <option hidden *ngFor="let n of list_admin" placeholder='pilih'>{{n.bank}}</option>
           </select>
+          <img *ngIf="bank_dipilih== 5" src="assets/bca_1.png" alt="">
+          <img *ngIf="bank_dipilih== 6" src="assets/bri_3.png" alt="">
+          <img *ngIf="bank_dipilih== 7" src="assets/mandiri_4.png" alt="">
+          <img *ngIf="bank_dipilih== 8" src="assets/bni_2.png" alt="">
+
+
+
         </ion-item>
-        <ion-button (click)="terima()">Terima</ion-button>
-      </ion-card>
-      
-      <!-- <ion-card>
-        <ion-item>
-          <ion-grid>
-            <ion-row>
-
-              <ion-title>
-                <ion-label><b>Pengalaman</b></ion-label>
-              </ion-title>
-
-
-            </ion-row>
-            <ion-row>
-              <ion-label>{{pengalaman}}</ion-label>
-            </ion-row>
-          </ion-grid>
+        <ion-item class="ion-padding">
+          <ion-button class="ion-padding-start" (click)="terima()">Terima</ion-button>
         </ion-item>
       </ion-card>
-      <ion-card>
-        <ion-item>
-        <ion-grid>
-          <ion-row>
-            <ion-title>
-              <ion-label><b>Data Lamaran</b></ion-label>
-            </ion-title>
-          </ion-row>
-          <ion-row>
-            <ion-label>
-              Berkas: 
-   
-            
-             <a href="http://localhost:8888/db_ta/file/{{berkas_cv}}">Download</a>
-
-            </ion-label>
-          </ion-row>
-          <ion-row>
-            <ion-label>Note / Deskripsi diri:</ion-label>
-          </ion-row>
-          <ion-row>
-            <ion-text>{{note}}</ion-text>
-          </ion-row>
-          
-        </ion-grid>
-      </ion-item>
-      </ion-card>
-      <ion-card>
-        <ion-row>
-          <ion-label>
-            History Kontrak Guru Privat
-          </ion-label>
-        </ion-row>
-        <ion-row>
-           <ion-button (click)="terima()">Terima</ion-button> 
-          <ion-button (click)="terima()">Terima</ion-button>
-
-        </ion-row>
-      </ion-card> -->
-
     </ion-content>
-
   </ion-router-outlet>
 
 </ion-app>

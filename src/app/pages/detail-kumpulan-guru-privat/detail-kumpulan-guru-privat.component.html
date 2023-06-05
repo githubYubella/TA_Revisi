@@ -21,28 +21,21 @@
     <ion-content class="ion-padding">
       <ion-grid>
         <ion-row>
-          <ion-col size="8">
+          <ion-col size-lg="6" size-sm="12" size-md="12" size-xs="12">
+            <!-- <ion-col size="8"> -->
+
             <ion-card>
               <ion-item>
                 <ion-grid>
                   <ion-row>
-      
-                    <img style="width: 150px" src="http://localhost:8888/db_ta/{{gambar}}" alt="">
-      
-      
-      
+                    <img style="width: 150px" src="https://tugas-akhir-bella.my.id/{{gambar}}" alt="">
                   </ion-row>
                   <ion-row><b>{{nama}}</b></ion-row>
-                  <ion-row>Usia           : {{usia}} Tahun </ion-row>
-                  <ion-row>Jenis Kelamin  : {{jenis_kelamin}} </ion-row>
-      
-                  <ion-row>Pendidikan     : {{pendidikan}} - {{tempat_pendidikan}}</ion-row>
+                  <ion-row>Usia : {{usia}} Tahun </ion-row>
+                  <ion-row>Jenis Kelamin : {{jenis_kelamin}} </ion-row>
+                  <ion-row>Pendidikan : {{pendidikan}} - {{tempat_pendidikan}}</ion-row>
                   <ion-row>No. Telepon/HP : {{telepon}}</ion-row>
-                  <ion-row>Alamat: {{alamat}},  {{kelurahan}}, {{kecamatan}}, {{kota}}, {{provinsi}} </ion-row>
-      
-      
-      
-      
+                  <!-- <ion-row>Alamat: {{alamat}}, {{kelurahan}}, {{kecamatan}}, {{kota}}, {{provinsi}} </ion-row> -->
                 </ion-grid>
               </ion-item>
             </ion-card>
@@ -50,14 +43,12 @@
               <ion-item>
                 <ion-grid>
                   <ion-row>
-      
                     <ion-title>
                       <ion-label><b>Pengalaman</b></ion-label>
                     </ion-title>
-      
-      
                   </ion-row>
                   <ion-row>
+
                     <ion-label text-wrap>{{pengalaman}}</ion-label>
                   </ion-row>
                 </ion-grid>
@@ -68,79 +59,57 @@
                 <ion-grid>
                   <ion-row>
                     <ion-title>
-                      <ion-label><b>Daftar Riwayat Hidup</b></ion-label>
+                      <ion-label text-wrap><b>Daftar Riwayat Hidup</b></ion-label>
                     </ion-title>
                   </ion-row>
                   <ion-row>
                     <ion-label>
                       Berkas:
-      
-                      <!-- <a href="https://list-coba.000webhostapp.com/file/{{berkas_cv}}">Download</a> -->
-                      <a href="http://localhost:8888/db_ta/file/{{berkas_cv}}">Download</a>
-      
+                      <a href="https://tugas-akhir-bella.my.id/{{berkas_cv}}">Download</a>
                     </ion-label>
                   </ion-row>
-                  <!-- <ion-row>
-                    <ion-label>Note / Deskripsi diri:</ion-label>
-                  </ion-row>
-                  <ion-row>
-                    <ion-text>{{note}}</ion-text>
-                  </ion-row> -->
-      
                 </ion-grid>
               </ion-item>
             </ion-card>
             <ion-card>
               <ion-row>
                 <ion-item>
-                  <ion-label>
+                  <ion-label text-wrap>
                     <b>History Kontrak Guru Privat</b>
                   </ion-label>
                 </ion-item>
               </ion-row>
               <ion-row *ngFor="let item of list_history_kontrak; let i=index">
                 <ion-item>
-                  <ion-label>{{item.judul}} - {{item.tanggal}}</ion-label>
+                  <ion-label text-wrap>{{item.judul}} - {{item.tanggal | date: 'dd/MM/yyyy'}}</ion-label>
                 </ion-item>
               </ion-row>
-            
               <ion-row>
-             
-              
-            
+                <ion-item class="ion-padding">
                   <ion-button routerLink="/detail-pesan-ortu-guru/{{idkepada}}">Kirim Pesan</ion-button>
-        
-             
-              
-      
+                </ion-item>
               </ion-row>
             </ion-card>
           </ion-col>
 
-          <ion-col class="ion-text-center">
-            <ion-card>
-              <ion-title>Ulasan</ion-title>
-              <ionic-rating-component class="ion-padding-start" [(ngModel)]="valRate"
-                readonly="true"></ionic-rating-component>
-              <ion-scroll scrollY="true">
-                <ion-list *ngFor="let item_komen of komentars; let i=index">
-                  <!-- <ion-card> -->
-                  <ion-item>
-                    <ion-text>{{item_komen.komentar}}</ion-text>
-                  </ion-item>
-                  <!-- </ion-card> -->
-                </ion-list>
-              </ion-scroll>
-            </ion-card>
-
-
+          <ion-col>
+            <div class="ion-text-center">
+              <ion-card class="ion-text-wrap">
+                <ion-title>Ulasan</ion-title>
+                <ionic-rating-component class="ion-padding-start" [(ngModel)]="valRate"
+                  readonly="true"></ionic-rating-component>
+               
+                  <ion-list class="ion-text-wrap" *ngFor="let item_komen of komentars; let i=index">
+                    <ion-item class="ion-text-wrap">
+                      <ion-label text-wrap>{{item_komen.komentar}}</ion-label>
+                    </ion-item>
+                  </ion-list>
+                
+              </ion-card>
+            </div>
           </ion-col>
         </ion-row>
       </ion-grid>
-      
-
     </ion-content>
-
   </ion-router-outlet>
-
 </ion-app>

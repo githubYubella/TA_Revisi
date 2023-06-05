@@ -31,13 +31,9 @@ export class PesanOrtuComponent implements OnInit {
           alert("Pesan Terkirim")
           this.pesan = ''
           window.location.reload()
-
-
         }
       }
     )
-
-
   }
 
   detailKursus() {

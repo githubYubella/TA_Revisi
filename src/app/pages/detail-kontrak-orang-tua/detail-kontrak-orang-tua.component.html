@@ -21,7 +21,7 @@
     </ion-header>
     <ion-content class="ion-padding">
       <ion-card>
-        <img height="150px;" src="http://localhost:8888/db_ta/{{gambar}}" alt="">
+        <img height="150px;" src="https://tugas-akhir-bella.my.id/{{gambar}}" alt="">
         <ion-item>
           <b>{{nama_guru}}</b>
         </ion-item>
@@ -34,7 +34,7 @@
               <ion-row>
                 <ion-title>Kesepakatan dengan Guru Privat:</ion-title>
               </ion-row>
-              <ion-row class="ion-padding-start">Kontrak terjadi pada tanggal: {{tanggal_kontrak}} </ion-row>
+              <ion-row class="ion-padding-start">Kontrak terjadi pada tanggal: {{tanggal_kontrak | date: 'dd/MM/yyyy'}} </ion-row>
               <ion-row class="ion-padding-start">Berisikan: {{kesepakatan}} </ion-row>
             </ion-col>
           </ion-grid>
@@ -43,7 +43,7 @@
           <ion-title>Biaya jasa yang disetujui: Rp. {{biaya_jasa}} <br></ion-title>
         </ion-item>
         <ion-item>
-          <ion-title>Pembayaran melalui: {{bank}}</ion-title>
+          <ion-title>Pembayaran melalui: {{bank}} ({{no_rek}})</ion-title>
         </ion-item>
       </ion-card>
     </ion-content>

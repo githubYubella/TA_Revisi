@@ -35,12 +35,12 @@ export class DetailLowonganDiterimaComponent implements OnInit {
   idguru: number
   status: string = ''
 
-  alamat=''
-  kecamatan=''
-  kelurahan=''
-  telepon=''
-  nama_siswa=''
-  
+  alamat = ''
+  kecamatan = ''
+  kelurahan = ''
+  telepon = ''
+  nama_siswa = ''
+
   constructor(public at: ActivatedRoute, private gp: GuruPrivatService,
     private authService: AuthService,
   ) { this.email = authService.email }
@@ -85,7 +85,7 @@ export class DetailLowonganDiterimaComponent implements OnInit {
             lng: this.lokasiGP.lng,
           },
           draggable: false,
-          iconUrl:"http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+          iconUrl: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
         })
       }
     )
@@ -122,17 +122,11 @@ export class DetailLowonganDiterimaComponent implements OnInit {
           this.deskripsi = data['data'][0].deskripsi//k
           this.banyak_pertemuan = data['data'][0].banyak_pertemuan//k
           this.jadwal = data['data'][0].jadwal
-          // this.jadwal = data['data']
-          //  .forEach((val) => {
-          //     this.hari=val.hari
-          //     this.jam_awal=val.jam_awal
-          //     this.jam_akhir=val.jam_akhir
-          //     // console.log('jad: '+this.jadwal)
-          //   });
-          this.kecamatan=data['data'][0].kecamatan//k
-          this.kelurahan=data['data'][0].kelurahan//k
-          this.alamat=data['data'][0].alamat//k
-          this.nama_siswa=data['data'][0].nama_siswa//k
+          this.telepon = data['data'][0].no_telepon
+          this.kecamatan = data['data'][0].kecamatan//k
+          this.kelurahan = data['data'][0].kelurahan//k
+          this.alamat = data['data'][0].alamat//k
+          this.nama_siswa = data['data'][0].nama_siswa//k
 
 
 
@@ -154,8 +148,8 @@ export class DetailLowonganDiterimaComponent implements OnInit {
   }
   async ngOnInit() {
     this.detailLowongan()
-  
-   
+
+
   }
 
 

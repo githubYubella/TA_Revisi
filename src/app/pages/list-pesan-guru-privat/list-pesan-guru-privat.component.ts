@@ -10,6 +10,7 @@ import { GuruPrivatService } from 'src/app/services/guru-privat/guru-privat.serv
 export class ListPesanGuruPrivatComponent implements OnInit {
   listChat = []
   idguru: number
+  foto=""
   constructor(private gp: GuruPrivatService, private at: ActivatedRoute) { }
 
   doRefresh(event) {
@@ -26,6 +27,7 @@ export class ListPesanGuruPrivatComponent implements OnInit {
       (data) => {
         if (data['result'] == 'success') {
           this.listChat = data['data']
+          this.foto=data['data'].foto
         }
       }
     )

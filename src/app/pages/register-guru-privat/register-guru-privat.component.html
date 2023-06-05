@@ -12,7 +12,6 @@
   </ion-header>
   <ion-content>
     <ion-card>
-      <!-- <h1>Register Guru Privat</h1> -->
       <ion-item class="ion-padding">
         <ion-label position="floating">Email/Username</ion-label>
         <ion-input required [(ngModel)]="email" placeholder="contoh: cermatindra@cermat.com / cermatindra123"></ion-input>
@@ -59,8 +58,8 @@
       <ion-item class="ion-padding">
         <ion-label>Jenjang Terakhir:</ion-label> <br>
         <select required [(ngModel)]="jenjang_dipilih">
-          <!-- <option hidden>{{combobox}}</option> -->
           <option value="SMA">SMA</option>
+          <option value="D3">D3</option>
           <option value="S1">S1</option>
           <option value="S2">S2</option>
           <option value="S3">S3</option>
@@ -80,45 +79,21 @@
         <ion-input [(ngModel)]="alamat" placeholder="Masukkan alamat anda" 
         placeholder="contoh: Jl. Semangka No.22"></ion-input> <br>
       </ion-item>
-
-
-      <!-- <ion-item class="ion-padding">
-        <ion-label>Kelurahan: </ion-label>
-        <ion-input [(ngModel)]="kelurahan"></ion-input>
-      </ion-item> -->
-      <!-- <ion-item class="ion-padding">
-        <ion-label>Provinsi: </ion-label>
-        <ion-input [(ngModel)]="provinsi"></ion-input>
-      </ion-item> -->
       <ion-item class="ion-padding">
-        <ion-label>Provinsi:</ion-label>
-        <select required [(ngModel)]="provinsi" (change)="onShowKotaKab($event)">
-          <option  hidden >--Pilih Provinsi--</option>
-          
-          <option *ngFor="let item of provinsi_list" value="{{item.id}}_{{item.nama}}">{{item.nama}}</option>
-        </select>
-      </ion-item>
-
-      <ion-item class="ion-padding">
-        <ion-label>Kota: </ion-label>
-        <!-- <ion-input [(ngModel)]="kota"></ion-input> -->
-        <select required [(ngModel)]="kota" (change)="onShowKecamatan($event)">
-          <option *ngFor="let item of kota_list" value="{{item.id}}_{{item.nama}}">{{item.nama}}</option>
-        </select>
+        <ion-label position="floating">Provinsi:</ion-label>
+        <ion-input [(ngModel)]="provinsi" placeholder="Masukkan Provinsi. contoh: Jawa Barat" ></ion-input>
       </ion-item>
       <ion-item class="ion-padding">
-        <ion-label>Kecamatan: </ion-label>
-        <select required [(ngModel)]="kecamatan" (change)="onShowKelurahan($event)">
-          <option *ngFor="let item of kecamatan_list" value="{{item.id}}_{{item.nama}}">{{item.nama}}</option>
-        </select>
-        <!-- <ion-input [(ngModel)]="kecamatan"  (change)="onSelectKecamatan($event)"></ion-input> -->
+        <ion-label position="floating">Kota: </ion-label>
+        <ion-input [(ngModel)]="kota" placeholder="Masukkan Kota. contoh: Kota Jakarta"></ion-input>
       </ion-item>
       <ion-item class="ion-padding">
-        <ion-label>Kelurahan: </ion-label>
-        <select required [(ngModel)]="kelurahan">
-          <option *ngFor="let item of kelurahan_list" value="{{item.id}}_{{item.nama}}">{{item.nama}}</option>
-        </select>
-        <!-- <ion-input [(ngModel)]="kelurahan"  (change)="onSelectKelurahan($event)"></ion-input> -->
+        <ion-label position="floating">Kecamatan: </ion-label>
+        <ion-input [(ngModel)]="kecamatan" placeholder="Masukkan Kecamatan.contoh: Kecamatan kelapa Gading"></ion-input>
+      </ion-item>
+      <ion-item class="ion-padding">
+        <ion-label position="floating">Kelurahan: </ion-label>
+        <ion-input [(ngModel)]="kelurahan" placeholder="Masukkan kelurahan.contoh: Kelapa Gading Timur"></ion-input>
       </ion-item>
       <div class="ion-padding" *ngIf="image == null">
         <ion-label class="ion-padding" color="danger">Upload Foto Anda</ion-label>
@@ -127,8 +102,6 @@
         <ion-label>Upload Gambar</ion-label>
         <ion-input type="file" (change)="onFileSelectedGambar($event)" [(ngModel)]="gambar"></ion-input>
       </ion-item>
-
-      
       <div class="ion-padding" *ngIf="file == null">
         <ion-label class="ion-padding" color="danger">Upload berkas file CV Anda</ion-label>
       </div>
@@ -136,7 +109,6 @@
         <ion-label>Upload Berkas CV:</ion-label>
         <ion-input required type="file" accept="application/pdf" (change)="onFileSelected($event)"></ion-input>
       </ion-item>
-
 
       <ion-item class="ion-padding">
         <ion-label>Pengalaman Anda: </ion-label> <br>

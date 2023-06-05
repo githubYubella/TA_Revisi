@@ -29,8 +29,8 @@
                   <ion-title>{{item.judul_lowongan}}</ion-title>
                 </ion-row>
                 <ion-row>
-                  <ion-label class="ion-padding-start">
-                    Pembayaran pada tanggal : {{item.tanggal_bayar}}
+                  <ion-label text-wrap class="ion-padding-start">
+                    Pembayaran pada tanggal : {{item.tanggal_bayar | date: 'dd/MM/yyyy'}}
 
                   </ion-label>
                 </ion-row>
@@ -49,14 +49,10 @@
       <ion-list *ngFor="let itm of list_penarikan_dana; let i=index">
         <ion-card>
           <ion-item>
-            <ion-label>Penarikan dana sebesar Rp.{{itm.nominal}} Tanggal {{itm.tgl}}</ion-label>
+            <ion-label>Penarikan dana sebesar Rp.{{itm.nominal}} Tanggal {{itm.tgl | date: 'dd/MM/yyyy'}}</ion-label>
           </ion-item>
         </ion-card>
       </ion-list>
-
-
     </ion-content>
-
   </ion-router-outlet>
-
 </ion-app>

@@ -21,7 +21,7 @@
     <ion-content>
       <ion-grid>
         <ion-row style="height: 100%;">
-          <ion-col  class=ion-text-center>
+          <ion-col class=ion-text-center>
             <ion-card class="item-content">
               <ion-item class="ion-padding">
                 <ion-label>Email: <br></ion-label>
@@ -36,7 +36,7 @@
                 <ion-input [(ngModel)]="nama_siswa" placeholder="{{nama_siswa}}"></ion-input>
               </ion-item>
               <ion-item class="ion-padding">
-                <ion-label >Jenis Kelamin:</ion-label> <br>
+                <ion-label text-wrap>Jenis Kelamin:</ion-label> <br>
                 <select selected="{{jenisKelamin_dipilih}}" required [(ngModel)]="jenisKelamin_dipilih">
                   <option value="Pria">Pria</option>
                   <option value="Wanita">Wanita</option>
@@ -65,35 +65,37 @@
               <ion-item class="ion-padding">
                 <ion-label position="floating">Kelurahan: </ion-label>
                 <ion-input [(ngModel)]="kelurahan" placeholder="{{kelurahan}}"></ion-input>
-                <ion-button (click)="editProfil()">Simpan</ion-button>
+              </ion-item>
+              <ion-item class="ion-padding" >
+              <ion-button (click)="editProfil()">Simpan</ion-button>
+
               </ion-item>
             </ion-card>
           </ion-col>
 
           <ion-col class="ion-text-center">
             <ion-card>
-              <img src="http://localhost:8888/db_ta/{{gambar}}" alt="">
+              <img src="https://tugas-akhir-bella.my.id/{{gambar}}" alt="">
               <ion-input type="file" (change)="onFileSelected($event)" name="gambar">Unggah Foto Baru
               </ion-input>
               <ion-button (click)="editFoto()">Simpan Foto</ion-button>
             </ion-card>
           </ion-col>
-
           <ion-col class="ion-text-center">
-            <ion-card >
+            <ion-card>
               <ion-title>Ganti Kata Sandi</ion-title>
-              <ion-item >
+              <ion-item>
                 <ion-label position="floating">Kata Sandi Baru: <br></ion-label>
                 <ion-input placeholder="Masukkan kata sandi" [(ngModel)]="pass_baru"></ion-input>
               </ion-item>
-              <ion-button (click)="editPassword()">Update</ion-button>
+              <ion-item class="ion-padding">
+                <ion-button (click)="editPassword()">Update</ion-button>
+              </ion-item>
+
             </ion-card>
           </ion-col>
         </ion-row>
       </ion-grid>
-
     </ion-content>
-
   </ion-router-outlet>
-
 </ion-app>

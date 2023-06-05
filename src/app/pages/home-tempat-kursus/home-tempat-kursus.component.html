@@ -1,7 +1,6 @@
 <ion-app>
   <router-outlet id="content">
   </router-outlet>
-
   <ion-menu content-id="content">
     <ion-header>
       <ion-toolbar>
@@ -51,10 +50,10 @@
     <ion-content class="ion-padding">
       <ion-grid>
         <ion-row>
-          <ion-col size="8">
-
+      <ion-col size-lg="6" size-sm="12">
+          <!-- <ion-col size="8"> -->
             <h1 class="ion-text-center">Profil Tempat Kursus</h1>
-            <img src="http://localhost:8888/db_ta/{{gambar}}" alt="">
+            <img src="https://tugas-akhir-bella.my.id/{{gambar}}" alt="">
             <h3>Email:</h3>
             <ion-textarea [readonly]="true">{{email_profil}}</ion-textarea>
             <h3>Nama:</h3>
@@ -66,10 +65,9 @@
               <ion-row *ngFor="let item of detail_keahlian">
                 {{item.nama}}
               </ion-row>
-
             </ion-grid>
             <h3>Dokumen Tambahan:</h3>
-            <a href="http://localhost:8888/db_ta/{{dokumen_tambahan}}">Lihat Dokumen</a>
+            <a href="https://tugas-akhir-bella.my.id/{{dokumen_tambahan}}">Lihat Dokumen</a>
             <h3>Alamat:</h3>
             <ion-textarea class="ion-text-wrap" [readonly]="true">{{alamat}}, Kecamatan {{kecamatan}}, Kelurahan
               {{kelurahan}}
