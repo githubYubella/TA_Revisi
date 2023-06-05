@@ -19,7 +19,7 @@ export class RegisterOrangTuaComponent implements OnInit {
   nama_siswa = ''
   alamat = ''
   input_x: number
-  input_y: number
+  input_y: number   
 
   provinsi_list: []
   provinsi = ''
