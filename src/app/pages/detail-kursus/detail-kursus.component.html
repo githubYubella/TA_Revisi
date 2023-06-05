@@ -76,9 +76,13 @@
                         <ion-label text-wrap>{{alamat}}, {{kelurahan}}, {{kecamatan}},
                           {{provinsi}}</ion-label>
                       </ion-row>
+                      <ion-row>
+                        <p>Jarak Anda Ke Lokasi: {{totalJarak}} meter</p>
+                      </ion-row>
                     </ion-col>
                   </ion-item>
                   <ion-item>
+                 
                     <capacitor-google-maps #maps>Loading Google Maps</capacitor-google-maps>
                   </ion-item>
                   <ion-item>

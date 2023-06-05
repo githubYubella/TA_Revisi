@@ -5,6 +5,8 @@ import { LatLng } from '@capacitor/google-maps/dist/typings/definitions';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { GuruPrivatService } from 'src/app/services/guru-privat/guru-privat.service';
 import { environment } from 'src/environments/environment';
+import * as geolib from 'geolib';
+
 
 @Component({
   selector: 'app-detail-lowongan',
@@ -34,7 +36,8 @@ export class DetailLowonganComponent implements OnInit {
   idlowongan: number
   idguru: number
   status: string = ''
-  idorang_tua=''
+  idorang_tua = ''
+  totalJarak: number
 
   constructor(public at: ActivatedRoute, private gp: GuruPrivatService,
     private authService: AuthService,
@@ -79,9 +82,21 @@ export class DetailLowonganComponent implements OnInit {
             lng: this.lokasiGP.lng,
           },
           draggable: false,
-          iconUrl:"http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+          iconUrl: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
         })
+        // Total Jarak Antar Lokasi
+        this.totalJarak = geolib.getDistance({
+          lat: parseFloat(data['data'][0].lokasi_lat),
+          lng: parseFloat(data['data'][0].lokasi_long)
+
+        }, {
+          lat: this.lokasi.lat,
+          lng: this.lokasi.lng
+        })
+        console.log("Jarak " + this.totalJarak + "meter")
       }
+
+
     )
 
 
@@ -92,7 +107,11 @@ export class DetailLowonganComponent implements OnInit {
 
       },
       zoom: 8,
+
+
     })
+
+
   }
 
   async detailLowongan() {
@@ -103,7 +122,7 @@ export class DetailLowonganComponent implements OnInit {
           this.idlowongan = data['data'][0].idbuka_lowongan
           this.idorang_tua = data['data'][0].idorang_tua
           this.judul = data['data'][0].judul_lowongan
-          this.nama_ortu = data['data'][0].nama_ortu 
+          this.nama_ortu = data['data'][0].nama_ortu
           this.tanggal_mulai = data['data'][0].tgl_mulai
           this.durasi = data['data'][0].durasi_privat
           this.metode = data['data'][0].metode_privat
@@ -112,7 +131,7 @@ export class DetailLowonganComponent implements OnInit {
             lng: parseFloat(data['data'][0].lowongan_long)
           }
           this.biaya = data['data'][0].biaya_jasa
-          this.keahlian = data['data'][0].nama_keahlian 
+          this.keahlian = data['data'][0].nama_keahlian
           this.jenjang = data['data'][0].jenjang
           this.deskripsi = data['data'][0].deskripsi
           this.banyak_pertemuan = data['data'][0].banyak_pertemuan
@@ -123,14 +142,14 @@ export class DetailLowonganComponent implements OnInit {
     )
   }
 
-  
- 
+
+
 
 
   async ngOnInit() {
     this.detailLowongan()
-  // console.log(this.at.snapshot.params['id']+ 'ID LOWONGAN')
-   
+    // console.log(this.at.snapshot.params['id']+ 'ID LOWONGAN')
+
   }
 
 }

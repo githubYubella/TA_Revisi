@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { OrangTuaService } from 'src/app/services/orang-tua/orang-tua.service';
 import { environment } from 'src/environments/environment';
 import { TempatKursusService } from '../../services/tempat-kursus/tempat-kursus.service';
+import * as geolib from 'geolib';
 
 @Component({
   selector: 'app-detail-kursus',
@@ -36,6 +37,7 @@ export class DetailKursusComponent implements OnInit {
   komentars=[]
   dokumen_tambahan=''
   detail_keahlian = []
+  totalJarak:number
 
 
 
@@ -92,15 +94,19 @@ export class DetailKursusComponent implements OnInit {
           iconUrl:"http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
         })
 
+        // Total Jarak Antar Lokasi
+        this.totalJarak = geolib.getDistance({
+          lat: parseFloat(data['data'][0].lokasi_lat),
+          lng: parseFloat(data['data'][0].lokasi_long)
 
-      }
+        }, {
+          lat: this.location.lat,
+          lng: this.location.lng
+        })
+        console.log("Jarak " + this.totalJarak+ "meter")
+      }  
     )
-    
-
-
   }
-
-
 
   async detailKursus() {
     this.idkurus= this.at.snapshot.params['idkursus']
