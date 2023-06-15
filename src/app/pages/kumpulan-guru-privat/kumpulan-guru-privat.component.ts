@@ -21,7 +21,7 @@ export class KumpulanGuruPrivatComponent implements OnInit {
     let search_value = ev.target.value
     this.search_bidang = search_value
     // console.log(this.search_bidang)
-    this.listGuru()
+    // this.listGuru()
     // this.listKursus()
   }
 
@@ -30,7 +30,7 @@ export class KumpulanGuruPrivatComponent implements OnInit {
     this.jenjang_dipilih = ev.target.value
     console.log(this.jenjang_dipilih.toString())
     // this.listKursus()
-    this.listGuru()
+    // this.listGuru()
 
   }
   searchbarComboboxKelamin(ev: any){
@@ -38,28 +38,28 @@ export class KumpulanGuruPrivatComponent implements OnInit {
     this.jenisKelamin_dipilih = ev.target.value
     console.log(this.jenisKelamin_dipilih.toString())
     // this.listKursus()
-    this.listGuru()
+    // this.listGuru()
 
   }
 
-  listGuru() {
-    var kosong=""
-    this.ot.listGuruPrivatService(this.search_bidang,this.jenjang_dipilih,this.jenisKelamin_dipilih).subscribe(
-      (data) => {
-        if (data['result'] == 'success') {
-          this.kumpulan_guru_privat = data['data']
-        }else{
-          kosong="tidak ada data"
-          this.kumpulan_guru_privat = data['data']
-          console.log('er '+data['result'])
-        }
-      }
-    )
+  // listGuru() {
+  //   var kosong=""
+  //   this.ot.listGuruPrivatService(this.search_bidang,this.jenjang_dipilih,this.jenisKelamin_dipilih).subscribe(
+  //     (data) => {
+  //       if (data['result'] == 'success') {
+  //         this.kumpulan_guru_privat = data['data']
+  //       }else{
+  //         kosong="tidak ada data"
+  //         this.kumpulan_guru_privat = data['data']
+  //         console.log('er '+data['result'])
+  //       }
+  //     }
+  //   )
 
-  }
+  // }
 
   async ngOnInit() { 
-    this.listGuru()
+    // this.listGuru()
   }
 
 }

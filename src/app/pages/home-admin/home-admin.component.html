@@ -46,35 +46,76 @@
     <ion-content class="ion-padding">
       <h1>{{nama_login}}</h1>
       <h3>Saldo:Rp. {{saldo}}</h3>
-      <table>
-        <tr>
-          <th>Tanggal bayar</th>
-          <th>Total Bersih</th>
-          <th>Total Bayar</th>
-          <th>Kode Pembayaran</th>
-          <th>Nama Bank Pembayaran</th>
-          <th>ID orang tua</th>
-          <th>ID guru privat</th>
-          <th>Bukti Pembayaran</th>
-          <th>Aksi</th>
-        </tr>
-        <tr *ngFor="let item of list_bayar; let i=index">
-          <td>{{item.tanggal_bayar}}</td>
-          <td>{{item.total_bayar_bersih}}</td>
-          <td>{{item.total_bayar_bersih+item.kode_pembayaran}}</td>
-          <td>{{item.kode_pembayaran}}</td>
-          <td>{{item.bank}}</td>
-          <td>{{item.idorang_tua}}</td>
-          <td>{{item.idguru_privat}}</td>
-          <td>
-            <a href="https://tugas-akhir-bella.my.id/{{item.bukti_bayar}}">Lihat Bukti Pembayaran</a>
-          </td>
-          <td>
-            <ion-button *ngIf="item.status_lunas=='Belum lunas'" (click)="bayarLunas(item.idtransaksi)"> Lunas</ion-button>
-            <ion-button *ngIf="item.status_lunas=='Lunas'" disabled="true"> Lunas</ion-button>
-          </td>
-        </tr>
-      </table>
+      <ion-grid>
+        <ion-row>
+
+          <ion-col>
+            Tanggal bayar
+          </ion-col>
+          <ion-col>
+          Total Bersih
+          </ion-col>
+          <ion-col>
+          Total Bayar
+          </ion-col>
+          <ion-col>
+          Kode Pembayaran
+          </ion-col>
+          <!-- <ion-col>
+          Nama Bank Pembayaran
+          </ion-col> -->
+          <ion-col>
+          Nama orang tua
+          </ion-col>
+          <ion-col>
+          Nama guru privat
+          </ion-col>
+          <ion-col>
+          Bukti Pembayaran
+          </ion-col>
+          <ion-col>
+          Aksi
+          </ion-col>
+        </ion-row>
+
+        <ion-row *ngFor="let item of list_bayar; let i=index">
+          <!-- <tr *ngFor="let item of list_bayar; let i=index"> -->
+          <ion-col>
+          {{item.tanggal_bayar}}
+          </ion-col>
+          <ion-col>
+          {{item.total_bayar_bersih}}
+          </ion-col>
+          <ion-col>
+          {{item.total_bayar_bersih+item.kode_pembayaran}}
+          </ion-col>
+          <ion-col>
+          {{item.kode_pembayaran}}
+          </ion-col>
+          <!-- <ion-col>
+          {{item.bank}}
+          </ion-col> -->
+          <ion-col> 
+          {{item.nama_orang_tua}}
+          </ion-col>
+          <ion-col>
+          {{item.nama_guru_privat}}
+          </ion-col>
+          <ion-col>
+          
+              <a href="https://tugas-akhir-bella.my.id/{{item.bukti_bayar}}">Lihat Bukti Pembayaran</a>
+            
+          </ion-col>
+          <ion-col>
+          
+              <ion-button *ngIf="item.status_lunas=='Belum lunas'" (click)="bayarLunas(item.idtransaksi)">
+                Lunas</ion-button>
+              <ion-button *ngIf="item.status_lunas=='Lunas'" disabled="true"> Lunas</ion-button>
+            
+          </ion-col>
+          <!-- </tr> -->
+        </ion-row>
+      </ion-grid>
       <ion-list>
       </ion-list>
     </ion-content>

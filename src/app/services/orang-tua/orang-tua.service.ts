@@ -53,11 +53,14 @@ export class OrangTuaService {
     return this.http.post('https://tugas-akhir-bella.my.id/detail_profil_guru_privat.php', body)
   }
 
-  listGuruPrivatService(search_keahlian: string, search_jenjang: string, search_gender:string): Observable<any> {
+  listGuruPrivatService(search_keahlian: string, search_jenjang: string, search_gender:string,
+    search_provinsi:string, search_kota:string): Observable<any> {
     let body = new HttpParams;
     body = body.set('search_keahlian', search_keahlian)
     body = body.set('search_jenjang', search_jenjang)
     body = body.set('search_gender', search_gender)
+    body = body.set('search_provinsi', search_provinsi)
+    body = body.set('search_kota', search_kota)
     return this.http.post("https://tugas-akhir-bella.my.id/list_kumpulan_guru.php", body);
   }
 
