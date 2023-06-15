@@ -71,6 +71,7 @@ import { KirimUlasanUntukTempatKursusComponent } from './pages/kirim-ulasan-untu
 import { BantuanOrangTuaComponent } from './pages/bantuan-orang-tua/bantuan-orang-tua.component';
 import { IntroComponent } from './pages/intro/intro.component';
 import { DetailRiwayatAbsenGuruComponent } from './pages/detail-riwayat-absen-guru/detail-riwayat-absen-guru.component';
+import { ListPenarikanDanaAdminComponent } from './pages/list-penarikan-dana-admin/list-penarikan-dana-admin.component';
 
 import { AuthGuard } from './guards/auth/auth.guard';
 import { GuestGuard } from './guards/guest/guest.guard';
@@ -345,6 +346,11 @@ const appRoutes: Routes = [
     component: DetailRiwayatAbsenGuruComponent,
     canActivate: [AuthGuard]
   },
+  {
+    path: 'list-penarikan-dana-admin',
+    component: ListPenarikanDanaAdminComponent,
+    canActivate: [AuthGuard]
+  },
  
   
   // {path: 'detail/:id', component:ProductdetailComponent},
@@ -374,7 +380,7 @@ const appRoutes: Routes = [
     KumpulanGuruPrivatComponent,DetailKumpulanGuruPrivatComponent,RiwayatTransaksiOrangTuaComponent,
     SelesaiKursusOrangTuaComponent, KirimUlasanUntukTempatKursusComponent, BantuanOrangTuaComponent,
     // IntroComponent
-    DetailRiwayatAbsenGuruComponent,
+    DetailRiwayatAbsenGuruComponent,ListPenarikanDanaAdminComponent
 
     
   ],

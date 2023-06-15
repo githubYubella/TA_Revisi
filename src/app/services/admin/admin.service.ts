@@ -6,21 +6,38 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AdminService {
- updateLunasService(kode_bayar:number,idadmin:number,
-  idtransaksi:number,total_bersih:number,idguru:number): Observable<any> {
+
+  setujuTarikDana(idguru: number,nominal:number,idtarikdana:number): Observable<any> {
+    let body = new HttpParams;
+    body = body.set('idtarikdana', idtarikdana)
+    body = body.set('idguru', idguru)
+    body = body.set('nominal', nominal)
+    return this.http.post("https://tugas-akhir-bella.my.id/setuju_tarik_dana.php", body);
+
+  }
+
+  listGuruTarikDana(): Observable<any> {
+    // let body = new HttpParams()
+    // body = body.set('id',id)
+    return this.http.get('https://tugas-akhir-bella.my.id/list_tarik_dana_guru.php')
+  }
+
+
+  updateLunasService(kode_bayar: number, idadmin: number,
+    idtransaksi: number, total_bersih: number, idguru: number): Observable<any> {
     let body = new HttpParams;
     body = body.set('idtransaksi', idtransaksi)
     body = body.set('kode_bayar', kode_bayar)
     body = body.set('idadmin', idadmin)
     body = body.set('total_bersih', total_bersih)
     body = body.set('idguru', idguru)
-    return this.http.post("https://tugas-akhir-bella.my.id/edit_pembayaran_lunas.php",body);
+    return this.http.post("https://tugas-akhir-bella.my.id/edit_pembayaran_lunas.php", body);
   }
 
-  detailBayarAdminService(idtransaksi:number): Observable<any> {
+  detailBayarAdminService(idtransaksi: number): Observable<any> {
     let body = new HttpParams;
     body = body.set('idtransaksi', idtransaksi)
-    return this.http.post("https://tugas-akhir-bella.my.id/detail_bayar_admin.php",body);
+    return this.http.post("https://tugas-akhir-bella.my.id/detail_bayar_admin.php", body);
   }
 
   profilService(email: string): Observable<any> {
@@ -29,10 +46,10 @@ export class AdminService {
     return this.http.post('https://tugas-akhir-bella.my.id/profil_admin.php', body)
   }
 
-  listBayarAdminService(idadmin:number): Observable<any> {
+  listBayarAdminService(idadmin: number): Observable<any> {
     let body = new HttpParams;
     body = body.set('idadmin', idadmin)
-    return this.http.post("https://tugas-akhir-bella.my.id/list_bayar_admin.php",body);
+    return this.http.post("https://tugas-akhir-bella.my.id/list_bayar_admin.php", body);
   }
 
   registerService(email: string, password: string, no_rek: string,
