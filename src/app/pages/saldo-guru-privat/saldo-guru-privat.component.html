@@ -21,7 +21,7 @@
     <ion-content>
       <ion-card>
         <ion-item >
-          <h1>Saldo: {{saldo}}</h1>
+          <h1>Saldo: {{saldo | number }}</h1>
         </ion-item>
         <ion-item>
           <ion-button routerLink="/penarikan-dana-guru/{{idguru}}">Penarikan Dana</ion-button>

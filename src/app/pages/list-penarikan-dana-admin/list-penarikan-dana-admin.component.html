@@ -50,13 +50,13 @@
             <ion-col> <b> Nama Guru </b></ion-col>
             <ion-col> <b>Nominal Penarikan Dana </b></ion-col>
             <ion-col> <b>Nomor Rekening Guru</b></ion-col>
-            <ion-col> <b>Tanggal Penarikan</b></ion-col>
+            <ion-col> <b>Status Penarikan</b></ion-col>
             <ion-col> <b>Aksi</b></ion-col>
     
         </ion-row>
         <ion-row *ngFor="let item of list_tarik_dana_guru; let i=index">
           <ion-col>{{item.nama_guru_privat}}</ion-col>
-          <ion-col>{{item.nominal}}</ion-col>
+          <ion-col>{{item.nominal | number }}</ion-col>
           <ion-col>{{item.no_rek_tujuan}}</ion-col>
           <ion-col>{{item.status_penarikan}}</ion-col>
           <ion-col>

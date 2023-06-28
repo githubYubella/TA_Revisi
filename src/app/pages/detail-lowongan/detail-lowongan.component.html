@@ -39,7 +39,7 @@
                 </ion-item>
               </ion-row>
               <ion-row>
-                <ion-item> Biaya per bulan: Rp. {{biaya}}</ion-item>
+                <ion-item> Biaya per bulan: Rp. {{biaya | number}}</ion-item>
               </ion-row>
               <ion-row>
                 <ion-item>Metode: {{metode}}</ion-item>
@@ -74,7 +74,7 @@
           <ion-label text-wrap> Jadwal privat:{{jadwal}} </ion-label>
         </ion-item>
         <ion-item>
-          <p>Jarak Anda Ke Lokasi: {{totalJarak}} meter</p>
+          <p>Jarak Anda Ke Lokasi: {{totalJarak |number}} meter</p>
         </ion-item>
         <ion-item>
           <capacitor-google-maps #maps>Loading google maps</capacitor-google-maps>

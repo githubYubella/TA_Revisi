@@ -46,76 +46,94 @@
     <ion-content class="ion-padding">
       <h1>{{nama_login}}</h1>
       <h3>Saldo:Rp. {{saldo}}</h3>
-      <ion-grid>
-        <ion-row>
 
+
+
+
+      <ion-grid size="3">
+        <ion-row>
+          <ion-col>
+            Judul Lowongan
+          </ion-col>
           <ion-col>
             Tanggal bayar
           </ion-col>
           <ion-col>
-          Total Bersih
+            Total Bersih
           </ion-col>
           <ion-col>
-          Total Bayar
+            Total Bayar
           </ion-col>
           <ion-col>
-          Kode Pembayaran
+            Kode Pembayaran
           </ion-col>
           <!-- <ion-col>
-          Nama Bank Pembayaran
-          </ion-col> -->
+    Nama Bank Pembayaran
+    </ion-col> -->
           <ion-col>
-          Nama orang tua
+            Nama orang tua
           </ion-col>
           <ion-col>
-          Nama guru privat
+            Nama guru privat
           </ion-col>
           <ion-col>
-          Bukti Pembayaran
+            Bukti Pembayaran
           </ion-col>
           <ion-col>
-          Aksi
+            Aksi
           </ion-col>
         </ion-row>
 
-        <ion-row *ngFor="let item of list_bayar; let i=index">
+        <ion-row *ngFor="let item of list_bayar; let baris=index;">
+
           <!-- <tr *ngFor="let item of list_bayar; let i=index"> -->
           <ion-col>
-          {{item.tanggal_bayar}}
+            {{item.judul_lowongan}}
           </ion-col>
           <ion-col>
-          {{item.total_bayar_bersih}}
+            {{item.tanggal_bayar| date: 'dd/MM/yyyy'}}
           </ion-col>
           <ion-col>
-          {{item.total_bayar_bersih+item.kode_pembayaran}}
+            Rp.{{item.total_bayar_bersih | number }}
           </ion-col>
           <ion-col>
-          {{item.kode_pembayaran}}
+            <ion-label>
+              Rp.{{item.total_bayar_bersih+item.kode_pembayaran | number }}
+            </ion-label>
+          </ion-col>
+          <ion-col>
+            {{item.kode_pembayaran}}
           </ion-col>
           <!-- <ion-col>
-          {{item.bank}}
-          </ion-col> -->
-          <ion-col> 
-          {{item.nama_orang_tua}}
+      {{item.bank}}
+      </ion-col> -->
+          <ion-col>
+            {{item.nama_orang_tua}}
           </ion-col>
           <ion-col>
-          {{item.nama_guru_privat}}
+            {{item.nama_guru_privat}}
           </ion-col>
           <ion-col>
-          
-              <a href="https://tugas-akhir-bella.my.id/{{item.bukti_bayar}}">Lihat Bukti Pembayaran</a>
-            
+
+            <a href="https://tugas-akhir-bella.my.id/{{item.bukti_bayar}}">Lihat Bukti Pembayaran</a>
+
           </ion-col>
           <ion-col>
-          
-              <ion-button *ngIf="item.status_lunas=='Belum lunas'" (click)="bayarLunas(item.idtransaksi)">
-                Lunas</ion-button>
-              <ion-button *ngIf="item.status_lunas=='Lunas'" disabled="true"> Lunas</ion-button>
-            
+
+            <ion-button *ngIf="item.status_lunas=='Belum lunas'" (click)="bayarLunas(item.idtransaksi)">
+              Lunas</ion-button>
+            <ion-button *ngIf="item.status_lunas=='Lunas'" disabled="true"> Lunas</ion-button>
+
           </ion-col>
           <!-- </tr> -->
+
+
+
+
         </ion-row>
       </ion-grid>
+
+
       <ion-list>
       </ion-list>
     </ion-content>

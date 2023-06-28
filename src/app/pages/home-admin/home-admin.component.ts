@@ -17,7 +17,13 @@ export class HomeAdminComponent implements OnInit {
   idtrans: number
   kode_bayar: number
   total_bersih: number
+  total: any
   idguru: number
+  list_total_bayar: []
+  tes: number
+  list_lowongan: []
+  list_ortu: []
+  list_guru: []
   constructor(private ad: AdminService, private authService: AuthService,
     private router: Router) {
     this.email = authService.email
@@ -39,7 +45,7 @@ export class HomeAdminComponent implements OnInit {
               (data) => {
                 if (data['result'] == 'success') {
                   alert('Status pembayaran berhasil diperbarui')
-                        window.location.reload()
+                  window.location.reload()
 
 
                 }
@@ -60,6 +66,8 @@ export class HomeAdminComponent implements OnInit {
 
   }
 
+guru:[]
+nama_guruAllData: string[] = []
   listBayar() {
     this.ad.profilService(this.email).subscribe(
       (data) => {
@@ -73,12 +81,26 @@ export class HomeAdminComponent implements OnInit {
             (data) => {
               if (data['result'] = 'success') {
                 this.list_bayar = data['data']
+                this.list_lowongan = data['lowongan']
+                this.list_ortu = data['ortu']
+                this.list_guru = data['guru']
+
+                // this.list_guru.forEach((value,index) => {
+                //   this.nama_guruAllData.push( value['nama_guru_privat'])
+                //   // this.kode_bayar = data['data'][0].kode_pembayaran
+                // });
+                // console.log("testi " + this.nama_guruAllData);
+
               }
             }
           )
         }
       }
     )
+
+    this.tes = 100000
+    const formattedNumber = this.tes.toLocaleString();
+    console.log(" ribuan: " + formattedNumber)
 
   }
   async ngOnInit() {

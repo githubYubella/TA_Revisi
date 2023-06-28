@@ -24,7 +24,7 @@
         <ion-card >
           <ion-item>
             <ion-label text-wrap>{{item.status_lunas}} <br>
-              Pembayaran oleh {{item.nama_orang_tua}} Rp.{{item.total_bayar_bersih}} <br>
+              Pembayaran oleh {{item.nama_orang_tua}} Rp.{{item.total_bayar_bersih | number }} <br>
               Tanggal: {{item.tanggal_bayar | date: 'dd/MM/yyyy'}}
             </ion-label>
             <ion-label> <br></ion-label>

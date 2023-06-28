@@ -20,7 +20,7 @@
     <ion-content class="ion-padding">
       <ion-card>
         <ion-item>
-          <h1>Total Bayar Jasa: {{total_bayar}}</h1>
+          <h1>Total Bayar Jasa: {{total_bayar | number }}</h1>
         </ion-item>
         <ion-item>
           <h1>Bayar sebelum tanggal: {{tgl_tagihan | date: 'dd/MM/yyyy'}}</h1>
